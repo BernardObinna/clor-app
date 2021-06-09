@@ -1,0 +1,82 @@
+.auth-banner {
+  background: linear-gradient(90deg, #FDFCFB 0%, #E2D1C3 100%);
+  padding: 7.5rem 0;
+
+  @include screen('med'){
+    padding-top: 0;
+    padding-bottom: 2rem;
+  }
+
+  img {
+    top: -40%;
+  }
+}
+
+.app-banner{
+  background: $color-grey;
+  @include screen('med') {
+    padding: 3.6rem 0;
+  }
+  @include screen('x-large') {
+    padding: 3.6rem 0;
+  }
+}
+
+.today-banner {
+  background: $color-grey;
+  @include screen('med') {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+  @include screen('x-large') {
+    padding: 6.5rem 0;
+  }
+
+  img {
+    width: 3.5rem;
+    height: 12rem;
+    margin: 0 .25rem;
+  }
+}
+
+.about-banner {
+  background: linear-gradient(90deg, #FAD0C4 0%, #FAD0C4 1%, #FFD1FF 100%);
+
+  img {
+    width: 4.25rem;
+
+  }
+
+  @include screen('med') {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    img {
+      margin-bottom: 1.5rem;
+    }
+  }
+  @include screen('x-large') {
+    padding-top: 5.5rem;
+    padding-bottom: 4.5rem;
+    img {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+}
+
+.today-bottom-banner {
+  @include screen('x-large') {
+    background: $color-dark-grey;
+    padding: 4.5rem 0;
+    margin-top: 8rem;
+  }
+  @include screen('med') {
+    background: linear-gradient(90deg, #A8CABA 0%, #5D4157 100%);
+    padding: 4rem 0rem;
+  }
+
+  .btn{
+    font-size: 1.15rem;
+    line-height: 1.43rem;
+  }
+}

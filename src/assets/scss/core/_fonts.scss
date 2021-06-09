@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'Brown-Bold';
+  src: url("/fonts/Brown/Brown-Bold.otf") format("truetype");
+  font-weight: bold;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brown-Regular';
+  src: url("/fonts/Brown/Brown-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brown-Light';
+  src: url("/fonts/Brown/Brown-Light.otf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Brown-Regular', sans-serif;
+}
+
+p {
+  font-family: 'Brown-Regular', sans-serif;
+  font-size: 16px;
+}
+
+.main-nav .link-txt .txt {
+  font-family: 'Brown-Regular', sans-serif !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  /*letter-spacing: 2px;*/
+}
+
+.h1, h1,
+.h2, h2,
+.h3, h3,
+.h4, h4,
+.h5, h5,
+.h6, h6 {
+  font-family: 'Brown-Bold', sans-serif !important;
+}
+
+.h1, h1 {
+  font-size: 50px;
+}
+
+.h2, h2 {
+  font-weight: 500;
+  font-size: toRem(40px);
+  line-height: toRem(51px);
+}
+
+.h4, h4 {
+  font-size: toRem(40px);
+  line-height: toRem(51px);
+
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+/*.h3, h3 {*/
+/*    font-size: 24px;*/
+/*    line-height: 1.2em;*/
+/*}*/
+
+/*.h4, h4 {*/
+/*    font-size: 18px;*/
+/*    line-height: 1.2em;*/
+/*}*/
+
+/*.h5, h5 {*/
+/*    font-size: 14px;*/
+/*    line-height: 1.2em;*/
+/*}*/
+
+/*.h6, h6 {*/
+/*    font-size: 12px;*/
+/*    line-height: 1.2em;*/
+/*}*/
+
+/*.h2-light {*/
+/*    font-family: 'Brown-Light', sans-serif !important;*/
+/*    font-size: 36px;*/
+/*    line-height: 1.2em;*/
+/*}*/
+
+/*.h2-regular {*/
+/*    font-family: 'Brown-Regular', sans-serif !important;*/
+/*    font-size: 36px;*/
+/*    line-height: 1.2em;*/
+/*}*/

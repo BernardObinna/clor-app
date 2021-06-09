@@ -1,0 +1,167 @@
+.pointer{
+  cursor: pointer;
+}
+
+
+
+.cursor{
+  cursor: unset !important;
+}
+
+.form-control-line {
+  border-bottom: 1px solid $color-primary !important;
+  height: 37px;
+
+  &:focus {
+    background-color: #ffffff !important;
+    border-bottom: 2px solid $color-primary !important;
+
+    -webkit-box-shadow: none;
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #eeeeee;
+    background-color: #ffffff !important;
+  }
+}
+
+
+#styled_select, .styled-select, .switch-select {
+
+
+  .select2 {
+    display: block;
+    font-size: .8rem;
+    line-height: 1.5;
+    color: #495057;
+
+    &-container &-selection--single {
+      display: block;
+      border-radius: 0.25rem;
+      height: 40px !important;
+    }
+
+    &-selection {
+      height: 40px !important;
+
+      &__arrow {
+        height: 40px !important;
+      }
+
+      &__rendered {
+        line-height: 40px !important;
+      }
+
+      &:focus {
+        outline: 0 !important;
+      }
+
+      &--single {
+        padding: 0px !important;
+        padding-left: .5rem !important;
+      }
+    }
+  }
+
+  .select2-container {
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    position: relative;
+    width: 100% !important;
+    //border-bottom: 1.5px solid #dbdbdb;
+  }
+
+  .select2-selection__arrow b::before {
+    display: none;
+  }
+
+  .select2-selection__arrow b {
+    margin: -3px 0px;
+  }
+
+}
+
+.my-select{
+    background-image: none !important;
+  select .form-control{
+    background-image: none !important;
+  }
+}
+
+.dot {
+  height: 14px;
+  width: 14px;
+  background-color: #14b5ff;
+  border-radius: 50%;
+  display: inline-block;
+
+  &__grey{
+    background-color: $color-primary;
+  }
+}
+
+.mt-10-r{
+  margin-top: 10rem !important;
+}
+
+.mt-6-r{
+  margin-top: 6rem !important;
+}
+
+
+.d-content{
+  display: contents !important;
+}
+
+.min-width-unset{
+  min-width: unset !important;
+}
+
+.min-width-20r{
+  min-width: 20rem !important;
+}
+
+
+.max-height-14r{
+  max-height: 14rem !important;
+}
+
+.height-14r{
+  height: 14rem !important;
+}
+
+.height-9r{
+  height: 9rem !important;
+}
+
+.height-10r{
+  height: 10rem !important;
+  object-fit: contain !important;
+}
+
+.background-black{
+  background: black;
+}
+
+.opacity-0 {
+  opacity: 0 !important;
+}
+
+.opacity-5 {
+  opacity: 0.5 !important;
+}
+
+.opacity-6 {
+  opacity: 0.6 !important;
+}
+
+.h-fill-available{
+  height: -webkit-fill-available;
+}
+
+.h-fit-content{
+  height: fit-content !important;
+}

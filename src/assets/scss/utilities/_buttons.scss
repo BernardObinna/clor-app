@@ -1,0 +1,102 @@
+//.btn{
+//  border-radius: 8px;
+//  min-width: 8rem !important;
+//  text-transform: none !important;
+//
+//  padding-top: 0.6rem;
+//  padding-bottom: 0.6rem;
+//  font-size: 1rem;
+//  line-height: 1.72rem;
+//  letter-spacing: 0.002em;
+//  padding-right: 3.5rem;
+//  padding-left: 3.5rem;
+//
+//  &:hover{
+//    &:disabled{
+//      cursor: not-allowed;
+//    }
+//    //transform: scale(1.1);
+//    transition: all 0.5s;
+//  }
+//
+//  &--tiny{
+//    min-width: 3rem !important;
+//  }
+//
+//  &-no-scale:hover{
+//    transform: none;
+//  }
+//
+//  &--color-primary-white{
+//    color: $color-primary;
+//    border: 1px solid $color-primary;
+//    &:hover{
+//      background-color: $color-primary;
+//      color: #fff;
+//    }
+//    &:disabled{
+//      background-color: unset;
+//      color: unset;
+//      border-color: #999;
+//    }
+//  }
+//
+//  &--color-primary-blue{
+//    background-color: $color-primary !important;
+//    color: #fff !important;
+//    border: 1px solid $color-primary !important;
+//    &:hover{
+//      color: #fff !important;
+//    }
+//    &:disabled{
+//      background-color: unset !important;
+//      color: unset !important;
+//      border-color: #999 !important;
+//    }
+//  }
+//
+//  &--color-red-outline{
+//    color: $color-red;
+//    border: 1px solid $color-red;
+//    &:hover{
+//      color: $color-red;
+//      background-color: #fff;
+//      background-image: none;
+//    }
+//    &:disabled{
+//      background-color: unset;
+//      color: unset;
+//      border-color: #999;
+//    }
+//  }
+//
+//  &--color-red{
+//    background-color: $color-red;
+//    color: #fff;
+//    border: 1px solid $color-red;
+//    &:hover{
+//      color: #fff;
+//    }
+//    &:disabled{
+//      background-color: unset;
+//      color: unset;
+//      border-color: #999;
+//    }
+//  }
+//
+//  &--color-green{
+//    background-color: $color-green;
+//    color: #fff;
+//    border: 1px solid $color-green;
+//    &:hover{
+//      color: #fff;
+//    }
+//    &:disabled{
+//      background-color: unset;
+//      color: unset;
+//      border-color: #999;
+//    }
+//  }
+//
+//
+//}

@@ -1,0 +1,268 @@
+.numbered-heading{
+  background: white;
+  border-radius: 50%;
+  color: $color-primary;
+  width: toRem(56px);
+  padding: toRem(13px) toRem(24px) toRem(13px) toRem(21px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: toRem(16px);
+}
+
+.fs-4{
+  font-size: 0.29rem;
+}
+
+.fs-5{
+  font-size: 0.36rem;
+}
+
+
+.fs-10 {
+  font-size: 0.72rem;
+  line-height: .65rem;
+}
+
+.fs-11 {
+  font-size: 0.79rem;
+  line-height: 1rem;
+}
+
+.fs-12 {
+  font-size: 0.86rem;
+  line-height: 1.08rem;
+}
+
+.fs-12-mob {
+  @include screen('med') {
+    font-size: 0.86rem !important;
+    line-height: 1.08rem !important;
+  }
+}
+
+
+.fs-13 {
+  font-size: 0.93rem;
+  line-height: 1.15rem;
+}
+
+.fs-13-mob {
+  @include screen('med') {
+    font-size: 0.93rem;
+    line-height: 1.15rem;
+  }
+}
+
+.fs-14 {
+  font-size: 1rem;
+  line-height: 1.22rem;
+}
+
+.fs-14-mob {
+  @include screen('med') {
+    font-size: 1rem;
+    line-height: 1.22rem;
+  }
+}
+
+.fs-15 {
+  font-size: 1.08rem;
+  line-height: 1.36rem;
+}
+
+.fs-15-mob {
+  @include screen('med') {
+    font-size: 1.08rem;
+    line-height: 1.36rem;
+  }
+}
+
+
+.fs-16 {
+  font-size: 1.15rem;
+  line-height: 1.43rem;
+}
+
+.fs-16-mob {
+  @include screen('med') {
+    font-size: 1.15rem;
+    line-height: 1.43rem;
+  }
+}
+
+
+.fs-20 {
+  font-size: 1.43rem;
+  line-height: 1.79rem;
+}
+
+.fs-20-mob {
+  @include screen('med') {
+    font-size: 1.43rem !important;
+    line-height: 1.79rem !important;
+  }
+}
+
+.fs-25 {
+  font-size: 1.72rem;
+  line-height: 2.15rem;
+}
+
+.fs-25-mob {
+  @include screen('med') {
+    font-size: 1.72rem;
+    line-height: 2.15rem;
+  }
+}
+
+.fs-28-mob {
+  @include screen('med') {
+    font-size: 2rem;
+    line-height: 2.33rem;
+  }
+}
+
+.fs-0-1-r {
+  font-size: 0.1rem;
+}
+
+.fs-0-7-r {
+  font-size: .7rem;
+}
+
+.fs-0-8-r {
+  font-size: .8rem;
+}
+
+.fs-0-9-r {
+  font-size: .9rem !important;
+}
+
+.fs-1-r {
+  font-size: 1.0rem;
+}
+
+.fs-1-1-r {
+  font-size: 1.1rem;
+}
+
+.fs-1-2-r {
+  font-size: 1.2rem;
+}
+
+.fs-1-5-r {
+  font-size: 1.5rem !important;
+}
+
+.fs-1-5-r-mob {
+  @include screen('med') {
+    font-size: 1.5rem !important;
+  }
+}
+
+.fs-2-r {
+  font-size: 2rem !important;
+}
+
+.fs-2-2-r {
+  font-size: 2.2rem;
+}
+
+.fs-3-r {
+  font-size: 3rem;
+}
+
+.fs-12-px {
+  font-size: 12px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+p, label, h1, h2, h3, h4, h5, h6, small {
+  color: #000000
+}
+
+.text-light-blue {
+  color: $color-light-blue
+}
+
+.text-link-black {
+  color: $text-link-black
+}
+.text-red {
+  color: $color-red
+}
+
+.text-white-2 {
+  color: $text-white-2
+}
+
+.text-grey {
+  color: $text-grey
+}
+
+.text-grey-f4f {
+  color: $text-grey-f4f
+}
+
+.text-grey-9a9 {
+  color: $text-grey-9a9
+}
+
+.text-grey-282 {
+  color: $text-grey-282
+}
+
+.text-grey-dbd {
+  color: $text-grey-dbd
+}
+
+.text-nav-grey{
+  color: $text-nav-grey
+}
+
+.line-height-12 {
+  line-height: 0.86rem !important;
+}
+
+.letter-space-023 {
+  letter-spacing: 0.23em;
+}
+
+.letter-space-02 {
+  letter-spacing: 0.2em;
+}
+
+
+.letter-space-02-mob {
+  @include screen('med') {
+    letter-spacing: 0.2em !important;
+  }
+}
+
+.line-height-23{
+  line-height: 1.65rem;
+}
+
+
+.line-height-2r{
+  line-height: 2rem;
+}
+
+
+
+.letter-space-0002 {
+  letter-spacing: 0.002em;
+}
+
+.modal-text{
+  font-size: 1.15rem;
+  line-height: 200%;
+}
+
+.imitate-sub-text{
+  position: relative;
+  top: -.2rem;
+}

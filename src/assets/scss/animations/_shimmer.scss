@@ -1,0 +1,75 @@
+.shimmerBG {
+  animation-duration: 2.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: #ddd;
+  background: linear-gradient(to right, #F6F6F6 8%, #F0F0F0 18%, #F6F6F6 33%);
+  background-size: 1200px 100%;
+}
+
+
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+  100% {
+    background-position: 1200px 0;
+  }
+}
+
+.shimmer-title-line {
+  height: 24px;
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 20px;
+}
+
+.shimmer-content-line {
+  height: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.shimmer-line-end {
+  width: 40%;
+}
+
+.shimmer-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 5rem;
+}
+
+.shimmer-img {
+  //width: 50%;
+  //
+  //@include screen('med') {
+  //  width: 75%;
+  //}
+  position: absolute;
+  top: 0;
+
+  &-circle {
+    border-radius: 50%;
+  }
+
+  &::before, {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+}
