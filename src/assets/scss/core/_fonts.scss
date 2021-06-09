@@ -72,6 +72,9 @@ h4 {
   font-size: toRem(24px);
   line-height: toRem(32px);
   font-weight: 500;
+  @include screen('med') {
+    font-size: toRem(20px);
+  }
 }
 
 /*.h3, h3 {*/

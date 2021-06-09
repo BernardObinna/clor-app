@@ -71,8 +71,8 @@
 
 .fs-16-mob {
   @include screen('med') {
-    font-size: 1.15rem;
-    line-height: 1.43rem;
+    font-size: toRem(16px) !important;
+    line-height: toRem(24px) !important;
   }
 }
 
