@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import landingSendMoneySection from "@/components/landingSendMoneySection";
-import LandingHowItWorksSection from "@/components/landingHowItWorksSection";
-import LandingReasonToUseSection from "@/components/landingReasonsToUseSection";
-import LandingFAQSection from "@/components/landingFAQSection";
-import LandingVendorSection from '../components/landingVendorSection';
-import LandingHeader from '../components/landingHeader';
+import landingSendMoneySection from '@/components/landingSendMoneySection'
+import LandingHowItWorksSection from '@/components/landingHowItWorksSection'
+import LandingReasonToUseSection from '@/components/landingReasonsToUseSection'
+import LandingFAQSection from '@/components/landingFAQSection'
+import LandingVendorSection from '../components/landingVendorSection'
+import LandingHeader from '../components/landingHeader'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     LandingHeader,
     LandingVendorSection,
     LandingFAQSection,
     LandingReasonToUseSection,
     LandingHowItWorksSection,
-    landingSendMoneySection,
-  },
-};
+    landingSendMoneySection
+  }
+}
 </script>

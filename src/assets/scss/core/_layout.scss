@@ -60,7 +60,6 @@ html {
   width: 20% !important;
 }
 
-
 .w-30 {
   width: 30% !important;
 }
@@ -79,7 +78,6 @@ html {
   width: 40% !important;
 }
 
-
 .w-lg-40 {
   @include screen('x-large') {
     width: 40% !important;
@@ -89,7 +87,6 @@ html {
 .w-45 {
   width: 45% !important;
 }
-
 
 .w-lg-45 {
   @include screen('x-large') {
@@ -140,7 +137,6 @@ html {
 .w-83 {
   width: 83% !important;
 }
-
 
 .w-85 {
   width: 85% !important;
@@ -196,7 +192,6 @@ html {
   padding: 7.5rem 12rem;
 }
 
-
 body {
   height: 100%;
   margin: 0;
@@ -216,19 +211,19 @@ body {
 
 .top {
   &-1-r {
-    top: 1rem
+    top: 1rem;
   }
 
   &-2-r {
-    top: 2rem
+    top: 2rem;
   }
 
   &-3-r {
-    top: 3rem
+    top: 3rem;
   }
 
   &-4-r {
-    top: 4rem
+    top: 4rem;
   }
 }
 
@@ -257,11 +252,11 @@ body {
   border-radius: 8px;
 }
 
-.content{
-  padding: 5rem 8rem
+.content {
+  padding: 5rem 8rem;
 }
 
-.sect-header{
+.sect-header {
   text-align: center;
   margin-bottom: toRem(61px);
   font-weight: 500;
@@ -269,4 +264,3 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-

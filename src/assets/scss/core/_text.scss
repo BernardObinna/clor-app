@@ -1,26 +1,14 @@
-.numbered-heading{
-  background: white;
-  border-radius: 50%;
-  color: $color-primary;
-  width: toRem(56px);
-  padding: toRem(13px) toRem(24px) toRem(13px) toRem(21px);
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: toRem(16px);
-}
-
-.fs-4{
+.fs-4 {
   font-size: 0.29rem;
 }
 
-.fs-5{
+.fs-5 {
   font-size: 0.36rem;
 }
 
-
 .fs-10 {
   font-size: 0.72rem;
-  line-height: .65rem;
+  line-height: 0.65rem;
 }
 
 .fs-11 {
@@ -39,7 +27,6 @@
     line-height: 1.08rem !important;
   }
 }
-
 
 .fs-13 {
   font-size: 0.93rem;
@@ -77,7 +64,6 @@
   }
 }
 
-
 .fs-16 {
   font-size: 1.15rem;
   line-height: 1.43rem;
@@ -90,10 +76,9 @@
   }
 }
 
-
 .fs-20 {
-  font-size: 1.43rem;
-  line-height: 1.79rem;
+  font-size: toRem(20px);
+  line-height: toRem(32px);
 }
 
 .fs-20-mob {
@@ -127,19 +112,19 @@
 }
 
 .fs-0-7-r {
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .fs-0-8-r {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .fs-0-9-r {
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
 }
 
 .fs-1-r {
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .fs-1-1-r {
@@ -180,47 +165,55 @@
   font-size: 28px;
 }
 
-p, label, h1, h2, h3, h4, h5, h6, small {
-  color: #000000
+p,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small {
+  color: #000000;
 }
 
 .text-light-blue {
-  color: $color-light-blue
+  color: $color-light-blue;
 }
 
 .text-link-black {
-  color: $text-link-black
+  color: $text-link-black;
 }
 .text-red {
-  color: $color-red
+  color: $color-red;
 }
 
 .text-white-2 {
-  color: $text-white-2
+  color: $text-white-2;
 }
 
 .text-grey {
-  color: $text-grey
+  color: $text-grey;
 }
 
 .text-grey-f4f {
-  color: $text-grey-f4f
+  color: $text-grey-f4f;
 }
 
 .text-grey-9a9 {
-  color: $text-grey-9a9
+  color: $text-grey-9a9;
 }
 
 .text-grey-282 {
-  color: $text-grey-282
+  color: $text-grey-282;
 }
 
 .text-grey-dbd {
-  color: $text-grey-dbd
+  color: $text-grey-dbd;
 }
 
-.text-nav-grey{
-  color: $text-nav-grey
+.text-nav-grey {
+  color: $text-nav-grey;
 }
 
 .line-height-12 {
@@ -235,34 +228,30 @@ p, label, h1, h2, h3, h4, h5, h6, small {
   letter-spacing: 0.2em;
 }
 
-
 .letter-space-02-mob {
   @include screen('med') {
     letter-spacing: 0.2em !important;
   }
 }
 
-.line-height-23{
+.line-height-23 {
   line-height: 1.65rem;
 }
 
-
-.line-height-2r{
+.line-height-2r {
   line-height: 2rem;
 }
-
-
 
 .letter-space-0002 {
   letter-spacing: 0.002em;
 }
 
-.modal-text{
+.modal-text {
   font-size: 1.15rem;
   line-height: 200%;
 }
 
-.imitate-sub-text{
+.imitate-sub-text {
   position: relative;
-  top: -.2rem;
+  top: -0.2rem;
 }
