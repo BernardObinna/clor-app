@@ -104,6 +104,13 @@ html {
   width: 60% !important;
 }
 
+
+.w-lg-60 {
+  @include screen('x-large') {
+    width: 60% !important;
+  }
+}
+
 .w-65 {
   width: 65% !important;
 }
