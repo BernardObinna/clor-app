@@ -5,12 +5,12 @@
         Get set up, send and receive money in a matter of minutes
       </h2>
       <div class="row">
-        <div class="col-4 text-block">
-            <img
-              src="@/assets/images/landing/reason-to-use-1.svg"
-              alt="Input amount example"
-              class="sub-heading-img"
-            />
+        <div class="col-12 col-lg-4 text-block">
+          <img
+            src="@/assets/images/landing/reason-to-use-1.svg"
+            alt="Input amount example"
+            class="sub-heading-img"
+          />
           <h4 class="sub-heading">Fast</h4>
           <p>
             Enter the amount you want to send or recieve Enter the amount you
@@ -18,7 +18,7 @@
           </p>
         </div>
 
-        <div class="col-4 text-block">
+        <div class="col-12 col-lg-4 text-block">
           <img
             src="@/assets/images/landing/reason-to-use-2.svg"
             alt="Select bank example"
@@ -31,7 +31,7 @@
           </p>
         </div>
 
-        <div class="col-4 text-block">
+        <div class="col-12 col-lg-4 text-block">
           <img
             src="@/assets/images/landing/reason-to-use-3.svg"
             alt="Select payment method example"
@@ -54,7 +54,7 @@
 </template>
 <script>
 export default {
-  name: 'LandingReasonToUseSection',
+  name: 'LandingReasonToUseSection'
 }
 </script>
 
@@ -65,6 +65,7 @@ export default {
 .content {
   padding-bottom: toRem(143px);
   @include screen('med') {
+    padding-top: toRem(40px);
     padding-bottom: toRem(80px);
   }
 }
@@ -75,10 +76,6 @@ export default {
   margin-top: toRem(32px);
   margin-left: auto;
   margin-right: auto;
-
-  @include screen('med') {
-    margin-bottom: toRem(48px);
-  }
 }
 
 .sub-heading {
@@ -87,14 +84,18 @@ export default {
   @include screen('med') {
     font-size: toRem(20px);
     line-height: toRem(32px);
+    padding-top: toRem(8px);
+    padding-bottom: toRem(8px);
   }
 }
 
 h2 {
   max-width: toRem(638px);
   @include screen('med') {
+    max-width: toRem(327px);
     font-size: toRem(24px);
     line-height: toRem(30px);
+    margin-bottom: 0;
   }
 }
 
@@ -104,23 +105,22 @@ h2 {
     margin-right: auto;
     max-width: toRem(276px);
   }
-  }
+}
 
-  .button-container{
-    margin-top: toRem(48px);
+.button-container {
+  margin-top: toRem(48px);
 
-    button{
+  button {
     //  mobile
-      @include screen('med') {
-        margin-top: toRem(16px);
-      }
+    @include screen('med') {
+      margin-top: toRem(16px);
+    }
 
     //  desktop
     @include screen('x-large') {
       margin-right: toRem(20px) !important;
       margin-left: toRem(20px) !important;
     }
-    }
   }
-
+}
 </style>
