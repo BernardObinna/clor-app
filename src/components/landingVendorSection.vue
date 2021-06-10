@@ -1,7 +1,15 @@
 <template>
   <section class="content">
     <div class="row vendor-container">
-      <div class="col-lg-6">
+
+      <div class="col-12 d-lg-none">
+        <img
+            src="@/assets/images/landing/vendor-img-mixed.svg"
+            alt=""
+        />
+      </div>
+
+      <div class="col-12 col-lg-6">
         <div class="text-block">
           <h3 class="vendor-header text-white">
             Want to <br />
@@ -15,7 +23,7 @@
         </div>
       </div>
 
-      <div class="col-4 img-block">
+      <div class="col-12 col-lg-4 img-block d-none d-lg-block">
         <img
           src="@/assets/images/landing/vendor-img-1.svg"
           alt=""
@@ -53,9 +61,9 @@ export default {
   background: $color-dark-blue;
   border-radius: 24px;
 
-  //@include screen('med') {
-  //  padding-bottom: toRem(80px);
-  //}
+  @include screen('med') {
+    padding: toRem(64px) toRem(16px) ;
+  }
 }
 
 .text-block {
@@ -63,6 +71,11 @@ export default {
   p {
     margin-top: toRem(16px);
     margin-bottom: toRem(32px);
+  }
+
+  @include screen('med') {
+    margin-top: toRem(48px);
+    text-align: center;
   }
 }
 
@@ -78,7 +91,6 @@ export default {
 
   .img-back {
     z-index: 1;
-    //top: toRem(24px);
     left: toRem(152px);
     max-width: toRem(276px);
     position: absolute;
