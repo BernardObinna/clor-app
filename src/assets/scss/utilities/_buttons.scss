@@ -133,4 +133,18 @@
       border-color: #999 !important;
     }
   }
+
+  &-dark-blue-outline{
+    background-color: #fff !important;
+    color: $color-dark-blue !important;
+    border: 1px solid $color-dark-blue !important;
+    &:hover{
+      color: $color-dark-blue !important;
+    }
+    &:disabled{
+      background-color: unset !important;
+      color: unset !important;
+      border-color: #999 !important;
+    }
+  }
 }

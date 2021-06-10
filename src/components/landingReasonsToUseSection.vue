@@ -1,5 +1,5 @@
 <template>
-  <section class="row content">
+  <section class="row content text-center">
     <div>
       <h2 class="sect-header">
         Get set up, send and receive money in a matter of minutes
