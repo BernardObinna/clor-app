@@ -1,44 +1,28 @@
 @font-face {
-  font-family: 'Brown-Bold';
-  src: url('/fonts/Brown/Brown-Bold.otf') format('truetype');
+  font-family: 'Circular';
+  src: url('./assets/FontFiles/circular/CircularStd-Bold.ttf') format('truetype');
   font-weight: bold;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Brown-Regular';
-  src: url('/fonts/Brown/Brown-Regular.otf') format('truetype');
-  font-weight: normal;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brown-Light';
-  src: url('/fonts/Brown/Brown-Light.otf') format('truetype');
+  font-family: 'Circular';
+  src: url('./assets/FontFiles/circular/CircularStd-Black.ttf') format('truetype');
   font-weight: normal;
   font-display: swap;
   font-style: normal;
 }
 
 body {
-  font-family: 'Brown-Regular', sans-serif;
+  font-family: 'Circularr', sans-serif;
 }
 
 p {
-  font-family: 'Brown-Regular', sans-serif;
+  font-family: 'Circular', sans-serif;
   font-size: toRem(16px);
   line-height: toRem(24px);
   color: $color-heading-black;
-}
-
-.main-nav .link-txt .txt {
-  font-family: 'Brown-Regular', sans-serif !important;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
-  /*letter-spacing: 2px;*/
 }
 
 .h1,
@@ -58,7 +42,7 @@ small,
 label,
 span,
 input{
-  font-family: 'Brown-Bold', sans-serif !important;
+  font-family: 'Circular', sans-serif !important;
   color: $color-heading-black;
 }
 

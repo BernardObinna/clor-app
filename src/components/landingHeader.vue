@@ -14,7 +14,7 @@
 
       <div class="nav-links d-none d-lg-flex">
         <router-link class="nav-link" to="#landing-how-it-works-section">How it works</router-link>
-        <router-link class="nav-link" to="#landing-vendor-section">vendor payment</router-link>
+        <router-link class="nav-link" to="#landing-vendor-section">Vendor payment</router-link>
         <router-link class="nav-link btn btn-dark-blue-outline" tag="button" to="#">Login</router-link>
         <router-link class="nav-link btn btn-dark-blue" tag="button" to="#">Sign up</router-link>
       </div>

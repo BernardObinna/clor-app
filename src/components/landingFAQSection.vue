@@ -44,36 +44,40 @@
   </section>
 </template>
 <script>
+import { reactive } from '@vue/composition-api'
 export default {
   name: 'LandingFAQSection',
   setup() {
-    const faqs = [
-      {
-        question: 'What is Clorza about ?',
-        answer: 'Working on this'
-      },
-      {
-        question: 'How long till I recieve my money?',
-        answer: 'Working on this'
-      },
-      {
-        question: 'Can I send other currencies?',
-        answer: 'Working on this'
-      },
-      {
-        question: 'Which crypto currencies do you support?',
-        answer: 'Working on this'
-      },
-      {
-        question: 'How long till I recieve my money?',
-        answer: 'Working on this'
-      },
-      {
-        question: 'How long till I recieve my money?',
-        answer: 'Working on this'
-      }
-    ]
-    return { faqs }
+    const data = reactive({
+      faqs: [
+        {
+          question: 'What is Clorza about ?',
+          answer: 'Working on this'
+        },
+        {
+          question: 'How long till I recieve my money?',
+          answer: 'Working on this'
+        },
+        {
+          question: 'Can I send other currencies?',
+          answer: 'Working on this'
+        },
+        {
+          question: 'Which crypto currencies do you support?',
+          answer: 'Working on this'
+        },
+        {
+          question: 'How long till I recieve my money?',
+          answer: 'Working on this'
+        },
+        {
+          question: 'How long till I recieve my money?',
+          answer: 'Working on this'
+        }
+      ]
+    })
+
+    return { ...data }
   }
 }
 </script>
