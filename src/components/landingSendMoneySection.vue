@@ -1,15 +1,14 @@
 <template>
   <section class="row content">
-    <div class="col-lg-6">
+    <div class="col-12 col-lg-6">
       <div class="text-block">
-
         <h1>Send Money from <span class="gradient-text usa-text">USA</span> to Nigeria with Card or Crypto</h1>
         <p>Send money from USA and receive it in your Nigerian bank account</p>
       </div>
     </div>
 
-    <div class="col-lg-6">
-      <div class="form-container ms-auto me-5">
+    <div class="col-12 col-lg-6">
+      <div class="form-container ms-lg-auto me-lg-5">
         <img
             src="@/assets/images/landing/quarter-pie.svg"
             alt="Fancy image"
@@ -112,6 +111,14 @@ h2 {
 .text-block {
   max-width: toRem(480px);
 
+  h1{
+  @include screen('med') {
+    font-size: toRem(32px);
+    line-height: toRem(48px);
+    text-align: center;
+  }
+  }
+
   .usa-text {
     background-color: #f3ec78;
     background-image: linear-gradient(45deg, #68FFA4, #FF6AE7);
@@ -121,12 +128,24 @@ h2 {
   p {
     font-size: toRem(24px);
     line-height: toRem(40px);
+    @include screen('med') {
+      font-size: toRem(16px);
+      line-height: toRem(24px);
+      text-align: center;
+    }
   }
 }
 
 .form-container{
   position: relative;
   max-width: toRem(479px);
+
+  @include screen('med') {
+  max-width: toRem(327px);
+    margin-top: toRem(40px);
+    margin-right: auto;
+    margin-left: auto;
+  }
 
 
 .pie-img {
@@ -137,6 +156,13 @@ h2 {
   left: -4rem;
   max-width: toRem(160px);
   max-height: toRem(160px);
+
+  @include screen('med') {
+    max-width: toRem(120px);
+    max-height: toRem(120px);
+    top: -3rem;
+    left: -3rem;
+  }
 }
 
 .dot-group-img {
@@ -146,6 +172,13 @@ h2 {
   right: -3.8rem;
   max-width: toRem(176px);
   max-height: toRem(176px);
+
+  @include screen('med') {
+    bottom: -1.47rem;
+    right: -0.8rem;
+    max-width: toRem(120px);
+    max-height: toRem(120px);
+  }
 }
 
 .form-block {
@@ -158,14 +191,13 @@ h2 {
     background: white;
   z-index: 10;
 
+  @include screen('med') {
+    padding: toRem(24px) toRem(24px) toRem(32px);
+  }
+
   .form-floating {
     display: flex;
     width: 100%;
-  }
-
-  .send-input {
-    margin-top: toRem(30px);
-
   }
 
   .receive-input {
@@ -175,6 +207,9 @@ h2 {
 
   p {
     margin: toRem(64px) 0;
+    @include screen('med') {
+      margin: toRem(40px) 0;
+    }
   }
 
   input{
@@ -190,13 +225,20 @@ h2 {
     border-top-left-radius: 0;
     background: white;
     min-width: 23%;
+    @include screen('med') {
+      font-size: toRem(14px);
+      line-height: toRem(18px);
+      min-width: 30%;
+padding: 6px;
+    }
   }
 }
 
 .button-container {
-  display: flex;
-  justify-content: space-between;
-
+  @include screen('x-large') {
+    display: flex;
+    justify-content: space-between;
+  }
   button {
     //  mobile
     @include screen('med') {
