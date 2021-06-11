@@ -30,6 +30,7 @@ p {
   font-family: 'Brown-Regular', sans-serif;
   font-size: toRem(16px);
   line-height: toRem(24px);
+  color: $color-heading-black;
 }
 
 .main-nav .link-txt .txt {
@@ -53,6 +54,7 @@ h5,
 .h6,
 h6 {
   font-family: 'Brown-Bold', sans-serif !important;
+  color: $color-heading-black;
 }
 
 .h1,
