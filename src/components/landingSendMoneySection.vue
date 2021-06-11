@@ -1,59 +1,54 @@
 <template>
   <section class="row content">
     <div class="col-lg-6">
-      <h1>Send Money from USA to Nigeria with Card or Crypto</h1>
-      <p>Send money from USA and receive it in your Nigerian bank account</p>
-      <div class="d-flex">
-        <img
-            src="@/assets/images/landing/Flutterwave-Logo-1.svg"
-            alt="Flutterwave Logo"
-        />
-        <img
-            src="@/assets/images/landing/Thepeer-Logo-1.svg"
-            alt="Thepeer Logo"
-        />
+      <div class="text-block">
+
+        <h1>Send Money from <span class="gradient-text usa-text">USA</span> to Nigeria with Card or Crypto</h1>
+        <p>Send money from USA and receive it in your Nigerian bank account</p>
       </div>
     </div>
 
     <div class="col-lg-6">
-      <form action="">
+      <div class="form-container ms-auto me-5">
         <img
             src="@/assets/images/landing/quarter-pie.svg"
-            alt="Thepeer Logo"
+            alt="Fancy image"
+            class="pie-img"
         />
-        <div>
-          <div class="d-flex ">
-            <div class="input-group">
-              <div class="form-floating d-flex mt-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                <label for="floatingInput">Email address</label>
-                <span class="input-group-text" id="inputGroup-sizing-default">USD</span>
+          <form class="form-block">
+            <div class="d-flex ">
+              <div class="input-group input-group-lg">
+                <div class="form-floating send-input">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                  <label for="floatingInput">You send</label>
+                  <span class="input-group-text" id="inputGroup-sizing-default"> <img class="me-1" src="@/assets/images/landing/us-flag.svg" alt="U.S flag"> USD</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <p class="my-5">1 USD = 465 NGN</p>
+            <p class="text-center">1 USD = 465 NGN</p>
 
-          <div class="d-flex">
-            <div class="input-group mb-3">
-              <div class="form-floating d-flex mt-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                <label for="floatingInput">Email address</label>
-                <span class="input-group-text" id="inputGroup-sizing-default">USD</span>
+            <div class="d-flex">
+              <div class="input-group input-group-lg">
+                <div class="form-floating receive-input">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                  <label for="floatingInput">Recipient gets</label>
+                  <span class="input-group-text" id="inputGroup-sizing-default"> <img class="me-1" src="@/assets/images/landing/ng-flag.svg" alt="Nigerian flag"> NGN</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div>
-            <button>Request Money</button>
-            <button>Request Money</button>
-          </div>
-        </div>
+            <div class="button-container">
+              <button class="btn btn-primary-white w-m-100">Request Money</button>
+              <button class="btn btn-primary-blue w-m-100">Send Money</button>
+            </div>
+          </form>
         <img
             src="@/assets/images/landing/dot-group.svg"
-            alt="Thepeer Logo"
+            alt="Fancy image"
+            class="dot-group-img"
         />
-      </form>
+    </div>
     </div>
   </section>
 </template>
@@ -62,3 +57,157 @@ export default {
   name: 'LandingSendMoneySection'
 };
 </script>
+
+<style lang="scss" scoped>
+@import 'src/assets/scss/core/mixins';
+@import 'src/assets/scss/core/variables';
+
+.content {
+  padding-bottom: toRem(143px);
+  @include screen('med') {
+    padding-bottom: toRem(80px);
+  }
+}
+
+.numbered-heading {
+  background: white;
+  border-radius: 50%;
+  color: $color-primary;
+  width: toRem(56px);
+  padding: toRem(13px) toRem(24px) toRem(13px) toRem(21px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: toRem(16px);
+}
+
+.card-img {
+  max-width: toRem(276px);
+  max-height: toRem(280px);
+  border-radius: 16px;
+  margin-top: toRem(32px);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include screen('med') {
+    margin-bottom: toRem(48px);
+  }
+}
+
+.sub-heading {
+  margin-bottom: toRem(8px);
+  @include screen('med') {
+    font-size: toRem(20px);
+    line-height: toRem(32px);
+  }
+}
+
+h2 {
+  max-width: toRem(488px);
+  @include screen('med') {
+    font-size: toRem(24px);
+    line-height: toRem(30px);
+  }
+}
+
+.text-block {
+  max-width: toRem(480px);
+
+  .usa-text {
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #68FFA4, #FF6AE7);
+    margin-top: toRem(16px);
+  }
+
+  p {
+    font-size: toRem(24px);
+    line-height: toRem(40px);
+  }
+}
+
+.form-container{
+  position: relative;
+  max-width: toRem(479px);
+
+
+.pie-img {
+  z-index: 1;
+
+  position: absolute;
+  top: -4rem;
+  left: -4rem;
+  max-width: toRem(160px);
+  max-height: toRem(160px);
+}
+
+.dot-group-img {
+  z-index: 1;
+  position: absolute;
+  bottom: -7rem;
+  right: -3.8rem;
+  max-width: toRem(176px);
+  max-height: toRem(176px);
+}
+
+.form-block {
+  position: relative;
+  padding: toRem(30px) toRem(20px) toRem(40px);
+  border: 1px solid rgba(12, 17, 66, 0.08);
+  box-sizing: border-box;
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+    background: white;
+  z-index: 10;
+
+  .form-floating {
+    display: flex;
+    width: 100%;
+  }
+
+  .send-input {
+    margin-top: toRem(30px);
+
+  }
+
+  .receive-input {
+    margin-bottom: toRem(40px);
+  }
+
+
+  p {
+    margin: toRem(64px) 0;
+  }
+
+  input{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    font-weight: 500;
+    //font-size: toRem(24px);
+    //line-height: toRem(30px);
+  }
+
+  span.input-group-text {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background: white;
+    min-width: 23%;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    //  mobile
+    @include screen('med') {
+      margin-top: toRem(16px);
+    }
+
+    //  desktop
+    @include screen('x-large') {
+      width: 48%;
+    }
+  }
+}
+}
+</style>

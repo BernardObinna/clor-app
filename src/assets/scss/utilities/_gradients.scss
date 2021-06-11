@@ -1,3 +1,12 @@
+.gradient-text {
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 .gradient__cosmic-fusion{
   background: #ff00cc;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #333399, #ff00cc);  /* Chrome 10-25, Safari 5.1-6 */

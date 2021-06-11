@@ -52,15 +52,20 @@ h4,
 .h5,
 h5,
 .h6,
-h6 {
+h6,
+p,
+small,
+label,
+span,
+input{
   font-family: 'Brown-Bold', sans-serif !important;
   color: $color-heading-black;
 }
 
 .h1,
 h1 {
-  font-size: 50px;
-}
+  font-size: toRem(48px);
+  line-height: toRem(72px);}
 
 .h2,
 h2 {
@@ -85,35 +90,3 @@ h4 {
     font-size: toRem(20px);
   }
 }
-
-/*.h3, h3 {*/
-/*    font-size: 24px;*/
-/*    line-height: 1.2em;*/
-/*}*/
-
-/*.h4, h4 {*/
-/*    font-size: 18px;*/
-/*    line-height: 1.2em;*/
-/*}*/
-
-/*.h5, h5 {*/
-/*    font-size: 14px;*/
-/*    line-height: 1.2em;*/
-/*}*/
-
-/*.h6, h6 {*/
-/*    font-size: 12px;*/
-/*    line-height: 1.2em;*/
-/*}*/
-
-/*.h2-light {*/
-/*    font-family: 'Brown-Light', sans-serif !important;*/
-/*    font-size: 36px;*/
-/*    line-height: 1.2em;*/
-/*}*/
-
-/*.h2-regular {*/
-/*    font-family: 'Brown-Regular', sans-serif !important;*/
-/*    font-size: 36px;*/
-/*    line-height: 1.2em;*/
-/*}*/
