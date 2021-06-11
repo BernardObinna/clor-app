@@ -1,5 +1,5 @@
 <template>
-  <section class="content">
+  <section class="content" id="landing-vendor-section">
     <div class="row vendor-container">
 
       <div class="col-12 d-lg-none">

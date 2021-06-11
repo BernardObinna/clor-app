@@ -1,5 +1,5 @@
 <template>
-  <section class="row content">
+  <section class="row content" id="landing-send-money-section">
     <div class="col-12 col-lg-6">
       <div class="text-block">
         <h1>Send Money from <span class="gradient-text usa-text">USA</span> to Nigeria with Card or Crypto</h1>
@@ -62,7 +62,7 @@ export default {
 @import 'src/assets/scss/core/variables';
 
 .content {
-  padding-bottom: toRem(143px);
+  padding-bottom: toRem(203px);
   @include screen('med') {
     padding-bottom: toRem(80px);
   }

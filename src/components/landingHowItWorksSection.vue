@@ -1,5 +1,5 @@
 <template>
-  <section class="row bg-faded-blue content">
+  <section class="row bg-faded-blue content" id="landing-how-it-works-section">
     <div>
       <h2 class="sect-header w-lg-40">
         How do I send and request money with Clorza?

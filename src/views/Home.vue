@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!--<landing-header />-->
+    <landing-header />
     <landing-send-money-section />
     <landing-how-it-works-section />
     <landing-reason-to-use-section />
