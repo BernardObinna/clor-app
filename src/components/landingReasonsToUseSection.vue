@@ -4,7 +4,7 @@
       <h2 class="sect-header">
         Get set up, send and receive money in a matter of minutes
       </h2>
-      <div class="row">
+      <div class="row px-5">
         <div class="col-12 col-lg-4 text-block">
           <img
             src="@/assets/images/landing/reason-to-use-1.svg"

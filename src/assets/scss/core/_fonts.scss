@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Circular';
-  src: url('./assets/FontFiles/circular/CircularStd-Medium.ttf') format('truetype');
+  src: url('./assets/FontFiles/circular/CircularStd-Bold.ttf') format('truetype');
   font-weight: bold;
   font-display: swap;
   font-style: normal;
@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'Circularr', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 p {

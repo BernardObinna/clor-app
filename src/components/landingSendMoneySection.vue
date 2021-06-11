@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-6">
       <div class="text-block">
         <h1>Send Money from <span class="gradient-text usa-text">USA</span> to Nigeria with Card or Crypto</h1>
-        <p>Send money from USA and receive it in your Nigerian bank account</p>
+        <p>Send money from USA and receive it in your Nigerian bank account without creating an account.</p>
       </div>
     </div>
 
@@ -215,6 +215,7 @@ h2 {
   input{
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+    border-right: none;
     font-weight: 500;
     //font-size: toRem(24px);
     //line-height: toRem(30px);
