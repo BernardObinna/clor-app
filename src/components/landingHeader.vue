@@ -2,8 +2,17 @@
   <nav class="navbar navbar-light content">
     <div class="container-fluid">
       <router-link to="#" class="navbar-brand">Clorza</router-link>
+        <img type="button" id="nav-toggle" class="d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" src="@/assets/images/landing/nav-toggle.svg" alt="">
+      <div class="collapse navbar-collapse d-lg-none" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <router-link class="nav-link" to="#landing-how-it-works-section">How it works</router-link>
+          <router-link class="nav-link" to="#landing-vendor-section">vendor payment</router-link>
+          <router-link class="nav-link" to="#">Login</router-link>
+          <router-link class="nav-link" to="#">Sign up</router-link>
+        </div>
+      </div>
 
-      <div class="nav-links">
+      <div class="nav-links d-none d-lg-flex">
         <router-link class="nav-link" to="#landing-how-it-works-section">How it works</router-link>
         <router-link class="nav-link" to="#landing-vendor-section">vendor payment</router-link>
         <router-link class="nav-link btn btn-dark-blue-outline" tag="button" to="#">Login</router-link>
@@ -22,6 +31,11 @@ export default {
 <style lang="scss" scoped>
 @import 'src/assets/scss/core/mixins';
 @import 'src/assets/scss/core/variables';
+
+#nav-toggle{
+max-width: toRem(32px);
+max-height: toRem(32px);
+}
 
 .content {
   padding-top: toRem(30px);
@@ -50,6 +64,11 @@ display: flex;
     margin-right: toRem(40px);
   }
 
+}
+
+.navbar-toggler{
+  border: 1px solid $color-primary;
+  border-radius: 60px;
 }
 
 .numbered-heading {
