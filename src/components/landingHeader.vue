@@ -40,9 +40,6 @@ max-height: toRem(32px);
 .content {
   padding-top: toRem(30px);
   padding-bottom: toRem(30px);
-  //@include screen('med') {
-  //  padding-bottom: toRem(80px);
-  //}
 }
 
 .navbar-brand {
@@ -51,6 +48,9 @@ max-height: toRem(32px);
   font-size: toRem(32px);
   line-height: toRem(40px);
   color: $color-primary;
+  @include screen('med') {
+    font-size: toRem(24px);
+    line-height: toRem(30px);  }
 }
 
 .nav-links{

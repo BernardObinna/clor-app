@@ -6,6 +6,7 @@
     <landing-reason-to-use-section />
     <landing-f-a-q-section />
     <landing-vendor-section />
+    <landing-footer />
   </div>
 </template>
 
@@ -16,10 +17,12 @@ import LandingReasonToUseSection from '@/components/landingReasonsToUseSection'
 import LandingFAQSection from '@/components/landingFAQSection'
 import LandingVendorSection from '../components/landingVendorSection'
 import LandingHeader from '../components/landingHeader'
+import LandingFooter from '../components/landingFooter';
 
 export default {
   name: 'Home',
   components: {
+    LandingFooter,
     LandingHeader,
     LandingVendorSection,
     LandingFAQSection,
