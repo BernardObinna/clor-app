@@ -39,6 +39,11 @@
   margin-top: 9rem;
 }
 
+
+.mt-24 {
+  margin-top: toRem(24px);
+}
+
 .mt-mobile-20 {
   @include screen(med-small) {
     margin-top: 20px !important;
@@ -55,6 +60,11 @@
 .my-0-5 {
   margin-top: .5rem;
   margin-bottom: .5rem;
+}
+
+.my-28{
+  margin-top: toRem(28px);
+  margin-bottom: toRem(28px);
 }
 
 .pl-0-3 {

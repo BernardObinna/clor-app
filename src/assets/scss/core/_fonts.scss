@@ -74,3 +74,28 @@ h4 {
     font-size: toRem(20px);
   }
 }
+
+h5 {
+  font-size: toRem(20px);
+  line-height: toRem(32px);
+  font-weight: 500;
+  //@include screen('med') {
+  //  font-size: toRem(16px);
+  //  line-height: toRem(24px);
+  //}
+}
+
+label{
+  font-size: toRem(14px);
+  line-height: toRem(20px);
+}
+
+input,
+select, .form-control, .form-select {
+  padding-top: toRem(14px);
+  padding-bottom: toRem(14px);
+  font-size: toRem(16px);
+  line-height: toRem(24px);
+  border: 1px solid #CED0D5;
+  border-radius: 8px;
+}

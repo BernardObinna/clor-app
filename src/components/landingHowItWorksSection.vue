@@ -8,25 +8,29 @@
         <div class="col-12 col-md-3 card-block">
           <h4 class="numbered-heading">1</h4>
           <h4 class="sub-heading">Amount</h4>
-          <p class="fs-20 fs-16-mob">Enter the amount you want to send or receive</p>
+          <p class="fs-20 fs-16-mob">
+            Enter the amount you want to send or receive
+          </p>
           <div class="card-img">
-          <img
-            src="@/assets/images/landing/how-it-works-1.svg"
-            alt="Input amount example"
-          />
+            <img
+              src="@/assets/images/landing/how-it-works-1.svg"
+              alt="Input amount example"
+            />
           </div>
         </div>
 
         <div class="col-12 col-md-3 card-block">
           <h4 class="numbered-heading">2</h4>
           <h4 class="sub-heading">Bank</h4>
-          <p class="fs-20 fs-16-mob">Select your bank and enter your account number</p>
+          <p class="fs-20 fs-16-mob">
+            Select your bank and enter your account number
+          </p>
           <div class="card-img">
-          <img
-            src="@/assets/images/landing/how-it-works-2.svg"
-            alt="Select bank example"
-          />
-        </div>
+            <img
+              src="@/assets/images/landing/how-it-works-2.svg"
+              alt="Select bank example"
+            />
+          </div>
         </div>
 
         <div class="col-12 col-md-3 card-block">
@@ -36,23 +40,25 @@
             Select a payment method. Either card payment or crypto
           </p>
           <div class="card-img">
-          <img
-            src="@/assets/images/landing/how-it-works-3.svg"
-            alt="Select payment method example"
-          />
-        </div>
+            <img
+              src="@/assets/images/landing/how-it-works-3.svg"
+              alt="Select payment method example"
+            />
+          </div>
         </div>
 
         <div class="col-12 col-md-3 card-block">
           <h4 class="numbered-heading">3</h4>
           <h4 class="sub-heading">Deposit</h4>
-          <p class="fs-20 fs-16-mob">Receive your money into your Naira bank account</p>
+          <p class="fs-20 fs-16-mob">
+            Receive your money into your Naira bank account
+          </p>
           <div class="card-img">
-          <img
-            src="@/assets/images/landing/how-it-works-4.svg"
-            alt="Success message example"
-          />
-        </div>
+            <img
+              src="@/assets/images/landing/how-it-works-4.svg"
+              alt="Success message example"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -71,7 +77,7 @@ export default {
 .content {
   padding-bottom: toRem(143px);
   @include screen('med') {
-  padding-bottom: toRem(80px);
+    padding-bottom: toRem(80px);
   }
 }
 
@@ -95,7 +101,7 @@ export default {
   margin-right: auto;
 
   @include screen('med') {
-  margin-bottom: toRem(48px);
+    margin-bottom: toRem(48px);
   }
 }
 

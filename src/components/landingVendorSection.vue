@@ -1,12 +1,8 @@
 <template>
   <section class="content" id="landing-vendor-section">
     <div class="row vendor-container">
-
       <div class="col-12 d-lg-none">
-        <img
-            src="@/assets/images/landing/vendor-img-mixed.svg"
-            alt=""
-        />
+        <img src="@/assets/images/landing/vendor-img-mixed.svg" alt="" />
       </div>
 
       <div class="col-12 col-lg-6">
@@ -62,7 +58,7 @@ export default {
   border-radius: 24px;
 
   @include screen('med') {
-    padding: toRem(64px) toRem(16px) ;
+    padding: toRem(64px) toRem(16px);
   }
 }
 

@@ -1,5 +1,9 @@
 .bg-faded-blue {
-    background: #F3FAFF;
+    background: $color-faded-blue;
+}
+
+.bg-blue {
+  background: $color-primary;
 }
 
 .bg-no-repeat{

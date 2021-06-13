@@ -17,7 +17,7 @@ import LandingReasonToUseSection from '@/components/landingReasonsToUseSection'
 import LandingFAQSection from '@/components/landingFAQSection'
 import LandingVendorSection from '../components/landingVendorSection'
 import LandingHeader from '../components/landingHeader'
-import LandingFooter from '../components/landingFooter';
+import LandingFooter from '../components/landingFooter'
 
 export default {
   name: 'Home',

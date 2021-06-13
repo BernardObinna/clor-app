@@ -16,7 +16,9 @@
           >Tw</router-link
         >
         <router-link class="nav-link d-none d-lg-inline" to="#">Ig</router-link>
-        <router-link class="nav-link d-none d-lg-inline me-0 pe-0" to="#">Fb</router-link>
+        <router-link class="nav-link d-none d-lg-inline me-0 pe-0" to="#"
+          >Fb</router-link
+        >
       </div>
     </div>
   </nav>
