@@ -99,3 +99,16 @@ select, .form-control, .form-select {
   border: 1px solid #CED0D5;
   border-radius: 8px;
 }
+
+span.input-group-text {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  background: white;
+  min-width: 23%;
+  @include screen('med') {
+    font-size: toRem(14px);
+    line-height: toRem(18px);
+    min-width: 30%;
+    padding: 6px;
+  }
+}

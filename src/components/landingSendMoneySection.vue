@@ -31,9 +31,10 @@
                   placeholder="name@example.com"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-lg"
+                  v-money="moneySend"
                 />
                 <label for="floatingInput">You send</label>
-                <span class="input-group-text" id="inputGroup-sizing-default">
+                <span class="input-group-text" id="send-currency">
                   <img
                     class="me-1"
                     src="@/assets/images/landing/us-flag.svg"
@@ -57,9 +58,10 @@
                   placeholder="name@example.com"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-lg"
+                  v-money="moneyReceive"
                 />
                 <label for="floatingInput">Recipient gets</label>
-                <span class="input-group-text" id="inputGroup-sizing-default">
+                <span class="input-group-text" id="receive-currency">
                   <img
                     class="me-1"
                     src="@/assets/images/landing/ng-flag.svg"
@@ -86,8 +88,34 @@
   </section>
 </template>
 <script>
+import { reactive } from '@vue/composition-api'
+
 export default {
-  name: 'LandingSendMoneySection'
+  name: 'LandingSendMoneySection',
+  setup() {
+    const baseMask = {
+      decimal: '.',
+      thousands: ',',
+      prefix: 'R$ ',
+      suffix: '',
+      precision: 2,
+      masked: false /* doesn't work with directive */
+    }
+
+    const data = reactive({
+      moneyReceive: {
+        ...baseMask,
+        prefix: '₦ '
+      },
+
+      moneySend: {
+        ...baseMask,
+        prefix: '$ '
+      }
+    })
+
+    return { ...data }
+  }
 }
 </script>
 
@@ -251,19 +279,6 @@ h2 {
       font-weight: 500;
       //font-size: toRem(24px);
       //line-height: toRem(30px);
-    }
-
-    span.input-group-text {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-      background: white;
-      min-width: 23%;
-      @include screen('med') {
-        font-size: toRem(14px);
-        line-height: toRem(18px);
-        min-width: 30%;
-        padding: 6px;
-      }
     }
   }
 

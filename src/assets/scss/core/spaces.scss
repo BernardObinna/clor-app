@@ -44,6 +44,11 @@
   margin-top: toRem(24px);
 }
 
+
+.mt-28{
+  margin-top: toRem(28px);
+}
+
 .mt-mobile-20 {
   @include screen(med-small) {
     margin-top: 20px !important;
