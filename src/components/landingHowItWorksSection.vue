@@ -79,6 +79,8 @@ export default {
   @include screen('med') {
     padding-bottom: toRem(80px);
   }
+  position: relative;
+  z-index: 10;
 }
 
 .numbered-heading {

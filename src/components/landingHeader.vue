@@ -1,7 +1,13 @@
 <template>
   <nav class="navbar navbar-light content">
     <div class="container-fluid">
-      <router-link to="#" class="navbar-brand">Clorza</router-link>
+      <router-link to="#" class="navbar-brand">
+        <img
+          type="button"
+          src="@/assets/images/icons/clorza-logo.svg"
+          alt="Brand logo"
+        />
+      </router-link>
       <img
         type="button"
         id="nav-toggle"
@@ -63,8 +69,15 @@ export default {
 }
 
 .content {
-  padding-top: toRem(30px);
-  padding-bottom: toRem(30px);
+  padding-top: toRem(16px);
+  padding-bottom: toRem(16px);
+}
+
+.navbar {
+  @include screen('x-large') {
+    border: 1px solid rgba(131, 133, 158, 0.16);
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.08);
+  }
 }
 
 .navbar-brand {

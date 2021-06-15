@@ -1,9 +1,13 @@
 <template>
   <nav class="navbar navbar-light content">
     <div class="container-fluid flex-nowrap">
-      <router-link to="#landing-how-it-works-section" class="navbar-brand"
-        >Clorza</router-link
-      >
+      <router-link to="#landing-how-it-works-section" class="navbar-brand">
+        <img
+          type="button"
+          src="@/assets/images/icons/clorza-logo.svg"
+          alt="Brand logo"
+        />
+      </router-link>
       <div class="nav-links">
         <router-link
           class="nav-link fs-14-mob"

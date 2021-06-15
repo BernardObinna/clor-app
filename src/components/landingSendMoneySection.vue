@@ -1,7 +1,23 @@
 <template>
   <section class="row content" id="landing-send-money-section">
+    <img
+      src="@/assets/images/landing/dotted-circle.svg"
+      alt="Fancy image"
+      class="dotted-circle-img d-none d-lg-inline"
+    />
     <div class="col-12 col-lg-6">
       <div class="text-block">
+        <div class="new-prompt" v-if="false">
+          <b class="new-badge">New</b>
+          <p class="mb-0">
+            Send more than $1000 to Nigeria
+            <img
+              src="@/assets/images/icons/right-angle.svg"
+              alt=""
+              class="right-angle-img"
+            />
+          </p>
+        </div>
         <h1>
           Send Money from <span class="gradient-text usa-text">USA</span> to
           Nigeria with Card or Crypto
@@ -15,6 +31,7 @@
 
     <div class="col-12 col-lg-6">
       <div class="form-container ms-lg-auto me-lg-5">
+        <div class="shadow-card"></div>
         <img
           src="@/assets/images/landing/quarter-pie.svg"
           alt="Fancy image"
@@ -46,7 +63,15 @@
             </div>
           </div>
 
-          <p class="text-center">1 USD = 465 NGN</p>
+          <p class="conversion-rate">
+            1 USD
+            <img
+              src="@/assets/images/icons/conversion-rate-icon.svg"
+              alt="conversion-icon"
+              class="conversion-img"
+            />
+            465 NGN
+          </p>
 
           <div class="d-flex">
             <div class="input-group input-group-lg">
@@ -71,6 +96,16 @@
                 >
               </div>
             </div>
+          </div>
+
+          <div class="card-fee">
+            <p class="text-grey-59e">Card Fee</p>
+            <p class="ms-auto">3.5%</p>
+          </div>
+
+          <div class="d-flex">
+            <p class="text-grey-59e">Crypto Fee</p>
+            <p class="ms-auto">Depends on currency</p>
           </div>
 
           <div class="button-container">
@@ -125,8 +160,19 @@ export default {
 
 .content {
   padding-bottom: toRem(203px);
+  padding-top: toRem(140px);
+  position: relative;
   @include screen('med') {
+    padding-top: toRem(80px);
     padding-bottom: toRem(80px);
+  }
+
+  .dotted-circle-img {
+    position: absolute;
+    max-width: toRem(320px);
+    max-height: toRem(320px);
+    bottom: -11%;
+    z-index: 1;
   }
 }
 
@@ -171,7 +217,34 @@ h2 {
 }
 
 .text-block {
-  max-width: toRem(480px);
+  max-width: toRem(580px);
+  @include screen('x-large') {
+    padding-top: toRem(70px);
+  }
+
+  .new-prompt {
+    display: flex;
+    background: rgba(81, 210, 48, 0.16);
+    border: 1px solid rgba(81, 210, 48, 0.2);
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin-bottom: toRem(16px);
+    font-size: toRem(14px);
+    line-height: toRem(20px);
+    .right-angle-img {
+      width: toRem(8px);
+      height: toRem(12px);
+      margin-left: toRem(8px);
+    }
+
+    .new-badge {
+      background: #51d230;
+      border-radius: 16px;
+      color: white;
+      margin: toRem(4px) toRem(8px) toRem(4px) toRem(4px);
+      padding: toRem(4px) toRem(12px) toRem(2px);
+    }
+  }
 
   h1 {
     @include screen('med') {
@@ -185,6 +258,8 @@ h2 {
     background-color: #f3ec78;
     background-image: linear-gradient(45deg, #68ffa4, #ff6ae7);
     margin-top: toRem(16px);
+    font-family: 'Recoleta', 'Circular', sans-serif !important;
+    font-weight: 700;
   }
 
   p {
@@ -209,6 +284,16 @@ h2 {
     margin-left: auto;
   }
 
+  .shadow-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #e4e6fd;
+    border-radius: 16px;
+    transform: rotate(-3deg);
+    z-index: 2;
+  }
+
   .pie-img {
     z-index: 1;
 
@@ -229,8 +314,8 @@ h2 {
   .dot-group-img {
     z-index: 1;
     position: absolute;
-    bottom: -7rem;
-    right: -3.8rem;
+    bottom: -4.5rem;
+    right: -4.9rem;
     max-width: toRem(176px);
     max-height: toRem(176px);
 
@@ -256,20 +341,34 @@ h2 {
       padding: toRem(24px) toRem(24px) toRem(32px);
     }
 
+    .conversion-img {
+      width: toRem(24px);
+      height: toRem(24px);
+      margin-left: toRem(8px);
+      margin-right: toRem(8px);
+    }
+
     .form-floating {
       display: flex;
       width: 100%;
     }
 
-    .receive-input {
-      margin-bottom: toRem(40px);
-    }
-
-    p {
-      margin: toRem(64px) 0;
+    .conversion-rate {
+      text-align: center;
+      margin: toRem(42px) 0;
       @include screen('med') {
         margin: toRem(40px) 0;
       }
+    }
+
+    .card-fee {
+      display: flex;
+      margin-top: toRem(24px);
+      margin-bottom: toRem(16px);
+    }
+
+    p {
+      margin-bottom: 0;
     }
 
     input {
@@ -277,8 +376,16 @@ h2 {
       border-top-right-radius: 0;
       border-right: none;
       font-weight: 500;
-      //font-size: toRem(24px);
-      //line-height: toRem(30px);
+      min-height: toRem(80px);
+      font-size: toRem(24px);
+      line-height: toRem(30px);
+    }
+
+    label {
+      font-size: toRem(14px);
+      line-height: toRem(18px);
+      color: $color-faded-grey;
+      padding-top: toRem(20px);
     }
   }
 
@@ -286,6 +393,7 @@ h2 {
     @include screen('x-large') {
       display: flex;
       justify-content: space-between;
+      margin-top: toRem(40px);
     }
     button {
       //  mobile
