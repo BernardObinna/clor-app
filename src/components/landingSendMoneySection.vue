@@ -24,7 +24,7 @@
         </h1>
         <p>
           Send money from USA and receive it in your Nigerian bank account
-          without creating an account.
+          <span class="d-none d-lg-inline">without creating an account</span>.
         </p>
       </div>
     </div>
@@ -330,12 +330,16 @@ h2 {
   .form-block {
     position: relative;
     padding: toRem(30px) toRem(20px) toRem(40px);
-    border: 1px solid rgba(12, 17, 66, 0.08);
+    //border: 1px solid rgba(12, 17, 66, 0.08);
     box-sizing: border-box;
     box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     background: white;
     z-index: 10;
+
+    border: 1px solid;
+    border-image: linear-gradient(to top, #4152fc 40%, #ffffff 72%, #ffffff 0%)
+      1;
 
     @include screen('med') {
       padding: toRem(24px) toRem(24px) toRem(32px);
@@ -390,6 +394,8 @@ h2 {
   }
 
   .button-container {
+    margin-top: toRem(20px);
+
     @include screen('x-large') {
       display: flex;
       justify-content: space-between;
