@@ -35,20 +35,3 @@ export default {
   }
 }
 </script>
-
-<!--<style lang="scss" scoped>-->
-<!--@import 'src/assets/scss/core/mixins';-->
-<!--@import 'src/assets/scss/core/variables';-->
-<!--.home {-->
-<!--  //  mobile-->
-<!--  @include screen('med') {-->
-<!--    margin-top: toRem(16px);-->
-<!--  }-->
-
-<!--  //  desktop-->
-<!--  @include screen('x-large') {-->
-<!--    margin-right: toRem(20px) !important;-->
-<!--    margin-left: toRem(20px) !important;-->
-<!--  }-->
-<!--}-->
-<!--</style>-->
