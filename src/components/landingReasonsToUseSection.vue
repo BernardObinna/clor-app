@@ -1,47 +1,63 @@
 <template>
-  <section class="row content text-center" id="landing-reasons-to-use-section">
+  <section class="row content" id="landing-reasons-to-use-section">
     <div>
-      <h2 class="sect-header">
+      <h2 class="sect-header text-center">
         Get set up, send and receive money in a matter of minutes
       </h2>
       <div class="row px-5">
-        <div class="col-12 col-lg-4 text-block">
-          <img
-            src="@/assets/images/landing/reason-to-use-1.svg"
-            alt="Input amount example"
-            class="sub-heading-img"
-          />
-          <h4 class="sub-heading">Fast</h4>
-          <p>
-            Enter the amount you want to send or recieve Enter the amount you
-            want to send or receive
-          </p>
+        <div class="col-12 col-lg-4 card-block">
+          <div class="shadow-card"></div>
+          <div class="gradient-container">
+            <div class="text">
+              <img
+                src="@/assets/images/landing/reason-to-use-1.svg"
+                alt="Input amount example"
+                class="sub-heading-img"
+              />
+              <h4 class="sub-heading">Fast</h4>
+              <p>
+                Enter the amount you want to send or recieve Enter the amount
+                you want to send or receive
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="col-12 col-lg-4 text-block">
-          <img
-            src="@/assets/images/landing/reason-to-use-2.svg"
-            alt="Select bank example"
-            class="sub-heading-img"
-          />
-          <h4 class="sub-heading">Secure</h4>
-          <p>
-            Enter the amount you want to send or recieve Enter the amount you
-            want to send or receive
-          </p>
+        <div class="col-12 col-lg-4 card-block">
+          <div class="shadow-card"></div>
+
+          <div class="gradient-container">
+            <div class="text">
+              <img
+                src="@/assets/images/landing/reason-to-use-2.svg"
+                alt="Select bank example"
+                class="sub-heading-img"
+              />
+              <h4 class="sub-heading">Secure</h4>
+              <p>
+                Enter the amount you want to send or recieve Enter the amount
+                you want to send or receive
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="col-12 col-lg-4 text-block">
-          <img
-            src="@/assets/images/landing/reason-to-use-3.svg"
-            alt="Select payment method example"
-            class="sub-heading-img"
-          />
-          <h4 class="sub-heading">Easy to use</h4>
-          <p>
-            Enter the amount you want to send or recieve Enter the amount you
-            want to send or receive
-          </p>
+        <div class="col-12 col-lg-4 card-block">
+          <div class="shadow-card"></div>
+          <div class="gradient-container">
+            <div class="text">
+              <img
+                src="@/assets/images/landing/reason-to-use-3.svg"
+                alt="Select payment method example"
+                class="sub-heading-img"
+              />
+              <h4 class="sub-heading">Easy to use</h4>
+              <p>
+                Enter the amount you want to send or recieve Enter the amount
+                you want to send or receive
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -79,8 +95,8 @@ export default {
 }
 
 .sub-heading {
-  margin-bottom: toRem(4px);
-  margin-top: toRem(4px);
+  margin-bottom: toRem(8px);
+  margin-top: toRem(24px);
   @include screen('med') {
     font-size: toRem(20px);
     line-height: toRem(32px);
@@ -99,16 +115,48 @@ h2 {
   }
 }
 
-.text-block {
-  p {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: toRem(276px);
+.card-block {
+  position: relative;
+  max-width: toRem(378px);
+
+  margin-left: auto;
+  margin-right: auto;
+  .gradient-container {
+    //background: linear-gradient(to top, #4152fc 40%, #ffffff 72%, #ffffff 0%);
+    //background: linear-gradient(to top, rgba(65, 82, 252, 0.4) 0%, #fff 100%);
+    background: rgba(65, 82, 252, 0.4);
+    border-radius: 16px;
+    padding: 2px;
+    position: relative;
+    z-index: 5;
+    width: toRem(378px);
   }
+  .text {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: toRem(40px) toRem(32px);
+  }
+
+  .shadow-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #e4e6fd;
+    border-radius: 16px;
+    transform: rotate(-3deg);
+    z-index: 2;
+  }
+
+  //p {
+  //  margin-left: auto;
+  //  margin-right: auto;
+  //  max-width: toRem(276px);
+  //}
 }
 
 .button-container {
   margin-top: toRem(48px);
+  text-align: center;
 
   button {
     //  mobile
