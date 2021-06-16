@@ -274,9 +274,14 @@ body {
 }
 
 .content {
-  padding: toRem(80px) toRem(128px);
+  //padding: toRem(80px) toRem(128px);
   @include screen('med') {
     padding: toRem(64px) toRem(24px);
+  }
+
+  //  desktop
+  @include screen('x-large') {
+    padding: toRem(80px) toRem(250px);
   }
 }
 

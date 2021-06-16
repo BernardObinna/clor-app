@@ -37,82 +37,86 @@
           alt="Fancy image"
           class="pie-img"
         />
-        <form class="form-block">
-          <div class="d-flex">
-            <div class="input-group input-group-lg">
-              <div class="form-floating send-input">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-lg"
-                  v-money="moneySend"
-                />
-                <label for="floatingInput">You send</label>
-                <span class="input-group-text" id="send-currency">
-                  <img
-                    class="me-1"
-                    src="@/assets/images/landing/us-flag.svg"
-                    alt="U.S flag"
+        <div class="gradient-container">
+          <form class="form-block">
+            <div class="d-flex">
+              <div class="input-group input-group-lg">
+                <div class="form-floating send-input">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-lg"
+                    v-money="moneySend"
                   />
-                  USD</span
-                >
+                  <label for="floatingInput">You send</label>
+                  <span class="input-group-text" id="send-currency">
+                    <img
+                      class="me-1"
+                      src="@/assets/images/landing/us-flag.svg"
+                      alt="U.S flag"
+                    />
+                    USD</span
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <p class="conversion-rate">
-            1 USD
-            <img
-              src="@/assets/images/icons/conversion-rate-icon.svg"
-              alt="conversion-icon"
-              class="conversion-img"
-            />
-            465 NGN
-          </p>
+            <p class="conversion-rate">
+              1 USD
+              <img
+                src="@/assets/images/icons/conversion-rate-icon.svg"
+                alt="conversion-icon"
+                class="conversion-img"
+              />
+              465 NGN
+            </p>
 
-          <div class="d-flex">
-            <div class="input-group input-group-lg">
-              <div class="form-floating receive-input">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-lg"
-                  v-money="moneyReceive"
-                />
-                <label for="floatingInput">Recipient gets</label>
-                <span class="input-group-text" id="receive-currency">
-                  <img
-                    class="me-1"
-                    src="@/assets/images/landing/ng-flag.svg"
-                    alt="Nigerian flag"
+            <div class="d-flex">
+              <div class="input-group input-group-lg">
+                <div class="form-floating receive-input">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-lg"
+                    v-money="moneyReceive"
                   />
-                  NGN</span
-                >
+                  <label for="floatingInput">Recipient gets</label>
+                  <span class="input-group-text" id="receive-currency">
+                    <img
+                      class="me-1"
+                      src="@/assets/images/landing/ng-flag.svg"
+                      alt="Nigerian flag"
+                    />
+                    NGN</span
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card-fee">
-            <p class="text-grey-59e">Card Fee</p>
-            <p class="ms-auto">3.5%</p>
-          </div>
+            <div class="card-fee">
+              <p class="text-grey-59e">Card Fee</p>
+              <p class="ms-auto">3.5%</p>
+            </div>
 
-          <div class="d-flex">
-            <p class="text-grey-59e">Crypto Fee</p>
-            <p class="ms-auto">Depends on currency</p>
-          </div>
+            <div class="d-flex">
+              <p class="text-grey-59e">Crypto Fee</p>
+              <p class="ms-auto">Depends on currency</p>
+            </div>
 
-          <div class="button-container">
-            <button class="btn btn-primary-white w-m-100">Request Money</button>
-            <button class="btn btn-primary-blue w-m-100">Send Money</button>
-          </div>
-        </form>
+            <div class="button-container">
+              <button class="btn btn-primary-white w-m-100">
+                Request Money
+              </button>
+              <button class="btn btn-primary-blue w-m-100">Send Money</button>
+            </div>
+          </form>
+        </div>
         <img
           src="@/assets/images/landing/dot-group.svg"
           alt="Fancy image"
@@ -327,19 +331,26 @@ h2 {
     }
   }
 
-  .form-block {
+  .gradient-container {
+    //background: linear-gradient(to top, #4152fc 40%, #ffffff 72%, #ffffff 0%);
+    //background: linear-gradient(to top, rgba(65, 82, 252, 0.4) 0%, #fff 100%);
+    background: rgba(65, 82, 252, 0.4);
+    border-radius: 16px;
+    padding: 2px;
     position: relative;
+    z-index: 10;
+    //width: toRem(378px);
+  }
+
+  .form-block {
+    //position: relative;
     padding: toRem(30px) toRem(20px) toRem(40px);
     //border: 1px solid rgba(12, 17, 66, 0.08);
     box-sizing: border-box;
     box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     background: white;
-    z-index: 10;
-
-    border: 1px solid;
-    border-image: linear-gradient(to top, #4152fc 40%, #ffffff 72%, #ffffff 0%)
-      1;
+    //z-index: 10;
 
     @include screen('med') {
       padding: toRem(24px) toRem(24px) toRem(32px);

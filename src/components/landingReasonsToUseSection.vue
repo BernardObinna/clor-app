@@ -1,5 +1,8 @@
 <template>
-  <section class="row content" id="landing-reasons-to-use-section">
+  <section
+    class="row content d-none d-lg-block"
+    id="landing-reasons-to-use-section"
+  >
     <div>
       <h2 class="sect-header text-center">
         Get set up, send and receive money in a matter of minutes
@@ -62,8 +65,8 @@
       </div>
 
       <div class="button-container">
+        <button class="btn btn-primary-white w-m-100">Request Money</button>
         <button class="btn btn-primary-blue w-m-100">Send Money</button>
-        <button class="btn btn-primary-white w-m-100">Receive Money</button>
       </div>
     </div>
   </section>

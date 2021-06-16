@@ -34,8 +34,8 @@
             :aria-labelledby="`#question-header-${index}`"
             data-bs-parent="#faqAccordion"
           >
-            <div class="accordion-body px-0">
-              <strong>{{ faq.answer }}</strong>
+            <div class="accordion-body p-0">
+              <p>{{ faq.answer }}</p>
             </div>
           </div>
         </div>
@@ -45,6 +45,7 @@
 </template>
 <script>
 import { reactive } from '@vue/composition-api'
+
 export default {
   name: 'LandingFAQSection',
   setup() {
@@ -52,7 +53,8 @@ export default {
       faqs: [
         {
           question: 'What is Clorza about ?',
-          answer: 'Working on this'
+          answer:
+            "We do all three. But you get to decide which works best for you. If you need food, we'll get you delicious meals everyday, once a week, or every two weeks. Dirty laundry? We'll pick them up and bring back your clothes, freshly washed folded/ironed. Does your home need cleaning? We'll get that done efficiently as well. You can even subscribe for more than one service, and we'll run it. Perfectly."
         },
         {
           question: 'How long till I recieve my money?',
@@ -110,9 +112,16 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: toRem(48px);
+  padding-bottom: toRem(16px);
   font-weight: 500;
   font-size: toRem(20px);
   line-height: toRem(32px);
+  border-bottom: 1px solid rgba(228, 232, 230, 0.82);
+
+  p {
+    margin-top: toRem(8px);
+    margin-bottom: 0;
+  }
 
   img {
     margin-left: auto;
