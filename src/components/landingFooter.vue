@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-light content">
-    <div class="container-fluid flex-nowrap">
+    <div class="container-fluid flex-nowrap px-0">
       <router-link to="#landing-how-it-works-section" class="navbar-brand">
         <img
           type="button"
