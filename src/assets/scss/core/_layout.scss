@@ -287,7 +287,8 @@ body {
 
   //  4k desktop
   @include screen('xxx-large') {
-    padding: toRem(80px) toRem(250px);
+    //padding: toRem(80px) toRem(250px);
+    padding: toRem(80px) toRem(608px);
   }
 }
 
