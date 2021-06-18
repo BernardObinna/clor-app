@@ -17,6 +17,7 @@
             :data-bs-target="`#question-${index}`"
             aria-expanded="false"
             :aria-controls="`#question-${index}`"
+            @click="toggleFAQ(index)"
           >
             <h5>
               {{ faq.question }}
@@ -25,6 +26,14 @@
               src="@/assets/images/landing/plus-circle.svg"
               class="expand-icon"
               alt="Expand question icon"
+              v-if="activeQuestionIndex !== index"
+            />
+
+            <img
+              src="@/assets/images/landing/minus-circle.svg"
+              class="expand-icon"
+              alt="Expand question icon"
+              v-if="activeQuestionIndex === index"
             />
           </div>
 
@@ -44,7 +53,7 @@
   </section>
 </template>
 <script>
-import { reactive } from '@vue/composition-api'
+import { reactive, toRefs } from '@vue/composition-api'
 
 export default {
   name: 'LandingFAQSection',
@@ -76,10 +85,17 @@ export default {
           question: 'How long till I recieve my money?',
           answer: 'Working on this'
         }
-      ]
+      ],
+
+      activeQuestionIndex: null
     })
 
-    return { ...data }
+    function toggleFAQ(index) {
+      if (index === data.activeQuestionIndex) data.activeQuestionIndex = null
+      else data.activeQuestionIndex = index
+    }
+
+    return { ...toRefs(data), toggleFAQ }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-light content">
-    <div class="container-fluid">
+    <div class="container-fluid px-xl-0">
       <router-link to="#" class="navbar-brand">
         <img
           type="button"

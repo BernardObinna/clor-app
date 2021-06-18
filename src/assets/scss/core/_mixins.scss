@@ -5,6 +5,7 @@ $breakpoint-med-small: 750px;
 $breakpoint-med: 980px;
 $breakpoint-large: 1280px;
 $breakpoint-x-large: 1440px;
+$breakpoint-xx-large: 1441px;
 
 /* MIXINS FOR MEDIA QUERIES ----------- */
 
@@ -47,7 +48,11 @@ $breakpoint-x-large: 1440px;
     @media screen and (min-width: $breakpoint-x-large) {
       @content;
     }
-  } @else if $size== 'custom' {
+  } @else if $size== 'xxx-large' {
+    @media screen and (min-width: $breakpoint-xx-large) {
+      @content;
+    }
+  }  @else if $size== 'custom' {
     // @media screen and ($type + -width : $pixels + px) {
     // @content;
     // }

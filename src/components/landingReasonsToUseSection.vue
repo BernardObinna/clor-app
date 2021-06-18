@@ -1,13 +1,13 @@
 <template>
   <section
-    class="row content d-none d-lg-block"
+    class="row content d-none d-xl-block"
     id="landing-reasons-to-use-section"
   >
     <div>
       <h2 class="sect-header text-center">
         Get set up, send and receive money in a matter of minutes
       </h2>
-      <div class="row px-5">
+      <div class="row card-row">
         <div class="col-12 col-lg-4 card-block">
           <div class="shadow-card"></div>
           <div class="gradient-container">
@@ -89,6 +89,13 @@ export default {
   }
 }
 
+.card-row {
+  @include screen('xxx-large') {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
 .sub-heading-img {
   max-width: toRem(40px);
   max-height: toRem(40px);
@@ -121,6 +128,8 @@ h2 {
 .card-block {
   position: relative;
   max-width: toRem(378px);
+  padding-right: 0;
+  padding-left: 0;
 
   margin-left: auto;
   margin-right: auto;
@@ -132,7 +141,8 @@ h2 {
     padding: 2px;
     position: relative;
     z-index: 5;
-    width: toRem(378px);
+    max-width: toRem(378px);
+    min-width: 100%;
   }
   .text {
     background: #ffffff;
@@ -142,7 +152,8 @@ h2 {
 
   .shadow-card {
     position: absolute;
-    width: 100%;
+    max-width: toRem(378px);
+    min-width: 100%;
     height: 100%;
     background: #e4e6fd;
     border-radius: 16px;

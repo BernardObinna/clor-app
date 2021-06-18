@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-12 col-lg-6">
-        <div class="text-block">
+        <div class="text-block mx-auto mx-lg-0">
           <h3 class="vendor-header text-white">
             Want to <br />
             pay your vendor?

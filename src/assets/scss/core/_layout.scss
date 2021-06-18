@@ -274,13 +274,19 @@ body {
 }
 
 .content {
-  //padding: toRem(80px) toRem(128px);
+  padding: toRem(80px) toRem(32px);
   @include screen('med') {
     padding: toRem(64px) toRem(24px);
   }
 
   //  desktop
   @include screen('x-large') {
+    padding: toRem(80px) toRem(100px);
+  }
+
+
+  //  4k desktop
+  @include screen('xxx-large') {
     padding: toRem(80px) toRem(250px);
   }
 }

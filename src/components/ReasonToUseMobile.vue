@@ -1,6 +1,6 @@
 <template>
   <section
-    class="row content text-center d-lg-none"
+    class="row content text-center d-xl-none"
     id="landing-reasons-to-use-section"
   >
     <div class="px-0">

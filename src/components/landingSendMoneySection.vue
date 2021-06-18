@@ -6,7 +6,7 @@
       class="dotted-circle-img d-none d-lg-inline"
     />
     <div class="col-12 col-lg-6">
-      <div class="text-block">
+      <div class="text-block mx-auto mx-lg-0">
         <div class="new-prompt" v-if="false">
           <b class="new-badge">New</b>
           <p class="mb-0">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-12 col-lg-6">
-      <div class="form-container ms-lg-auto me-lg-5">
+      <div class="form-container ms-lg-auto me-xl-5">
         <div class="shadow-card"></div>
         <img
           src="@/assets/images/landing/quarter-pie.svg"
