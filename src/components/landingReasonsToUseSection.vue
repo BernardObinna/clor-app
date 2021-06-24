@@ -8,57 +8,63 @@
         Get set up, send and receive money in a matter of minutes
       </h2>
       <div class="row card-row">
-        <div class="col-12 col-lg-4 card-block">
-          <div class="shadow-card"></div>
-          <div class="gradient-container">
-            <div class="text">
-              <img
-                src="@/assets/images/landing/reason-to-use-1.svg"
-                alt="Input amount example"
-                class="sub-heading-img"
-              />
-              <h4 class="sub-heading">Fast</h4>
-              <p>
-                Enter the amount you want to send or recieve Enter the amount
-                you want to send or receive
-              </p>
+        <div class="col-12 col-lg-4">
+          <div class="card-block">
+            <div class="shadow-card"></div>
+            <div class="gradient-container">
+              <div class="text">
+                <img
+                  src="@/assets/images/landing/reason-to-use-1.svg"
+                  alt="Input amount example"
+                  class="sub-heading-img"
+                />
+                <h4 class="sub-heading">Fast</h4>
+                <p>
+                  Enter the amount you want to send or recieve Enter the amount
+                  you want to send or receive
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-12 col-lg-4 card-block">
-          <div class="shadow-card"></div>
+        <div class="col-12 col-lg-4">
+          <div class="card-block">
+            <div class="shadow-card"></div>
 
-          <div class="gradient-container">
-            <div class="text">
-              <img
-                src="@/assets/images/landing/reason-to-use-2.svg"
-                alt="Select bank example"
-                class="sub-heading-img"
-              />
-              <h4 class="sub-heading">Secure</h4>
-              <p>
-                Enter the amount you want to send or recieve Enter the amount
-                you want to send or receive
-              </p>
+            <div class="gradient-container">
+              <div class="text">
+                <img
+                  src="@/assets/images/landing/reason-to-use-2.svg"
+                  alt="Select bank example"
+                  class="sub-heading-img"
+                />
+                <h4 class="sub-heading">Secure</h4>
+                <p>
+                  Enter the amount you want to send or recieve Enter the amount
+                  you want to send or receive
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-12 col-lg-4 card-block">
-          <div class="shadow-card"></div>
-          <div class="gradient-container">
-            <div class="text">
-              <img
-                src="@/assets/images/landing/reason-to-use-3.svg"
-                alt="Select payment method example"
-                class="sub-heading-img"
-              />
-              <h4 class="sub-heading">Easy to use</h4>
-              <p>
-                Enter the amount you want to send or recieve Enter the amount
-                you want to send or receive
-              </p>
+        <div class="col-12 col-lg-4">
+          <div class="card-block">
+            <div class="shadow-card"></div>
+            <div class="gradient-container">
+              <div class="text">
+                <img
+                  src="@/assets/images/landing/reason-to-use-3.svg"
+                  alt="Select payment method example"
+                  class="sub-heading-img"
+                />
+                <h4 class="sub-heading">Easy to use</h4>
+                <p>
+                  Enter the amount you want to send or recieve Enter the amount
+                  you want to send or receive
+                </p>
+              </div>
             </div>
           </div>
         </div>

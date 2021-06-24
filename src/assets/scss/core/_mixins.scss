@@ -44,7 +44,12 @@ $breakpoint-xx-large: 2560px;
     @media screen and (min-width: $breakpoint-large) {
       @content;
     }
-  } @else if $size== 'xx-large' {
+  } @else if $size== '2k-screen' {
+    @media screen and (min-width: 1500px){
+      @content;
+    }
+  }
+  @else if $size== 'xx-large' {
     @media screen and (min-width: $breakpoint-x-large) {
       @content;
     }
