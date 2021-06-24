@@ -281,27 +281,35 @@ body {
 
   //  desktop
   @include screen('x-large') {
-    padding: toRem(80px) toRem(100px);
+    //padding: toRem(80px) toRem(100px);
+    padding: toRem(80px) 8%;
   }
 
-  // desktop 2k
-  @include screen('2k-screen') {
-    //padding: toRem(80px) toRem(608px);
-    //padding: toRem(80px) toRem(608px);
-    padding: toRem(80px) toRem(608px);
-    //padding: toRem(80px) 38rem
+  @media screen and (min-width: 1800px) {
+    padding: toRem(80px) 12%;
   }
 
-  //// desktop 2k
-  //@media screen and (min-width: 2420px){
+  @media screen and (min-width: 1800px) {
+    padding: toRem(80px) 18%;
+  }
+
+  @media screen and (min-width: 2050px) {
+    padding: toRem(80px) 20%;
+  }
+  //
+  //@media screen and (min-width: 2450px) {
   //  padding: toRem(80px) toRem(608px);
   //}
-
-
+  //
+  ////// desktop 2k
+  ////@media screen and (min-width: 2420px){
+  ////  padding: toRem(80px) toRem(608px);
+  ////}
+  //
+  //
   //  4k desktop
   @include screen('xxx-large') {
-    //padding: toRem(80px) toRem(250px);
-    padding: toRem(80px) toRem(608px);
+    padding: toRem(80px) 23%;
   }
 }
 
