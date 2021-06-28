@@ -209,3 +209,16 @@
   position: relative;
   top: -0.2rem;
 }
+
+
+.navbar-brand {
+  font-style: normal;
+  font-weight: 500;
+  font-size: toRem(32px);
+  line-height: toRem(40px);
+  color: $color-primary;
+  @include screen('med') {
+    font-size: toRem(24px);
+    line-height: toRem(30px);
+  }
+}

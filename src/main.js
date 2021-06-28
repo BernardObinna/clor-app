@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import VueCompositionApi from '@vue/composition-api'
 import { VMoney } from 'v-money'
-
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 Vue.use(VueCompositionApi)
 Vue.directive('money', VMoney)
 Vue.config.productionTip = false

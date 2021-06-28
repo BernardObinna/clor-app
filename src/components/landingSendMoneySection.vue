@@ -38,7 +38,7 @@
           class="pie-img"
         />
         <div class="gradient-container">
-          <form class="form-block">
+          <form class="form-block" @submit.prevent="submit()">
             <div class="d-flex">
               <div class="input-group input-group-lg">
                 <div class="form-floating send-input">
@@ -50,6 +50,7 @@
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneySend"
+                    v-model="sendAmount"
                   />
                   <label for="floatingInput">You send</label>
                   <span class="input-group-text" id="send-currency">
@@ -79,12 +80,13 @@
                 <div class="form-floating receive-input">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control bg-white"
                     id="floatingInput"
                     placeholder="name@example.com"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneyReceive"
+                    readonly
                   />
                   <label for="floatingInput">Recipient gets</label>
                   <span class="input-group-text" id="receive-currency">
@@ -113,7 +115,9 @@
               <button class="btn btn-primary-white w-m-100">
                 Request Money
               </button>
-              <button class="btn btn-primary-blue w-m-100">Send Money</button>
+              <button class="btn btn-primary-blue w-m-100" type="submit">
+                Send Money
+              </button>
             </div>
           </form>
         </div>
@@ -127,7 +131,7 @@
   </section>
 </template>
 <script>
-import { reactive } from '@vue/composition-api'
+import { reactive, toRefs } from '@vue/composition-api'
 
 export default {
   name: 'LandingSendMoneySection',
@@ -150,10 +154,18 @@ export default {
       moneySend: {
         ...baseMask,
         prefix: '$ '
-      }
+      },
+      sendAmount: ''
     })
 
-    return { ...data }
+    const submit = () => {
+      this.$router.push({
+        name: 'send-money',
+        params: { amount: data.sendAmount }
+      })
+    }
+
+    return { ...toRefs(data), submit }
   }
 }
 </script>

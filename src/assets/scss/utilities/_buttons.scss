@@ -104,7 +104,7 @@
 .btn {
   border: 1px solid #5564F5;
   box-sizing: border-box;
-  border-radius: 9999px;
+  border-radius: 9999px !important;
   padding: toRem(17px) toRem(43px) toRem(18px);
   &-primary-blue{
     background-color: $color-primary !important;
