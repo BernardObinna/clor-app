@@ -109,6 +109,7 @@ export default {
   p,
   h5 {
     color: $color-dark-blue;
+    font-family: 'Circular', sans-serif !important;
 
     @include screen('med') {
       text-align: center;

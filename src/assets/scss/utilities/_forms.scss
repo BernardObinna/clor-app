@@ -6,6 +6,13 @@
   padding: 0 1.5rem;
 }
 
+.form-block input, .form-block select{
+  padding-top: toRem(12px) !important;
+  padding-bottom: toRem(12px) !important;
+  border-radius: 8px;
+
+}
+
 label{
   margin-left: 0 !important;
 }

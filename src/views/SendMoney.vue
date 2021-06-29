@@ -3,31 +3,38 @@
     <app-header />
 
     <div class="app-body">
-      <!--bank details view-->
+      <!--bank details card view-->
       <send-money-bank-info
         :details="form"
-        @edit="goBackToRecipientInfo()"
+        @edit="goBackToStep()"
         v-if="showBankInfoBlock"
       />
-      <!--Payment details view-->
-      <send-money-payment-info :details="form" v-if="form.paymentMethod" />
+      <!--Payment details card view-->
+      <send-money-payment-info
+        :details="form"
+        @edit="goBackToStep('amountAndMethod')"
+        v-if="form.paymentMethod"
+      />
 
+      <!--Forms-->
       <!--recipient information-->
       <form-recipient-info
         @submit="proceed($event, 'amountAndMethod')"
-        v-if="step == 'recipientInformation'"
+        v-if="step == 'inputRecipientInformation'"
       />
 
       <!--Amount and method-->
       <send-money-amount-and-method
-        @submit="proceed($event, 'selectCurrency')"
+        @submit="proceed($event, 'step-3')"
         v-if="step == 'amountAndMethod'"
       />
 
-      <!--  Select Currency -->
+      <!--  Select Crypto Currency -->
       <send-money-select-crypto-currency
-        v-if="step == 'selectCurrency' && form.paymentMethod == 'crypto'"
+        v-if="step == 'step-3' && form.paymentMethod == 'crypto'"
       />
+
+      <form-card-info v-if="step == 'step-3' && form.paymentMethod == 'card'" />
     </div>
   </div>
 </template>
@@ -40,6 +47,7 @@ import SendMoneyBankInfo from '../components/sendMoneyBankInfo'
 import SendMoneyAmountAndMethod from '../components/sendMoneyAmountAndMethod'
 import SendMoneySelectCryptoCurrency from '../components/sendMoneySelectCryptoCurrency'
 import SendMoneyPaymentInfo from '../components/sendMoneyPaymentInfo'
+import FormCardInfo from '../components/formCardInfo'
 export default {
   setup() {
     const data = reactive({
@@ -52,7 +60,7 @@ export default {
         paymentMethod: ''
       },
 
-      step: 'recipientInformation'
+      step: 'inputRecipientInformation'
     })
 
     const showBankInfoBlock = computed(() => {
@@ -60,7 +68,7 @@ export default {
         data.form.bank &&
         data.form.accountNumber &&
         data.form.recipientEmail &&
-        data.step !== 'recipientInformation'
+        data.step !== 'inputRecipientInformation'
       )
     })
 
@@ -68,8 +76,8 @@ export default {
       return !!data.form.paymentMethod
     })
 
-    function goBackToRecipientInfo() {
-      data.step = 'recipientInformation'
+    function goBackToStep(step) {
+      data.step = step ? step : 'inputRecipientInformation'
     }
 
     function proceed(info, nextStep) {
@@ -80,13 +88,14 @@ export default {
     return {
       ...toRefs(data),
       showBankInfoBlock,
-      goBackToRecipientInfo,
+      goBackToStep,
       paymentMethodSelected,
       proceed
     }
   },
   name: 'SendMoney',
   components: {
+    FormCardInfo,
     SendMoneyPaymentInfo,
     SendMoneySelectCryptoCurrency,
     SendMoneyAmountAndMethod,
@@ -109,6 +118,7 @@ export default {
 }
 
 .app-body {
+  padding-bottom: 3.4rem;
   p,
   h5 {
     color: $color-dark-blue;

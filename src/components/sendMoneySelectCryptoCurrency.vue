@@ -5,7 +5,7 @@
 
       <div class="payment-method">
         <button
-          class="btn btn-grey-outline"
+          class="btn btn-grey-outline px-2"
           :class="{ selected: btcSelected }"
           @click="selectPaymentMethod('btc')"
           type="button"
@@ -19,7 +19,7 @@
         </button>
 
         <button
-          class="btn btn-grey-outline"
+          class="btn btn-grey-outline px-2"
           :class="{ selected: usdcSelected }"
           @click="selectPaymentMethod('usdc')"
           type="button"
@@ -33,7 +33,7 @@
         </button>
 
         <button
-          class="btn btn-grey-outline"
+          class="btn btn-grey-outline px-2"
           :class="{ selected: usdtSelected }"
           @click="selectPaymentMethod('usdt')"
           type="button"
@@ -64,7 +64,7 @@
         <p>1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t</p>
 
         <img
-          class=""
+          class="pointer"
           src="@/assets/images/icons/copy-icon.svg"
           alt="Copy Icon"
         />
@@ -195,7 +195,7 @@ export default {
   }
 
   #payment-method-block {
-    margin-bottom: toRem(24px);
+    margin-bottom: toRem(16px);
     .payment-method {
       display: flex;
       justify-content: space-between;

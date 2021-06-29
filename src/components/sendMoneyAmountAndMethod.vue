@@ -196,6 +196,12 @@ export default {
 
   span.input-group-text {
     border-left: none;
+
+    img {
+      @include screen('med') {
+        height: 2rem;
+      }
+    }
   }
 
   .converted-amount {

@@ -3,16 +3,16 @@
     <router-link
       :to="{ name: 'home' }"
       aria-label="Go back to the home page"
-      class="brand-logo"
+      class="brand-logo mx-auto mx-lg-0"
     >
       <img src="@/assets/images/icons/clorza-logo.svg" alt="Click to go back" />
     </router-link>
-    <h3 class="heading">Send money</h3>
+    <h3 class="heading d-none d-lg-block">Send money</h3>
 
     <router-link
       :to="{ name: 'home' }"
       aria-label="Go back to the home page"
-      class="close-img-tag"
+      class="close-img-tag d-none d-lg-block"
     >
       <img
         src="@/assets/images/icons/close-icon-black.svg"

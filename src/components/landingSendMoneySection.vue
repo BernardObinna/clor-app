@@ -158,7 +158,7 @@ export default {
       sendAmount: ''
     })
 
-    const submit = () => {
+    function submit() {
       this.$router.push({
         name: 'send-money',
         params: { amount: data.sendAmount }
@@ -406,6 +406,7 @@ h2 {
       min-height: toRem(80px);
       font-size: toRem(24px);
       line-height: toRem(30px);
+      padding-bottom: 0 !important;
     }
 
     label {
