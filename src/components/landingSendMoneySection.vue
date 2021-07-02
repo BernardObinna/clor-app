@@ -45,14 +45,14 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="floatingInput"
+                    id="floatingInput-send-amount"
                     placeholder="name@example.com"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneySend"
                     v-model="sendAmount"
                   />
-                  <label for="floatingInput">You send</label>
+                  <label for="floatingInput-send-amount">You send</label>
                   <span class="input-group-text" id="send-currency">
                     <img
                       class="me-1"

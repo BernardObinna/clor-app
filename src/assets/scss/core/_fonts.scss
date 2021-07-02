@@ -146,7 +146,9 @@ select, .form-control, .form-select {
 
 span.input-group-text {
   border-bottom-left-radius: 0;
+  border-bottom-right-radius: 8px;
   border-top-left-radius: 0;
+  border-top-right-radius: 8px;
   background: white;
   min-width: 23%;
   @include screen('med') {
