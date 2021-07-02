@@ -3,7 +3,7 @@
     <router-link
       :to="{ name: 'home' }"
       aria-label="Go back to the home page"
-      class="brand-logo mx-auto mx-lg-0"
+      class="brand-logo mx-lg-0"
     >
       <img src="@/assets/images/icons/clorza-logo.svg" alt="Click to go back" />
     </router-link>
@@ -12,7 +12,7 @@
     <router-link
       :to="{ name: 'home' }"
       aria-label="Go back to the home page"
-      class="close-img-tag d-none d-lg-block"
+      class="close-img-tag"
     >
       <img
         src="@/assets/images/icons/close-icon-black.svg"
@@ -38,6 +38,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: toRem(20px) toRem(128px);
+  @include screen('med') {
+    padding: toRem(20px) toRem(32px);
+  }
 }
 
 .close-img-tag {
@@ -45,11 +48,6 @@ export default {
     width: toRem(40px);
     height: toRem(40px);
   }
-  //
-  //@include screen('med') {
-  //  top: toRem(14px);
-  //  left: toRem(12px);
-  //}
 }
 
 .brand-logo {
@@ -67,10 +65,5 @@ export default {
   font-family: 'Recoleta' !important;
   color: $color-dark-blue;
   margin: 0;
-  //padding: toRem(24px) 0;
-
-  @include screen('med') {
-    //padding: toRem(12px) 0;
-  }
 }
 </style>
