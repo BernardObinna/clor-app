@@ -97,11 +97,14 @@
 </template>
 
 <script>
-import { computed, reactive, toRefs } from '@vue/composition-api'
+import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
 
 export default {
   name: 'SendMoneyAmountAndMethod',
-  setup() {
+  props: {
+    details: Object
+  },
+  setup(props) {
     const data = reactive({
       form: {
         amount: 0,
@@ -118,6 +121,12 @@ export default {
       },
 
       dollarRate: 478
+    })
+
+    onMounted(() => {
+      if (props.details.paymentMethod) {
+        data.form = props.details
+      }
     })
 
     const amountToBeReceived = computed(() => {

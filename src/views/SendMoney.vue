@@ -9,14 +9,6 @@
         @edit="goBackToStep('inputRecipientInformation')"
         v-if="showBankInfoBlock"
       />
-      <!--Payment details card view-->
-      <send-money-payment-info
-        :details="form"
-        @edit="goBackToStep('amountAndMethod')"
-        v-if="showPaymentInfoBlock"
-      />
-      <!--v-if="form.paymentMethod"-->
-
       <!--Forms-->
       <!--recipient information-->
       <form-recipient-info
@@ -25,20 +17,28 @@
         v-if="displayRecipientInfoForm"
       />
 
+      <!--Payment details card view-->
+      <send-money-payment-info
+        :details="form"
+        @edit="goBackToStep('amountAndMethod')"
+        v-if="showPaymentInfoBlock"
+      />
+
       <!--Amount and method-->
       <send-money-amount-and-method
+        :details="form"
         @submit="proceed($event, 'card-crypto-step')"
         v-if="displayAmountAndMethodForm"
       />
 
       <!--  Select Crypto Currency -->
-      <send-money-select-crypto-currency
-        v-if="step == 'card-crypto-step' && form.paymentMethod == 'crypto'"
-      />
+      <template v-if="displayCardOrCryptoForm">
+        <send-money-select-crypto-currency
+          v-if="form.paymentMethod == 'crypto'"
+        />
 
-      <form-card-info
-        v-if="step == 'card-crypto-step' && form.paymentMethod == 'card'"
-      />
+        <form-card-info v-if="form.paymentMethod == 'card'" />
+      </template>
     </div>
   </div>
 </template>
@@ -72,19 +72,6 @@ export default {
       showCardOrCryptoForm: false
     })
 
-    // const showBankInfoBlock = computed(() => {
-    //   return (
-    //     data.form.bank &&
-    //     data.form.accountNumber &&
-    //     data.form.recipientEmail &&
-    //     data.step !== 'inputRecipientInformation'
-    //   )
-    // })
-
-    // const showBankInfoBlock = computed(() => {
-    //   return data.showBankInfoBlock
-    // })
-    //
     const displayRecipientInfoForm = computed(() => {
       return (
         data.showRecipientInfoForm || data.step === 'inputRecipientInformation'
@@ -92,13 +79,14 @@ export default {
     })
 
     const displayAmountAndMethodForm = computed(() => {
-      return data.showRecipientInfoForm || data.step === 'amountAndMethod'
+      return (
+        (data.showAmountAndMethodForm || data.step === 'amountAndMethod') &&
+        !data.showPaymentInfoBlock
+      )
     })
 
     const displayCardOrCryptoForm = computed(() => {
-      return (
-        data.showRecipientInfoForm || data.step === 'inputRecipientInformation'
-      )
+      return data.showCardOrCryptoForm || data.step === 'card-crypto-step'
     })
 
     const paymentMethodSelected = computed(() => {
@@ -121,8 +109,6 @@ export default {
       data.step = step ? step : 'inputRecipientInformation'
     }
 
-    // function showFormBlock(form) {}
-
     function proceed(info, nextStep) {
       data.form = { ...data.form, ...info }
       switch (nextStep) {
@@ -134,6 +120,7 @@ export default {
         case 'card-crypto-step': {
           data.showPaymentInfoBlock = true
           data.showAmountAndMethodForm = false
+          data.showCardOrCryptoForm = true
         }
       }
       data.step = nextStep
@@ -141,12 +128,10 @@ export default {
 
     return {
       ...toRefs(data),
-      // showBankInfoBlock,
       displayRecipientInfoForm,
       displayAmountAndMethodForm,
       displayCardOrCryptoForm,
       goBackToStep,
-      // showFormBlock,
       paymentMethodSelected,
       proceed
     }

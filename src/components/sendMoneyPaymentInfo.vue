@@ -43,7 +43,9 @@ import { reactive, toRefs } from '@vue/composition-api'
 
 export default {
   name: 'SendMoneyPaymentInfo',
-  props: ['details'],
+  props: {
+    details: Object
+  },
 
   setup() {
     const data = reactive({
