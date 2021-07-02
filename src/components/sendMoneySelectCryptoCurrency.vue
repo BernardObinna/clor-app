@@ -67,6 +67,7 @@
           class="pointer"
           src="@/assets/images/icons/copy-icon.svg"
           alt="Copy Icon"
+          @click="copyAddress"
         />
       </div>
 
@@ -111,12 +112,25 @@ export default {
       this.$emit('submit', data.form)
     }
 
+    function copyAddress(newClip) {
+      navigator.clipboard.writeText(newClip).then(
+        function () {
+          /* clipboard successfully set */
+          // this.$toastr.s('SUCCESS MESSAGE', 'Success Toast Title')
+        },
+        function () {
+          /* clipboard write failed */
+        }
+      )
+    }
+
     return {
       ...toRefs(data),
       btcSelected,
       usdcSelected,
       usdtSelected,
       selectPaymentMethod,
+      copyAddress,
       submit
     }
   }

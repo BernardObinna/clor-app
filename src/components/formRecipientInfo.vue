@@ -56,10 +56,13 @@
 </template>
 
 <script>
-import { reactive, toRefs } from '@vue/composition-api'
+import { reactive, toRefs, onMounted } from '@vue/composition-api'
 export default {
   name: 'FormRecipientInfo',
-  setup() {
+  props: {
+    details: Object
+  },
+  setup(props) {
     const data = reactive({
       form: {
         bank: '',
@@ -72,6 +75,12 @@ export default {
         { id: 'gtb', name: 'GTBank' },
         { id: 'acs', name: 'Access Bank' }
       ]
+    })
+
+    onMounted(() => {
+      if (props.details.bank) {
+        data.form = props.details
+      }
     })
 
     function submit() {

@@ -6,35 +6,39 @@
       <!--bank details card view-->
       <send-money-bank-info
         :details="form"
-        @edit="goBackToStep()"
+        @edit="goBackToStep('inputRecipientInformation')"
         v-if="showBankInfoBlock"
       />
       <!--Payment details card view-->
       <send-money-payment-info
         :details="form"
         @edit="goBackToStep('amountAndMethod')"
-        v-if="form.paymentMethod"
+        v-if="showPaymentInfoBlock"
       />
+      <!--v-if="form.paymentMethod"-->
 
       <!--Forms-->
       <!--recipient information-->
       <form-recipient-info
+        :details="form"
         @submit="proceed($event, 'amountAndMethod')"
-        v-if="step == 'inputRecipientInformation'"
+        v-if="displayRecipientInfoForm"
       />
 
       <!--Amount and method-->
       <send-money-amount-and-method
-        @submit="proceed($event, 'step-3')"
-        v-if="step == 'amountAndMethod'"
+        @submit="proceed($event, 'card-crypto-step')"
+        v-if="displayAmountAndMethodForm"
       />
 
       <!--  Select Crypto Currency -->
       <send-money-select-crypto-currency
-        v-if="step == 'step-3' && form.paymentMethod == 'crypto'"
+        v-if="step == 'card-crypto-step' && form.paymentMethod == 'crypto'"
       />
 
-      <form-card-info v-if="step == 'step-3' && form.paymentMethod == 'card'" />
+      <form-card-info
+        v-if="step == 'card-crypto-step' && form.paymentMethod == 'card'"
+      />
     </div>
   </div>
 </template>
@@ -60,15 +64,40 @@ export default {
         paymentMethod: ''
       },
 
-      step: 'inputRecipientInformation'
+      step: 'inputRecipientInformation',
+      showBankInfoBlock: false,
+      showPaymentInfoBlock: false,
+      showRecipientInfoForm: false,
+      showAmountAndMethodForm: false,
+      showCardOrCryptoForm: false
     })
 
-    const showBankInfoBlock = computed(() => {
+    // const showBankInfoBlock = computed(() => {
+    //   return (
+    //     data.form.bank &&
+    //     data.form.accountNumber &&
+    //     data.form.recipientEmail &&
+    //     data.step !== 'inputRecipientInformation'
+    //   )
+    // })
+
+    // const showBankInfoBlock = computed(() => {
+    //   return data.showBankInfoBlock
+    // })
+    //
+    const displayRecipientInfoForm = computed(() => {
       return (
-        data.form.bank &&
-        data.form.accountNumber &&
-        data.form.recipientEmail &&
-        data.step !== 'inputRecipientInformation'
+        data.showRecipientInfoForm || data.step === 'inputRecipientInformation'
+      )
+    })
+
+    const displayAmountAndMethodForm = computed(() => {
+      return data.showRecipientInfoForm || data.step === 'amountAndMethod'
+    })
+
+    const displayCardOrCryptoForm = computed(() => {
+      return (
+        data.showRecipientInfoForm || data.step === 'inputRecipientInformation'
       )
     })
 
@@ -77,18 +106,47 @@ export default {
     })
 
     function goBackToStep(step) {
+      switch (step) {
+        case 'inputRecipientInformation': {
+          data.showBankInfoBlock = false
+          data.showRecipientInfoForm = true
+          break
+        }
+        case 'amountAndMethod': {
+          data.showPaymentInfoBlock = false
+          data.showAmountAndMethodForm = true
+        }
+      }
+
       data.step = step ? step : 'inputRecipientInformation'
     }
 
+    // function showFormBlock(form) {}
+
     function proceed(info, nextStep) {
       data.form = { ...data.form, ...info }
+      switch (nextStep) {
+        case 'amountAndMethod': {
+          data.showBankInfoBlock = true
+          data.showRecipientInfoForm = false
+          break
+        }
+        case 'card-crypto-step': {
+          data.showPaymentInfoBlock = true
+          data.showAmountAndMethodForm = false
+        }
+      }
       data.step = nextStep
     }
 
     return {
       ...toRefs(data),
-      showBankInfoBlock,
+      // showBankInfoBlock,
+      displayRecipientInfoForm,
+      displayAmountAndMethodForm,
+      displayCardOrCryptoForm,
       goBackToStep,
+      // showFormBlock,
       paymentMethodSelected,
       proceed
     }
