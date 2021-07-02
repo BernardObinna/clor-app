@@ -248,6 +248,11 @@ export default {
 
   #payment-method-block {
     margin-bottom: toRem(24px);
+
+    @include screen('med') {
+      margin-bottom: 0;
+    }
+
     .payment-method {
       display: flex;
       justify-content: space-between;

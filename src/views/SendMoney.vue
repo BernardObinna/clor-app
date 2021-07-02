@@ -4,13 +4,15 @@
 
     <div class="app-body">
       <!--bank details card view-->
+
       <send-money-bank-info
         :details="form"
         @edit="goBackToStep('inputRecipientInformation')"
         v-if="showBankInfoBlock"
       />
-      <!--Forms-->
+
       <!--recipient information-->
+
       <form-recipient-info
         :details="form"
         @submit="proceed($event, 'amountAndMethod')"
@@ -18,6 +20,11 @@
       />
 
       <!--Payment details card view-->
+      <div
+        class="dropdown-divider d-lg-none my-4"
+        v-if="showPaymentInfoBlock || displayAmountAndMethodForm"
+      ></div>
+
       <send-money-payment-info
         :details="form"
         @edit="goBackToStep('amountAndMethod')"
@@ -33,6 +40,7 @@
 
       <!--  Select Crypto Currency -->
       <template v-if="displayCardOrCryptoForm">
+        <div class="dropdown-divider d-lg-none my-4"></div>
         <send-money-select-crypto-currency
           v-if="form.paymentMethod == 'crypto'"
         />
