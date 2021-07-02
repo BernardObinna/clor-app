@@ -175,7 +175,8 @@ export default {
   }
 
   .btn {
-    padding: toRem(12px) toRem(26px) toRem(12px) toRem(27px);
+    padding: toRem(12px) toRem(6px) toRem(12px) toRem(6px) !important;
+    //padding: toRem(12px) toRem(26px) toRem(12px) toRem(27px);
   }
 
   .form-label {
