@@ -36,6 +36,7 @@ export default {
   display: flex;
   background: white;
   justify-content: space-between;
+  align-items: center;
   padding: toRem(20px) toRem(128px);
 }
 
@@ -62,6 +63,7 @@ export default {
 .heading {
   text-align: center;
   font-weight: 500;
+  font-size: toRem(20px);
   font-family: 'Recoleta' !important;
   color: $color-dark-blue;
   margin: 0;

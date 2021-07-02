@@ -45,7 +45,7 @@ export default {
 @import 'src/assets/scss/core/variables';
 
 .bank-info-block {
-  padding: toRem(20px) toRem(32px) toRem(20px);
+  padding: toRem(20px) toRem(32px) toRem(6px);
   background: white;
   border: 1px solid rgba(206, 208, 213, 0.4);
   box-sizing: border-box;

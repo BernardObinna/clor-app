@@ -219,6 +219,7 @@ export default {
       .selected {
         background: rgba(85, 100, 245, 0.08) !important;
         border: 1px solid #5564f5 !important;
+        color: $color-dark-blue !important;
       }
     }
   }

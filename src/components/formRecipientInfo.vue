@@ -4,7 +4,7 @@
     <div id="recipient-information-block">
       <h5 class="mt-0">Recipient Information</h5>
 
-      <div class="my-28">
+      <div class="my-24">
         <label for="bank" class="form-label">Bank</label>
         <select
           class="form-select"
@@ -20,7 +20,7 @@
         </select>
       </div>
 
-      <div class="my-28">
+      <div class="my-24">
         <label for="account-number" class="form-label">Account number</label>
         <input
           type="text"

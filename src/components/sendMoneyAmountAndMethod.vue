@@ -15,6 +15,14 @@
             class="me-1"
             src="@/assets/images/icons/crypto-icon.svg"
             alt="Fancy image"
+            v-if="!cryptoSelected"
+          />
+
+          <img
+            class="me-1"
+            src="@/assets/images/icons/crypto-icon-black.svg"
+            alt="Fancy image"
+            v-else
           />
           Crypto
         </button>
@@ -29,6 +37,14 @@
             class="me-1"
             src="@/assets/images/icons/credit-card-icon.svg"
             alt="Fancy image"
+            v-if="!cardSelected"
+          />
+
+          <img
+            class="me-1"
+            src="@/assets/images/icons/credit-card-icon-black.svg"
+            alt="Fancy image"
+            v-else
           />
           Card
         </button>
@@ -247,6 +263,7 @@ export default {
       .selected {
         background: rgba(85, 100, 245, 0.08) !important;
         border: 1px solid #5564f5 !important;
+        color: $color-dark-blue !important;
       }
     }
   }

@@ -111,7 +111,6 @@ export default {
     box-sizing: border-box;
     border-radius: 7px;
     padding: toRem(8px) toRem(16px);
-    margin-top: toRem(16px);
     p {
       margin: 0;
       @include screen('med') {
