@@ -3,52 +3,52 @@
     <div id="payment-method-block">
       <h5 class="title">Amount and Method</h5>
 
-      <label class="form-label">How do you want to pay?</label>
-      <div class="payment-method">
-        <button
-          class="btn btn-grey-outline"
-          :class="{ selected: cryptoSelected }"
-          @click="selectPaymentMethod('crypto')"
-          type="button"
-        >
-          <img
-            class="me-1"
-            src="@/assets/images/icons/crypto-icon.svg"
-            alt="Fancy image"
-            v-if="!cryptoSelected"
-          />
+      <!--<label class="form-label">How do you want to pay?</label>-->
+      <!--<div class="payment-method">-->
+      <!--<button-->
+      <!--  class="btn btn-grey-outline"-->
+      <!--  :class="{ selected: cryptoSelected }"-->
+      <!--  @click="selectPaymentMethod('crypto')"-->
+      <!--  type="button"-->
+      <!--&gt;-->
+      <!--  <img-->
+      <!--    class="me-1"-->
+      <!--    src="@/assets/images/icons/crypto-icon.svg"-->
+      <!--    alt="Fancy image"-->
+      <!--    v-if="!cryptoSelected"-->
+      <!--  />-->
 
-          <img
-            class="me-1"
-            src="@/assets/images/icons/crypto-icon-black.svg"
-            alt="Fancy image"
-            v-else
-          />
-          Crypto
-        </button>
+      <!--  <img-->
+      <!--    class="me-1"-->
+      <!--    src="@/assets/images/icons/crypto-icon-black.svg"-->
+      <!--    alt="Fancy image"-->
+      <!--    v-else-->
+      <!--  />-->
+      <!--  Crypto-->
+      <!--</button>-->
 
-        <button
-          class="btn btn-grey-outline"
-          :class="{ selected: cardSelected }"
-          @click="selectPaymentMethod('card')"
-          type="button"
-        >
-          <img
-            class="me-1"
-            src="@/assets/images/icons/credit-card-icon.svg"
-            alt="Fancy image"
-            v-if="!cardSelected"
-          />
+      <!--<button-->
+      <!--  class="btn btn-grey-outline"-->
+      <!--  :class="{ selected: cardSelected }"-->
+      <!--  @click="selectPaymentMethod('card')"-->
+      <!--  type="button"-->
+      <!--&gt;-->
+      <!--  <img-->
+      <!--    class="me-1"-->
+      <!--    src="@/assets/images/icons/credit-card-icon.svg"-->
+      <!--    alt="Fancy image"-->
+      <!--    v-if="!cardSelected"-->
+      <!--  />-->
 
-          <img
-            class="me-1"
-            src="@/assets/images/icons/credit-card-icon-black.svg"
-            alt="Fancy image"
-            v-else
-          />
-          Card
-        </button>
-      </div>
+      <!--  <img-->
+      <!--    class="me-1"-->
+      <!--    src="@/assets/images/icons/credit-card-icon-black.svg"-->
+      <!--    alt="Fancy image"-->
+      <!--    v-else-->
+      <!--  />-->
+      <!--  Card-->
+      <!--</button>-->
+      <!--</div>-->
 
       <div class="limit-text">
         You can send between $10 and $2,500 at any given time. If you want to
@@ -108,7 +108,7 @@ export default {
     const data = reactive({
       form: {
         amount: 0,
-        paymentMethod: ''
+        paymentMethod: 'card'
       },
 
       money: {

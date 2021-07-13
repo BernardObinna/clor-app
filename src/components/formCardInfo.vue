@@ -54,6 +54,95 @@
           />
         </div>
       </div>
+
+      <!--billing information-->
+      <h5 class="mt-0">Billing Information</h5>
+
+      <div class="my-28">
+        <label for="address-line-1" class="form-label">Line 1</label>
+
+        <input
+          type="text"
+          class="form-control"
+          id="address-line-1"
+          placeholder="Address 1"
+          aria-label="Address line 1"
+          v-model="form.address1"
+          required
+        />
+      </div>
+
+      <div class="my-28">
+        <label for="address-line-1" class="form-label">Line 2</label>
+
+        <input
+          type="text"
+          class="form-control"
+          id="address-line-2"
+          placeholder="Address 2"
+          aria-label="Address line 2"
+          v-model="form.address2"
+          required
+        />
+      </div>
+
+      <div class="my-28 row">
+        <div class="col-6">
+          <label for="address-country" class="form-label">Country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address-country"
+            aria-label="country"
+            placeholder="USA"
+            v-model="form.country"
+            required
+          />
+        </div>
+
+        <div class="col-6">
+          <label for="address-city" class="form-label">City</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address-city"
+            aria-label="City"
+            placeholder="San fransisco"
+            v-model="form.city"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="my-28 row">
+        <div class="col-6">
+          <label for="address-district" class="form-label">District</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address-district"
+            aria-label="District"
+            placeholder="Mission District"
+            v-model="form.district"
+            required
+          />
+        </div>
+
+        <div class="col-6">
+          <label for="address-postal-code" class="form-label"
+            >Postal Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="address-postal-code"
+            aria-label="Postal-code"
+            placeholder="98105"
+            v-model="form.cvc"
+            required
+          />
+        </div>
+      </div>
     </div>
 
     <div class="summary-text">
@@ -98,7 +187,13 @@ export default {
       form: {
         cardNumber: '',
         expiryDate: '',
-        cvc: ''
+        cvc: '',
+        address1: '',
+        address2: '',
+        country: '',
+        city: '',
+        district: '',
+        postalCode: ''
       }
     })
 
