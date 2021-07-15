@@ -61,7 +61,7 @@ import SendMoneySelectCryptoCurrency from '../components/sendMoneySelectCryptoCu
 import SendMoneyPaymentInfo from '../components/sendMoneyPaymentInfo'
 import FormCardInfo from '../components/formCardInfo'
 export default {
-  setup() {
+  setup(props, { root }) {
     const data = reactive({
       // recipient: true,
       form: {
