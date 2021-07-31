@@ -1,12 +1,12 @@
 import axios from 'axios'
+import Vue from 'vue'
 
-export const axiosInstance = {
-  install(Vue) {
-    Vue.prototype.$axios = axios.create({
-      baseURL: 'http://34.123.40.176/v1/',
-      headers: {
-        Authorization: 'Bearer {token}'
-      }
-    })
+const axiosInstance = axios.create({
+  baseURL: 'http://34.123.40.176/v1/',
+  headers: {
+    Authorization: 'Bearer {token}'
   }
-}
+})
+
+Vue.prototype.$axios = axiosInstance
+export default axiosInstance

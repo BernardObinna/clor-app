@@ -54,7 +54,7 @@
 <script>
 import AppHeader from '../components/appHeader'
 import FormRecipientInfo from '../components/formRecipientInfo'
-import { reactive, computed, toRefs } from '@vue/composition-api'
+import { reactive, computed, toRefs, onMounted } from '@vue/composition-api'
 import SendMoneyBankInfo from '../components/sendMoneyBankInfo'
 import SendMoneyAmountAndMethod from '../components/sendMoneyAmountAndMethod'
 import SendMoneySelectCryptoCurrency from '../components/sendMoneySelectCryptoCurrency'
@@ -62,6 +62,7 @@ import SendMoneyPaymentInfo from '../components/sendMoneyPaymentInfo'
 import FormCardInfo from '../components/formCardInfo'
 export default {
   setup(props, { root }) {
+    const store = root.$store
     const data = reactive({
       // recipient: true,
       form: {
@@ -78,6 +79,13 @@ export default {
       showRecipientInfoForm: false,
       showAmountAndMethodForm: false,
       showCardOrCryptoForm: false
+    })
+
+    //mounted
+    onMounted(async () => {
+      await store.dispatch('sendMoney/getRates')
+      // const [rates] = await store.dispatch('sendMoney/getRates')
+      // if (rates)
     })
 
     const displayRecipientInfoForm = computed(() => {

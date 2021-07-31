@@ -67,7 +67,7 @@
           class="pointer"
           src="@/assets/images/icons/copy-icon.svg"
           alt="Copy Icon"
-          @click="copyAddress"
+          @click="copyAddress(btcAddress)"
         />
       </div>
 
@@ -85,11 +85,15 @@ import { computed, reactive, toRefs } from '@vue/composition-api'
 
 export default {
   name: 'SendMoneySelectCurrency',
-  setup() {
+  setup(props, { root }) {
     const data = reactive({
       form: {
         paymentMethod: ''
-      }
+      },
+
+      btcAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t',
+      usdcAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t',
+      usdtAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t'
     })
 
     const btcSelected = computed(() => {
@@ -116,7 +120,7 @@ export default {
       navigator.clipboard.writeText(newClip).then(
         function () {
           /* clipboard successfully set */
-          // this.$toastr.s('SUCCESS MESSAGE', 'Success Toast Title')
+          root.$toast.success('Address copied')
         },
         function () {
           /* clipboard write failed */

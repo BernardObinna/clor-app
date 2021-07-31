@@ -44,12 +44,13 @@
                 <div class="form-floating send-input">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control bg-white"
                     id="floatingInput-send-amount"
                     placeholder="name@example.com"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneySend"
+                    :disabled="gettingRates"
                     v-model="sendAmount"
                   />
                   <label for="floatingInput-send-amount">You send</label>
@@ -65,15 +66,25 @@
               </div>
             </div>
 
-            <p class="conversion-rate">
-              1 USD
-              <img
-                src="@/assets/images/icons/conversion-rate-icon.svg"
-                alt="conversion-icon"
-                class="conversion-img"
-              />
-              465 NGN
-            </p>
+            <div class="conversion-rate text-center">
+              <div
+                class="spinner-border text-primary"
+                role="status"
+                v-if="gettingRates"
+              >
+                <span class="sr-only d-none">Loading...</span>
+              </div>
+
+              <p v-else>
+                1 USD
+                <img
+                  src="@/assets/images/icons/conversion-rate-icon.svg"
+                  alt="conversion-icon"
+                  class="conversion-img"
+                />
+                {{ dollarRates }} NGN
+              </p>
+            </div>
 
             <div class="d-flex">
               <div class="input-group input-group-lg">
@@ -86,7 +97,8 @@
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneyReceive"
-                    readonly
+                    :value="calculateNaira"
+                    disabled
                   />
                   <label for="floatingInput">Recipient gets</label>
                   <span class="input-group-text" id="receive-currency">
@@ -106,10 +118,10 @@
               <p class="ms-auto">3.5%</p>
             </div>
 
-            <div class="d-flex">
-              <p class="text-grey-59e">Crypto Fee</p>
-              <p class="ms-auto">Depends on currency</p>
-            </div>
+            <!--<div class="d-flex">-->
+            <!--  <p class="text-grey-59e">Crypto Fee</p>-->
+            <!--  <p class="ms-auto">Depends on currency</p>-->
+            <!--</div>-->
 
             <div class="button-container">
               <button class="btn btn-primary-white w-m-100">
@@ -131,11 +143,13 @@
   </section>
 </template>
 <script>
-import { reactive, toRefs } from '@vue/composition-api'
+import { onMounted, reactive, toRefs, computed } from '@vue/composition-api'
+import UtilsService from '../utils/UtilsService'
 
 export default {
   name: 'LandingSendMoneySection',
-  setup() {
+  setup(props, { root }) {
+    const store = root.$store
     const baseMask = {
       decimal: '.',
       thousands: ',',
@@ -155,17 +169,36 @@ export default {
         ...baseMask,
         prefix: '$ '
       },
-      sendAmount: ''
+      sendAmount: '',
+      dollarRates: '',
+      gettingRates: false
     })
 
+    //mounted
+    onMounted(async () => {
+      data.gettingRates = true
+      await store.dispatch('sendMoney/getRates')
+      data.dollarRates = store.getters['sendMoney/getDollarRates']
+      data.gettingRates = false
+    })
+
+    //computed
+    const calculateNaira = computed(() => {
+      return (
+        Number(data.dollarRates) *
+        Number(UtilsService.formatMoneyMask(data.sendAmount))
+      )
+    })
+
+    //methods
     function submit() {
       this.$router.push({
         name: 'send-money',
-        params: { amount: data.sendAmount }
+        params: { amount: UtilsService.formatMoneyMask(data.sendAmount) }
       })
     }
 
-    return { ...toRefs(data), submit }
+    return { ...toRefs(data), submit, calculateNaira }
   }
 }
 </script>

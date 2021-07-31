@@ -1,53 +1,54 @@
 <template>
   <form class="form-block" @submit.prevent="submit()">
     <div id="payment-method-block">
-      <h5 class="title">Amount and Method</h5>
+      <!--<h5 class="title">Amount and Method</h5>-->
+      <h5 class="title">Amount</h5>
 
       <!--<label class="form-label">How do you want to pay?</label>-->
       <!--<div class="payment-method">-->
-      <!--<button-->
-      <!--  class="btn btn-grey-outline"-->
-      <!--  :class="{ selected: cryptoSelected }"-->
-      <!--  @click="selectPaymentMethod('crypto')"-->
-      <!--  type="button"-->
-      <!--&gt;-->
-      <!--  <img-->
-      <!--    class="me-1"-->
-      <!--    src="@/assets/images/icons/crypto-icon.svg"-->
-      <!--    alt="Fancy image"-->
-      <!--    v-if="!cryptoSelected"-->
-      <!--  />-->
+      <!--  <button-->
+      <!--    class="btn btn-grey-outline"-->
+      <!--    :class="{ selected: cryptoSelected }"-->
+      <!--    @click="selectPaymentMethod('crypto')"-->
+      <!--    type="button"-->
+      <!--  >-->
+      <!--    <img-->
+      <!--      class="me-1"-->
+      <!--      src="@/assets/images/icons/crypto-icon.svg"-->
+      <!--      alt="Fancy image"-->
+      <!--      v-if="!cryptoSelected"-->
+      <!--    />-->
 
-      <!--  <img-->
-      <!--    class="me-1"-->
-      <!--    src="@/assets/images/icons/crypto-icon-black.svg"-->
-      <!--    alt="Fancy image"-->
-      <!--    v-else-->
-      <!--  />-->
-      <!--  Crypto-->
-      <!--</button>-->
+      <!--    <img-->
+      <!--      class="me-1"-->
+      <!--      src="@/assets/images/icons/crypto-icon-black.svg"-->
+      <!--      alt="Fancy image"-->
+      <!--      v-else-->
+      <!--    />-->
+      <!--    Crypto-->
+      <!--  </button>-->
 
-      <!--<button-->
-      <!--  class="btn btn-grey-outline"-->
-      <!--  :class="{ selected: cardSelected }"-->
-      <!--  @click="selectPaymentMethod('card')"-->
-      <!--  type="button"-->
-      <!--&gt;-->
-      <!--  <img-->
-      <!--    class="me-1"-->
-      <!--    src="@/assets/images/icons/credit-card-icon.svg"-->
-      <!--    alt="Fancy image"-->
-      <!--    v-if="!cardSelected"-->
-      <!--  />-->
+      <!--  <button-->
+      <!--    class="btn btn-grey-outline"-->
+      <!--    :class="{ selected: cardSelected }"-->
+      <!--    @click="selectPaymentMethod('card')"-->
+      <!--    type="button"-->
+      <!--  >-->
+      <!--    <img-->
+      <!--      class="me-1"-->
+      <!--      src="@/assets/images/icons/credit-card-icon.svg"-->
+      <!--      alt="Fancy image"-->
+      <!--      v-if="!cardSelected"-->
+      <!--    />-->
 
-      <!--  <img-->
-      <!--    class="me-1"-->
-      <!--    src="@/assets/images/icons/credit-card-icon-black.svg"-->
-      <!--    alt="Fancy image"-->
-      <!--    v-else-->
-      <!--  />-->
-      <!--  Card-->
-      <!--</button>-->
+      <!--    <img-->
+      <!--      class="me-1"-->
+      <!--      src="@/assets/images/icons/credit-card-icon-black.svg"-->
+      <!--      alt="Fancy image"-->
+      <!--      v-else-->
+      <!--    />-->
+      <!--    Card-->
+      <!--  </button>-->
       <!--</div>-->
 
       <div class="limit-text">
