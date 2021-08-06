@@ -96,17 +96,30 @@ export default class UtilsService {
     evt.preventDefault()
   }
 
-  static onlyNumbers(evt) {
-    evt = evt || window.event
-    let charCode = evt.which ? evt.which : evt.keyCode
-    if (
-      (charCode >= 48 && charCode <= 57) ||
-      charCode === 45 ||
-      charCode === 13
+  static onlyNumbers(event) {
+    // evt = evt || window.event
+    // let charCode = evt.which ? evt.which : evt.keyCode
+    // if (
+    //   (charCode >= 48 && charCode <= 57) ||
+    //   charCode === 45 ||
+    //   charCode === 13
+    // ) {
+    //   return true
+    // }
+    // evt.preventDefault()
+
+    if (event.keyCode == 17 || event.keyCode == 86 || event.keyCode == 91) {
+      return event
+    } else if (
+      (event.keyCode >= 48 && event.keyCode <= 57) ||
+      (event.keyCode >= 96 && event.keyCode <= 105) ||
+      event.keyCode == 8 ||
+      event.keyCode == 9
     ) {
-      return true
+      return event
+    } else {
+      return event.preventDefault()
     }
-    evt.preventDefault()
   }
 
   static capitalizeFirstLetter(event) {
@@ -181,6 +194,7 @@ export default class UtilsService {
   }
 
   static formatMoneyMask(amount) {
+    if (!isNaN(amount)) return
     // Remove the Naira sign and extra space from money and remove all other monetary characters
     return amount
       .substring(2, amount.length)

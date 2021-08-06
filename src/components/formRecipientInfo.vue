@@ -23,11 +23,12 @@
       <div class="my-24">
         <label for="account-number" class="form-label">Account number</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="account-number"
           aria-label="account number"
           placeholder="Enter account number"
+          @keydown="onlyNumbers"
           v-model="form.accountNumber"
           required
         />

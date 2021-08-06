@@ -84,6 +84,10 @@ export default {
     //mounted
     onMounted(async () => {
       await store.dispatch('sendMoney/getRates')
+      if (root.$route.params.amount) {
+        data.form.amount = root.$route.params.amount
+      }
+
       // const [rates] = await store.dispatch('sendMoney/getRates')
       // if (rates)
     })

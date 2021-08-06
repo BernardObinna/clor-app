@@ -99,13 +99,16 @@
 
 <script>
 import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
+import UtilsService from '../utils/UtilsService'
 
 export default {
   name: 'SendMoneyAmountAndMethod',
   props: {
     details: Object
   },
-  setup(props) {
+  setup(props, { root }) {
+    const store = root.$store
+
     const data = reactive({
       form: {
         amount: 0,
@@ -115,23 +118,32 @@ export default {
       money: {
         decimal: '.',
         thousands: ',',
-        prefix: '',
+        prefix: '$ ',
         suffix: '',
         precision: 2,
         masked: false /* doesn't work with directive */
-      },
+      }
 
-      dollarRate: 478
+      // dollarRate: 478
     })
 
     onMounted(() => {
-      if (props.details.paymentMethod) {
-        data.form = props.details
-      }
+      // if (props.details.paymentMethod) {
+      data.form = props.details
+      // }
+    })
+
+    const dollarRate = computed(() => {
+      return store.getters['sendMoney/getDollarRates']
     })
 
     const amountToBeReceived = computed(() => {
-      return (data.dollarRate * data.form.amount).toFixed(2)
+      // console.log('the amount', UtilsService.formatMoneyMask(data.form.amount))
+      console.log(
+        'the amount',
+        Number(UtilsService.formatMoneyMask(data.form.amount))
+      )
+      return dollarRate * Number(UtilsService.formatMoneyMask(data.form.amount))
     })
 
     const showBankInfoBlock = computed(() => {
@@ -163,6 +175,7 @@ export default {
       ...toRefs(data),
       amountToBeReceived,
       showBankInfoBlock,
+      dollarRate,
       cardSelected,
       cryptoSelected,
       selectPaymentMethod,

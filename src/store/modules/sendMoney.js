@@ -15,7 +15,7 @@ export const getters = {
 
 export const mutations = {
   SET_RATES(state, rates) {
-    state.usdRates = rates.wireinNaira
+    state.usdRates = Number(rates.wireinNaira)
   }
 }
 
