@@ -32,14 +32,15 @@
     </div>
 
     <div class="converted-amount">
-      <p>NGN {{ details.amount }}</p>
+      <p>NGN {{ amountToBeReceived }}</p>
 
       <p>1 USD = {{ dollarRate }} NGN</p>
     </div>
   </div>
 </template>
 <script>
-import { reactive, toRefs } from '@vue/composition-api'
+import { reactive, toRefs, computed } from '@vue/composition-api'
+import UtilsService from '../utils/UtilsService'
 
 export default {
   name: 'SendMoneyPaymentInfo',
@@ -47,7 +48,9 @@ export default {
     details: Object
   },
 
-  setup() {
+  setup(props, { root }) {
+    const store = root.$store
+
     const data = reactive({
       dollarRate: 478
     })
@@ -55,8 +58,20 @@ export default {
       this.$emit('edit')
     }
 
+    const dollarRate = computed(() => {
+      return store.getters['sendMoney/getDollarRates']
+    })
+
+    const amountToBeReceived = computed(() => {
+      return UtilsService.formatAmount(
+        dollarRate.value * Number(props.details.amount)
+      )
+    })
+
     return {
       ...toRefs(data),
+      dollarRate,
+      amountToBeReceived,
       edit
     }
   }

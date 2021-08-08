@@ -185,7 +185,8 @@ export default {
     //computed
     const calculateNaira = computed(() => {
       return (
-        data.dollarRates * Number(UtilsService.formatMoneyMask(data.sendAmount))
+        data.dollarRates *
+        Number(UtilsService.formatMoneyMask(data.sendAmount, true))
       )
     })
 

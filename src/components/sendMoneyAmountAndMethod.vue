@@ -152,10 +152,9 @@ export default {
     })
 
     const amountToBeReceived = computed(() => {
-      console.log(Number(UtilsService.formatMoneyMask(data.form.amount)))
-      return (
+      return UtilsService.formatAmount(
         dollarRate.value *
-        Number(UtilsService.formatMoneyMask(data.form.amount))
+          Number(UtilsService.formatMoneyMask(data.form.amount))
       )
     })
 
@@ -185,7 +184,7 @@ export default {
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
         const payload = {
-          amount: Number(UtilsService.formatMoneyMask(data.form.amount, false)),
+          amount: Number(UtilsService.formatMoneyMask(data.form.amount)),
           paymentMethod: data.form.paymentMethod
         }
         this.$emit('submit', payload)

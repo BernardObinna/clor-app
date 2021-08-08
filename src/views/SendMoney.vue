@@ -19,7 +19,7 @@
         v-if="displayRecipientInfoForm"
       />
 
-      <!--Payment details card view-->
+      <!--Payment details card summary view-->
       <div
         class="dropdown-divider d-lg-none my-4"
         v-if="showPaymentInfoBlock || displayAmountAndMethodForm"

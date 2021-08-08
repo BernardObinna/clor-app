@@ -205,7 +205,7 @@ export default class UtilsService {
     return `${nairaPaddedWithCommas}.${koboPart}`
   }
 
-  static formatMoneyMask(amount, useKobo = true) {
+  static formatMoneyMask(amount, useKobo = false) {
     if (!isNaN(amount)) return
     // Remove the Naira sign and extra space from money and remove all other monetary characters
 
