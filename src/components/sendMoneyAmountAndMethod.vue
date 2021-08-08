@@ -80,6 +80,12 @@
             USD</span
           >
         </div>
+
+        <span
+          class="attention"
+          v-if="v$.form.amount.$error && v$.form.amount.notEmpty.$invalid"
+          >Please specify an amount</span
+        >
       </div>
 
       <div class="converted-amount">
@@ -100,6 +106,8 @@
 <script>
 import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
 import UtilsService from '../utils/UtilsService'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 export default {
   name: 'SendMoneyAmountAndMethod',
@@ -109,9 +117,17 @@ export default {
   setup(props, { root }) {
     const store = root.$store
 
+    //vuelidate rules
+    const rules = {
+      form: {
+        amount: { notEmpty: (value) => value !== '$ 0.00' },
+        paymentMethod: { required }
+      }
+    }
+
     const data = reactive({
       form: {
-        amount: 0,
+        amount: '$ 0.00',
         paymentMethod: 'card'
       },
 
@@ -123,8 +139,6 @@ export default {
         precision: 2,
         masked: false /* doesn't work with directive */
       }
-
-      // dollarRate: 478
     })
 
     onMounted(() => {
@@ -138,12 +152,11 @@ export default {
     })
 
     const amountToBeReceived = computed(() => {
-      // console.log('the amount', UtilsService.formatMoneyMask(data.form.amount))
-      console.log(
-        'the amount',
+      console.log(Number(UtilsService.formatMoneyMask(data.form.amount)))
+      return (
+        dollarRate.value *
         Number(UtilsService.formatMoneyMask(data.form.amount))
       )
-      return dollarRate * Number(UtilsService.formatMoneyMask(data.form.amount))
     })
 
     const showBankInfoBlock = computed(() => {
@@ -168,11 +181,22 @@ export default {
     }
 
     function submit() {
-      this.$emit('submit', data.form)
+      data.form.paymentMethod = 'card'
+      v$.value.form.$touch()
+      if (!v$.value.form.$invalid) {
+        const payload = {
+          amount: Number(UtilsService.formatMoneyMask(data.form.amount, false)),
+          paymentMethod: data.form.paymentMethod
+        }
+        this.$emit('submit', payload)
+      }
     }
+
+    const v$ = useVuelidate(rules, data)
 
     return {
       ...toRefs(data),
+      v$,
       amountToBeReceived,
       showBankInfoBlock,
       dollarRate,

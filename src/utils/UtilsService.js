@@ -193,12 +193,29 @@ export default class UtilsService {
     return formData
   }
 
-  static formatMoneyMask(amount) {
+  static formatAmount(amount) {
+    const [nairaPart, koboPart] = Number(amount || 0)
+      .toFixed(2)
+      .split('.')
+    const nairaPaddedWithCommas = nairaPart.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
+    )
+
+    return `${nairaPaddedWithCommas}.${koboPart}`
+  }
+
+  static formatMoneyMask(amount, useKobo = true) {
     if (!isNaN(amount)) return
     // Remove the Naira sign and extra space from money and remove all other monetary characters
-    return amount
-      .substring(2, amount.length)
-      .replace(/[.]+/g, '')
-      .replace(/[,]+/g, '')
+
+    if (useKobo) {
+      return amount
+        .substring(2, amount.length)
+        .replace(/[.]+/g, '')
+        .replace(/[,]+/g, '')
+    } else {
+      return amount.substring(2, amount.length).replace(/[,]+/g, '')
+    }
   }
 }

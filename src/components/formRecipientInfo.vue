@@ -11,27 +11,47 @@
           aria-label="Select bank name"
           id="bank"
           v-model="form.bank"
-          required
         >
           <option value="" disabled selected>Select bank name</option>
           <option :value="bank.id" v-for="(bank, index) in banks" :key="index">
             {{ bank.name }}
           </option>
         </select>
+
+        <span class="attention" v-if="v$.form.bank.$error"
+          >Please select a bank</span
+        >
       </div>
 
       <div class="my-24">
         <label for="account-number" class="form-label">Account number</label>
         <input
-          type="number"
+          type="text"
           class="form-control"
           id="account-number"
           aria-label="account number"
           placeholder="Enter account number"
+          maxlength="11"
           @keydown="onlyNumbers"
           v-model="form.accountNumber"
-          required
         />
+        <span
+          class="attention"
+          v-if="
+            v$.form.accountNumber.$error &&
+            v$.form.accountNumber.required.$invalid
+          "
+          >Please provide the recipient's account number</span
+        >
+
+        <span
+          class="attention"
+          v-if="
+            v$.form.accountNumber.$error &&
+            v$.form.accountNumber.numeric.$invalid
+          "
+          >Account number must be numeric</span
+        >
       </div>
 
       <div class="">
@@ -42,9 +62,19 @@
           id="recipient-email"
           aria-label="Recipient's email"
           placeholder="Enter email address"
-          v-model="form.recipientEmail"
-          required
+          v-model="form.email"
         />
+        <span
+          class="attention"
+          v-if="v$.form.email.$error && v$.form.email.required.$invalid"
+          >Please provide the recipient's email</span
+        >
+
+        <span
+          class="attention"
+          v-if="v$.form.email.$error && v$.form.email.email.$invalid"
+          >Please provide a valid email address</span
+        >
       </div>
     </div>
 
@@ -58,17 +88,28 @@
 
 <script>
 import { reactive, toRefs, onMounted } from '@vue/composition-api'
+import useVuelidate from '@vuelidate/core'
+import { required, email, numeric } from '@vuelidate/validators'
 export default {
   name: 'FormRecipientInfo',
   props: {
     details: Object
   },
   setup(props) {
+    //vuelidate rules
+    const rules = {
+      form: {
+        bank: { required },
+        accountNumber: { required, numeric },
+        email: { required, email }
+      }
+    }
+
     const data = reactive({
       form: {
         bank: '',
         accountNumber: '',
-        recipientEmail: ''
+        email: ''
       },
 
       banks: [
@@ -85,11 +126,15 @@ export default {
     })
 
     function submit() {
-      this.$emit('submit', data.form)
+      v$.value.form.$touch()
+      if (!v$.value.form.$invalid) this.$emit('submit', data.form)
     }
+
+    const v$ = useVuelidate(rules, data)
 
     return {
       ...toRefs(data),
+      v$,
       submit
     }
   }
