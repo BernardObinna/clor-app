@@ -15,7 +15,7 @@
         </p>
         <div class="d-flex justify-content-between">
           <p class="mt-0">
-            {{ details.recipientEmail }}
+            {{ details.email }}
           </p>
           <p class="mt-0 ml-2 edit" @click="edit()">Edit</p>
         </div>

@@ -3,50 +3,57 @@
     <app-header />
 
     <div class="app-body">
-      <!--bank details card view-->
-
-      <send-money-bank-info
-        :details="form"
-        @edit="goBackToStep('inputRecipientInformation')"
-        v-if="showBankInfoBlock"
-      />
-
-      <!--recipient information-->
-
-      <form-recipient-info
-        :details="form"
-        @submit="proceed($event, 'amountAndMethod')"
-        v-if="displayRecipientInfoForm"
-      />
-
-      <!--Payment details card summary view-->
-      <div
-        class="dropdown-divider d-lg-none my-4"
-        v-if="showPaymentInfoBlock || displayAmountAndMethodForm"
-      ></div>
-
-      <send-money-payment-info
-        :details="form"
-        @edit="goBackToStep('amountAndMethod')"
-        v-if="showPaymentInfoBlock"
-      />
-
-      <!--Amount and method-->
-      <send-money-amount-and-method
-        :details="form"
-        @submit="proceed($event, 'card-crypto-step')"
-        v-if="displayAmountAndMethodForm"
-      />
-
-      <!--  Select Crypto Currency -->
-      <template v-if="displayCardOrCryptoForm">
-        <div class="dropdown-divider d-lg-none my-4"></div>
-        <send-money-select-crypto-currency
-          v-if="form.paymentMethod == 'crypto'"
+      <loader v-if="loading" />
+      <!--form body-->
+      <div v-else>
+        <!--bank details card view-->
+        <send-money-bank-info
+          :details="form"
+          @edit="goBackToStep('inputRecipientInformation')"
+          v-if="showBankInfoBlock"
         />
 
-        <form-card-info v-if="form.paymentMethod == 'card'" />
-      </template>
+        <!--recipient information-->
+
+        <form-recipient-info
+          :details="form"
+          @submit="proceed($event, 'amountAndMethod')"
+          v-if="displayRecipientInfoForm"
+        />
+
+        <!--Payment details card summary view-->
+        <div
+          class="dropdown-divider d-lg-none my-4"
+          v-if="showPaymentInfoBlock || displayAmountAndMethodForm"
+        ></div>
+
+        <send-money-payment-info
+          :details="form"
+          @edit="goBackToStep('amountAndMethod')"
+          v-if="showPaymentInfoBlock"
+        />
+
+        <!--Amount and method-->
+        <send-money-amount-and-method
+          :details="form"
+          @submit="proceed($event, 'card-crypto-step')"
+          v-if="displayAmountAndMethodForm"
+        />
+
+        <!--  Select Crypto Currency -->
+        <template v-if="displayCardOrCryptoForm">
+          <div class="dropdown-divider d-lg-none my-4"></div>
+          <send-money-select-crypto-currency
+            v-if="form.paymentMethod == 'crypto'"
+          />
+
+          <form-card-info
+            :details="form"
+            @submit="submit($event)"
+            v-if="form.paymentMethod == 'card'"
+          />
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +67,7 @@ import SendMoneyAmountAndMethod from '../components/sendMoneyAmountAndMethod'
 import SendMoneySelectCryptoCurrency from '../components/sendMoneySelectCryptoCurrency'
 import SendMoneyPaymentInfo from '../components/sendMoneyPaymentInfo'
 import FormCardInfo from '../components/formCardInfo'
+import Loader from '../components/loader'
 export default {
   setup(props, { root }) {
     const store = root.$store
@@ -68,7 +76,7 @@ export default {
       form: {
         bank: '',
         accountNumber: '',
-        recipientEmail: '',
+        email: '',
         amount: 0,
         paymentMethod: ''
       },
@@ -78,7 +86,8 @@ export default {
       showPaymentInfoBlock: false,
       showRecipientInfoForm: false,
       showAmountAndMethodForm: false,
-      showCardOrCryptoForm: false
+      showCardOrCryptoForm: false,
+      submitting: false
     })
 
     //mounted
@@ -146,18 +155,32 @@ export default {
       data.step = nextStep
     }
 
+    const loading = computed(() => {
+      return data.submitting
+    })
+
+    const submit = async (info) => {
+      data.form = { ...data.form, ...info }
+      data.submitting = true
+      await store.dispatch('sendMoney/sendDollarToNaira', data.form)
+      data.submitting = false
+    }
+
     return {
       ...toRefs(data),
       displayRecipientInfoForm,
       displayAmountAndMethodForm,
       displayCardOrCryptoForm,
-      goBackToStep,
       paymentMethodSelected,
+      loading,
+      goBackToStep,
+      submit,
       proceed
     }
   },
   name: 'SendMoney',
   components: {
+    Loader,
     FormCardInfo,
     SendMoneyPaymentInfo,
     SendMoneySelectCryptoCurrency,

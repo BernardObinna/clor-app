@@ -218,4 +218,10 @@ export default class UtilsService {
       return amount.substring(2, amount.length).replace(/[,]+/g, '')
     }
   }
+
+  static formatStringMask(str, delimiter = '-') {
+    if (!str.length) return
+    const rule = `/[${delimiter}]+/g`
+    return str.replace(rule, '')
+  }
 }

@@ -9,15 +9,30 @@
           >Card number</label
         >
         <div class="input-group send-input">
-          <input
-            type="text"
+          <!--<input-->
+          <!--  type="text"-->
+          <!--  class="form-control border-end-0"-->
+          <!--  id="send-money-card-number"-->
+          <!--  autocomplete="false"-->
+          <!--  placeholder="4299   4100   6183  8742"-->
+          <!--  aria-label="Debit card number"-->
+          <!--  @change="formatStringMask(form.cardNumber)"-->
+          <!--  v-model="form.cardNumber"-->
+          <!--/>-->
+          <!--v-mask="maskString"-->
+
+          <the-mask
             class="form-control border-end-0"
+            v-model="form.cardNumber"
+            aria-label="Debit card number"
+            :mask="cardMask"
             id="send-money-card-number"
             autocomplete="false"
+            raw="true"
+            type="tel"
             placeholder="4299   4100   6183  8742"
-            aria-label="Debit card number"
-            v-model="form.cardNumber"
-          />
+          ></the-mask>
+
           <span class="input-group-text" id="send-money-sending-currency-flag">
             <img
               class="me-1"
@@ -25,33 +40,76 @@
               alt="card company"
           /></span>
         </div>
+        <span
+          class="attention"
+          v-if="
+            v$.form.cardNumber.$error && v$.form.cardNumber.required.$invalid
+          "
+          >Please provide your card number</span
+        >
       </div>
 
       <div class="my-28 row">
         <div class="col-6">
           <label for="card-expiry-date" class="form-label">Expiry Date</label>
-          <input
-            type="text"
+          <!--<input-->
+          <!--  type="text"-->
+          <!--  class="form-control"-->
+          <!--  id="card-expiry-date"-->
+          <!--  aria-label="card expiry date"-->
+          <!--  placeholder="01/24"-->
+          <!--  v-model="form.expiryDate"-->
+          <!--  required-->
+          <!--/>-->
+
+          <the-mask
             class="form-control"
-            id="card-expiry-date"
-            aria-label="card expiry date"
-            placeholder="01/24"
             v-model="form.expiryDate"
-            required
-          />
+            aria-label="card expiry date"
+            :mask="dateMask"
+            id="card-expiry-date"
+            raw="true"
+            type="tel"
+            placeholder="01/24"
+          ></the-mask>
+
+          <span
+            class="attention"
+            v-if="
+              v$.form.expiryDate.$error && v$.form.expiryDate.required.$invalid
+            "
+            >Please provide the card's expiry date</span
+          >
         </div>
 
         <div class="col-6">
           <label for="card-cvc" class="form-label">CVC</label>
-          <input
-            type="text"
+          <!--<input-->
+          <!--  type="text"-->
+          <!--  class="form-control"-->
+          <!--  id="card-cvc"-->
+          <!--  aria-label="Card CVC"-->
+          <!--  placeholder="911"-->
+          <!--  v-model="form.cvc"-->
+          <!--  required-->
+          <!--/>-->
+
+          <the-mask
             class="form-control"
-            id="card-cvc"
-            aria-label="Card CVC"
-            placeholder="911"
             v-model="form.cvc"
-            required
-          />
+            aria-label="Card CVC"
+            :mask="cvvMask"
+            id="card-cvc"
+            raw="true"
+            type="tel"
+            placeholder="911"
+          ></the-mask>
+
+          <span
+            class="attention"
+            v-if="v$.form.cvc.$error && v$.form.cvc.required.$invalid"
+            >Please provide the card's cvc</span
+          >
         </div>
       </div>
 
@@ -68,8 +126,13 @@
           placeholder="Address 1"
           aria-label="Address line 1"
           v-model="form.address1"
-          required
         />
+
+        <span
+          class="attention"
+          v-if="v$.form.address1.$error && v$.form.address1.required.$invalid"
+          >Please provide at least 1 address</span
+        >
       </div>
 
       <div class="my-28">
@@ -82,7 +145,6 @@
           placeholder="Address 2"
           aria-label="Address line 2"
           v-model="form.address2"
-          required
         />
       </div>
 
@@ -96,8 +158,13 @@
             aria-label="country"
             placeholder="USA"
             v-model="form.country"
-            required
           />
+
+          <span
+            class="attention"
+            v-if="v$.form.country.$error && v$.form.country.required.$invalid"
+            >Please provide the billing country</span
+          >
         </div>
 
         <div class="col-6">
@@ -109,8 +176,12 @@
             aria-label="City"
             placeholder="San fransisco"
             v-model="form.city"
-            required
           />
+          <span
+            class="attention"
+            v-if="v$.form.city.$error && v$.form.city.required.$invalid"
+            >Please provide your city</span
+          >
         </div>
       </div>
 
@@ -124,8 +195,12 @@
             aria-label="District"
             placeholder="Mission District"
             v-model="form.district"
-            required
           />
+          <span
+            class="attention"
+            v-if="v$.form.district.$error && v$.form.district.required.$invalid"
+            >Please provide your district</span
+          >
         </div>
 
         <div class="col-6">
@@ -138,9 +213,25 @@
             id="address-postal-code"
             aria-label="Postal-code"
             placeholder="98105"
-            v-model="form.cvc"
-            required
+            @keydown="onlyNumbers"
+            v-model="form.postalCode"
           />
+
+          <span
+            class="attention"
+            v-if="
+              v$.form.postalCode.$error && v$.form.postalCode.required.$invalid
+            "
+            >Please provide your district</span
+          >
+
+          <span
+            class="attention"
+            v-if="
+              v$.form.postalCode.$error && v$.form.postalCode.numeric.$invalid
+            "
+            >Postal code number must be numeric</span
+          >
         </div>
       </div>
     </div>
@@ -149,7 +240,7 @@
       <span>Summary</span>
       <div class="d-flex justify-content-between">
         <p>You Send</p>
-        <p>$ 1,000.00</p>
+        <p>$ {{ sendingAmount }}</p>
       </div>
 
       <div class="d-flex justify-content-between">
@@ -159,14 +250,14 @@
 
       <div class="d-flex justify-content-between">
         <p class="mb-0">Total</p>
-        <p class="mb-0">$ 1,010.00</p>
+        <p class="mb-0">$ {{ total }}</p>
       </div>
 
       <div class="divider"></div>
 
       <div class="d-flex justify-content-between">
         <p class="mb-0">Recipient gets</p>
-        <p class="mb-0">$ 1,010.00</p>
+        <p class="mb-0">₦ {{ recipientAmount }}</p>
       </div>
     </div>
 
@@ -179,10 +270,35 @@
 </template>
 
 <script>
-import { reactive, toRefs } from '@vue/composition-api'
+import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
+import { TheMask } from 'vue-the-mask'
+import useVuelidate from '@vuelidate/core'
+import { required, numeric } from '@vuelidate/validators'
+import UtilsService from '../utils/UtilsService'
+
 export default {
   name: 'FormCardInfo',
-  setup() {
+  props: {
+    details: Object
+  },
+  components: { TheMask },
+  setup(props, { root }) {
+    const store = root.$store
+
+    //vuelidate rules
+    const rules = {
+      form: {
+        cardNumber: { required },
+        expiryDate: { required },
+        cvc: { required },
+        address1: { required },
+        country: { required },
+        city: { required },
+        district: { required },
+        postalCode: { required, numeric }
+      }
+    }
+
     const data = reactive({
       form: {
         cardNumber: '',
@@ -194,15 +310,59 @@ export default {
         city: '',
         district: '',
         postalCode: ''
-      }
+      },
+      details: props.details,
+      processingFee: 10
+    })
+
+    onMounted(() => {
+      // if (props.details.paymentMethod) {
+      data.form = props.details
+      // }
+    })
+
+    function formatStringMask(str, delimiter = '-') {
+      return UtilsService.formatStringMask(str, delimiter)
+    }
+
+    const sendingAmount = computed(() => {
+      return UtilsService.formatAmount(Number(props.details.amount))
+    })
+
+    const total = computed(() => {
+      return UtilsService.formatAmount(
+        data.processingFee + Number(props.details.amount)
+      )
+    })
+
+    const recipientAmount = computed(() => {
+      return UtilsService.formatAmount(
+        (data.processingFee + Number(props.details.amount)) *
+          store.getters['sendMoney/getDollarRates']
+      )
     })
 
     function submit() {
-      this.$emit('submit', data.form)
+      v$.value.form.$touch()
+      if (!v$.value.form.$invalid) this.$emit('submit', data.form)
     }
+
+    // const maskString = ['####-####-####-####', '####-####-####-####-###']
+    const cardMask = ['#### #### #### ####', '#### #### #### #### ###']
+    const dateMask = ['#/##', '##/## ']
+    const cvvMask = '###'
+    const v$ = useVuelidate(rules, data)
 
     return {
       ...toRefs(data),
+      total,
+      recipientAmount,
+      sendingAmount,
+      cardMask,
+      dateMask,
+      cvvMask,
+      v$,
+      formatStringMask,
       submit
     }
   }

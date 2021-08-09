@@ -11,6 +11,13 @@ export default class Endpoints {
 
   /**
    *
+   * send money
+   *
+   */
+  static sendDollarToNaira = EnvironmentService.api + '/transaction/pay_anon'
+
+  /**
+   *
    * rates Section
    *
    */
