@@ -3,6 +3,13 @@ import EnvironmentService from '@/utils/EnvironmentService'
 export default class Endpoints {
   /**
    *
+   * general
+   *
+   */
+  static banks = EnvironmentService.api + '/settings/banks'
+
+  /**
+   *
    * Auth Section
    *
    */
@@ -15,20 +22,16 @@ export default class Endpoints {
    *
    */
   static sendDollarToNaira = EnvironmentService.api + '/transaction/pay_anon'
+  static nameEnquiry = EnvironmentService.api + '/transaction/verifyBank'
 
   /**
    *
    * rates Section
    *
    */
-  // static rates = EnvironmentService.api + '/settingsd'
   static rates = EnvironmentService.api + '/settings'
 
-  static subscribeToPlaylist(id) {
-    return EnvironmentService.api + '/playlists/' + id + '/subscribe'
-  }
-
-  static unsubscribeFromPlaylist(id) {
-    return EnvironmentService.api + '/playlists/' + id + '/unsubscribe'
-  }
+  // static xx(id) {
+  //   return EnvironmentService.api + '/playlists/' + id + '/subscribe'
+  // }
 }

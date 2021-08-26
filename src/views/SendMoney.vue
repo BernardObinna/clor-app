@@ -92,7 +92,12 @@ export default {
 
     //mounted
     onMounted(async () => {
-      await store.dispatch('sendMoney/getRates')
+      // await store.dispatch('sendMoney/getRates')
+      // await store.dispatch('general/getBanks')
+      await Promise.all([
+        store.dispatch('sendMoney/getRates'),
+        store.dispatch('general/getBanks')
+      ])
       if (root.$route.params.amount) {
         data.form.amount = root.$route.params.amount
       }

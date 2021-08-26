@@ -1,58 +1,38 @@
-// import $axios from '../../utils/axios'
-// import endpoints from '../../utils/Endpoints'
-// import { handleRequest } from '../../utils/Connection'
-// // import util from '../../utils/UtilsService'
-//
-// export const state = {
-//   // usdRates: ''
-// }
-//
-// export const getters = {
-//   // getDollarRates(state) {
-//   //     return state.usdRates
-//   // }
-// }
-//
-// export const mutations = {
-//   // SET_RATES(state, rates) {
-//   //     state.usdRates = Number(rates.wireinNaira)
-//   // }
-// }
-//
-// export const actions = {
-//   notify(context) {
-//     // util.showMessage('test', 'error')
-//     const [res] = await handleRequest($axios.get(endpoints.rates))
-//     if (res) commit('SET_RATES', res.rates)
-//   },
-//
-//     notify(context, { e, str, s }) {
-//         let phrase = str ? str : "";
-//         let options = "";
-//         if (s) {
-//             options = {
-//                 group: "notifications-default",
-//                 type: "success text-white",
-//                 title: "Success",
-//                 text: s.body && s.body.message ? s.body.message : phrase,
-//             };
-//         } else {
-//             options = {
-//                 group: "notifications-default",
-//                 type: "error text-white",
-//                 title: "Error",
-//                 text: e.body && e.body.message ? e.body.message : phrase,
-//             };
-//         }
-//         Vue.notify(options);
-//     },
-//
-//   async sendDollarToNaira({ commit }, payload) {
-//     // util.showMessage('test', 'error')
-//     const [res, error] = await handleRequest(
-//       $axios.post(endpoints.sendDollarToNaira, payload)
-//     )
-//     if (res) return [res, null]
-//     else return [null, error]
-//   }
-// }
+import $axios from '../../utils/axios'
+import endpoints from '../../utils/Endpoints'
+import { handleRequest } from '../../utils/Connection'
+// import UtilsService from '../../utils/UtilsService'
+
+export const state = {
+  banks: {
+    loading: false,
+    banks: []
+  }
+}
+
+export const getters = {
+  getBanks(state) {
+    return state.banks
+  }
+}
+
+export const mutations = {
+  setBanks(state, value) {
+    state.banks = value
+  }
+}
+
+export const actions = {
+  async getBanks({ commit }) {
+    // UtilsService.showMessage('test', 'error')
+    commit('setBanks', { loading: true })
+    const [res] = await handleRequest($axios.get(endpoints.banks))
+
+    if (res) {
+      const banks = res.data.map((bank) => {
+        return { ...bank, label: bank.name, id: bank.id }
+      })
+      commit('setBanks', { loading: false, banks })
+    } else commit('setBanks', { loading: false })
+  }
+}

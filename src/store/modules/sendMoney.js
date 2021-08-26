@@ -5,18 +5,30 @@ import { handleRequest } from '../../utils/Connection'
 import UtilsService from '../../utils/UtilsService'
 
 export const state = {
-  usdRates: ''
+  usdRates: '',
+  nameEnquiry: {
+    loading: false,
+    name: null
+  }
 }
 
 export const getters = {
   getDollarRates(state) {
     return state.usdRates
+  },
+
+  getNameEnquiry(state) {
+    return state.nameEnquiry
   }
 }
 
 export const mutations = {
-  SET_RATES(state, rates) {
+  setRates(state, rates) {
     state.usdRates = Number(rates.wireinNaira)
+  },
+
+  setNameEnquiry(state, value) {
+    state.nameEnquiry = value
   }
 }
 
@@ -24,16 +36,31 @@ export const actions = {
   async getRates({ commit }) {
     // util.showMessage('test', 'error')
     const [res] = await handleRequest($axios.get(endpoints.rates))
-    if (res) commit('SET_RATES', res.rates)
+    if (res) commit('setRates', res.rates)
   },
 
-  async sendDollarToNaira({ commit }, payload) {
+  async sendDollarToNaira(context, payload) {
     const [res, error] = await handleRequest(
       $axios.post(endpoints.sendDollarToNaira, payload)
     )
     if (res) return [res, null]
     else {
       UtilsService.showMessage(error.data.message, 'error')
+      return [null, error]
+    }
+  },
+
+  async nameEnquiry({ commit }, payload) {
+    commit('setNameEnquiry', { loading: true })
+    const [res, error] = await handleRequest(
+      $axios.post(endpoints.nameEnquiry, payload)
+    )
+    if (res) {
+      commit('setNameEnquiry', { loading: false, name: res.data.account_name })
+      return [res.data.account_name, null]
+    } else {
+      UtilsService.showMessage(error.data.message, 'error')
+      commit('setNameEnquiry', { loading: false })
       return [null, error]
     }
   }

@@ -349,7 +349,7 @@ export default {
 
     // const maskString = ['####-####-####-####', '####-####-####-####-###']
     const cardMask = ['#### #### #### ####', '#### #### #### #### ###']
-    const dateMask = ['#/##', '##/## ']
+    const dateMask = ['#/##', '##/##']
     const cvvMask = '###'
     const v$ = useVuelidate(rules, data)
 
