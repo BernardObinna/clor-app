@@ -33,6 +33,7 @@ export const actions = {
         return { ...bank, label: bank.name, id: bank.id }
       })
       commit('setBanks', { loading: false, banks })
-    } else commit('setBanks', { loading: false })
+      // } else commit('setBanks', { loading: false })
+    } else await this.getBanks({ commit })
   }
 }

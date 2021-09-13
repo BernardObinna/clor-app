@@ -38,7 +38,16 @@
               class="me-1"
               src="@/assets/images/logos/visa-card-logo.svg"
               alt="card company"
-          /></span>
+              v-if="cardType === 'visa-card'"
+            />
+
+            <img
+              class="me-1"
+              src="@/assets/images/logos/master-card-logo.svg"
+              alt="card company"
+              v-if="cardType === 'master-card'"
+            />
+          </span>
         </div>
         <span
           class="attention"
@@ -68,7 +77,7 @@
             aria-label="card expiry date"
             :mask="dateMask"
             id="card-expiry-date"
-            raw="true"
+            :masked="true"
             type="tel"
             placeholder="01/24"
           ></the-mask>
@@ -79,6 +88,14 @@
               v$.form.expiryDate.$error && v$.form.expiryDate.required.$invalid
             "
             >Please provide the card's expiry date</span
+          >
+
+          <span
+            class="attention"
+            v-if="
+              v$.form.expiryDate.$error && v$.form.expiryDate.minLength.$invalid
+            "
+            >Please provide a valid date</span
           >
         </div>
 
@@ -158,6 +175,7 @@
             aria-label="country"
             placeholder="USA"
             v-model="form.country"
+            disabled
           />
 
           <span
@@ -169,14 +187,27 @@
 
         <div class="col-6">
           <label for="address-city" class="form-label">City</label>
-          <input
-            type="text"
-            class="form-control"
-            id="address-city"
-            aria-label="City"
-            placeholder="San fransisco"
-            v-model="form.city"
-          />
+          <!--<input-->
+          <!--  type="text"-->
+          <!--  class="form-control"-->
+          <!--  id="address-city"-->
+          <!--  aria-label="City"-->
+          <!--  placeholder="San fransisco"-->
+          <!--  v-model="form.city"-->
+          <!--/>-->
+
+          <div>
+            <dropdown-search
+              :options="countries[0].states"
+              :selected="form.city"
+              :onInput="
+                (value) => {
+                  form.city = value
+                }
+              "
+            />
+          </div>
+
           <span
             class="attention"
             v-if="v$.form.city.$error && v$.form.city.required.$invalid"
@@ -270,18 +301,26 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
+import {
+  computed,
+  onMounted,
+  reactive,
+  toRefs,
+  watch
+} from '@vue/composition-api'
 import { TheMask } from 'vue-the-mask'
 import useVuelidate from '@vuelidate/core'
-import { required, numeric } from '@vuelidate/validators'
+import { required, numeric, minLength } from '@vuelidate/validators'
 import UtilsService from '../utils/UtilsService'
+import countries from '../utils/countries'
+import DropdownSearch from './dropdownSearch'
 
 export default {
   name: 'FormCardInfo',
   props: {
     details: Object
   },
-  components: { TheMask },
+  components: { DropdownSearch, TheMask },
   setup(props, { root }) {
     const store = root.$store
 
@@ -289,7 +328,7 @@ export default {
     const rules = {
       form: {
         cardNumber: { required },
-        expiryDate: { required },
+        expiryDate: { required, minLength: minLength(4) },
         cvc: { required },
         address1: { required },
         country: { required },
@@ -306,24 +345,47 @@ export default {
         cvc: '',
         address1: '',
         address2: '',
-        country: '',
+        country: countries[0].country,
         city: '',
         district: '',
         postalCode: ''
       },
-      details: props.details,
-      processingFee: 10
+      processingFee: 10,
+      countries
     })
 
     onMounted(() => {
       // if (props.details.paymentMethod) {
-      data.form = props.details
+      data.form = { ...data.form, ...props.details }
       // }
     })
+
+    //watcher
+    watch(
+      () => props.details,
+      (value) => {
+        data.form = { ...data.form, ...value }
+      }
+    )
 
     function formatStringMask(str, delimiter = '-') {
       return UtilsService.formatStringMask(str, delimiter)
     }
+
+    //computed
+    const cardType = computed(() => {
+      if (!data.form.cardNumber.length) return null
+      let card = ''
+      switch (data.form.cardNumber[0]) {
+        case '4' || 4:
+          card = 'visa-card'
+          break
+        case '5' || 5:
+          card = 'master-card'
+          break
+      }
+      return card
+    })
 
     const sendingAmount = computed(() => {
       return UtilsService.formatAmount(Number(props.details.amount))
@@ -349,12 +411,14 @@ export default {
 
     // const maskString = ['####-####-####-####', '####-####-####-####-###']
     const cardMask = ['#### #### #### ####', '#### #### #### #### ###']
-    const dateMask = ['#/##', '##/##']
+    // const dateMask = ['#/##', '##/##']
+    const dateMask = ['#/2#', '0#/2#', '1#/2#']
     const cvvMask = '###'
     const v$ = useVuelidate(rules, data)
 
     return {
       ...toRefs(data),
+      cardType,
       total,
       recipientAmount,
       sendingAmount,

@@ -166,8 +166,42 @@ export default {
 
     const submit = async (info) => {
       data.form = { ...data.form, ...info }
+
+      let splitDate = data.form.expiryDate.split('/')
+      let month = Number(splitDate[0])
+      let year = Number(splitDate[1])
+
+      let payload = {
+        amount: data.form.amount,
+        expMonth: month,
+        expYear: year,
+        cardDetails: {
+          number: data.form.cardNumber,
+          cvv: data.form.cvc
+        },
+        billingDetails: {
+          line1: data.form.address1,
+          line2: data.form.address2,
+          city: data.form.city,
+          district: data.form.district,
+          postalCode: data.form.postalCode,
+          country: data.form.country,
+          name: data.form.address1
+        },
+        metadata: {
+          phoneNumber: '+2347018782712',
+          email: data.form.email
+        },
+        description: 'From Clorza',
+        recipient: {
+          accountNumber: data.form.accountNumber,
+          bank: data.form.bank,
+          email: data.form.email
+        }
+      }
+
       data.submitting = true
-      await store.dispatch('sendMoney/sendDollarToNaira', data.form)
+      await store.dispatch('sendMoney/sendDollarToNaira', payload)
       data.submitting = false
     }
 

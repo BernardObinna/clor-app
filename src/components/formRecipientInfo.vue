@@ -9,40 +9,6 @@
 
       <div class="my-24">
         <label for="bank" class="form-label">Bank</label>
-        <!--<select-->
-        <!--  class="form-select"-->
-        <!--  aria-label="Select bank name"-->
-        <!--  id="bank"-->
-        <!--  v-model="form.bank"-->
-        <!--  data-show-subtext="true"-->
-        <!--  data-live-search="true"-->
-        <!--&gt;-->
-        <!--  <option value="" disabled selected data-tokens="name">-->
-        <!--    Select bank name-->
-        <!--  </option>-->
-        <!--  <option value="" data-tokens="name">Select bank name</option>-->
-        <!--  <option value="" data-tokens="name">bank</option>-->
-        <!--  <option value="" data-tokens="name">breezyS</option>-->
-        <!--  <option value="a" data-tokens="name">a</option>-->
-        <!--  <option :value="bank.id" v-for="(bank, index) in banks" :key="index">-->
-        <!--    {{ bank.name }}-->
-        <!--  </option>-->
-        <!--</select>-->
-
-        <!--<div>-->
-        <!--  <input-->
-        <!--    class="form-control"-->
-        <!--    list="datalistOptions"-->
-        <!--    id="exampleDataList"-->
-        <!--    placeholder="Type to search..."-->
-        <!--  />-->
-        <!--  <datalist id="datalistOptions" class="bg-white">-->
-        <!--    <option value="San Francisco">san</option>-->
-        <!--    <option value="New York">new</option>-->
-        <!--    <option value="Seattle">aba</option>-->
-        <!--    <option value="Los Angeles">preach</option>-->
-        <!--  </datalist>-->
-        <!--</div>-->
 
         <div>
           <dropdown-search
@@ -51,7 +17,7 @@
             :onInput="
               (value) => {
                 form.bank = value.name
-                selectedBankCode = value.code
+                form.bankCode = value.code
               }
             "
           />
@@ -140,6 +106,30 @@
         >
       </div>
 
+      <div class="" v-if="nameEnquiry.name">
+        <label for="recipient-phone" class="form-label">Recipient Phone</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="recipient-phone"
+          aria-label="Recipient's phone"
+          placeholder="Enter phone number"
+          v-model="form.phone"
+          @keydown="onlyNumbers"
+        />
+        <span
+          class="attention"
+          v-if="v$.form.phone.$error && v$.form.phone.required.$invalid"
+          >Please provide the recipient's phone number</span
+        >
+
+        <span
+          class="attention"
+          v-if="v$.form.email.$error && v$.form.email.email.$invalid"
+          >Please provide a valid email address</span
+        >
+      </div>
+
       <div class="name-resolution" v-if="nameEnquiry.name">
         <p>{{ nameEnquiry.name }}</p>
       </div>
@@ -150,16 +140,6 @@
         </button>
       </div>
     </div>
-
-    <!--<div class="name-resolution">-->
-    <!--  <p>Vayne Lucis</p>-->
-    <!--</div>-->
-
-    <!--<div class="mt-24 text-lg-end">-->
-    <!--  <button class="btn btn-primary-blue w-m-100" type="submit">-->
-    <!--    Continue-->
-    <!--  </button>-->
-    <!--</div>-->
   </form>
 </template>
 
@@ -175,6 +155,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email, numeric, minLength } from '@vuelidate/validators'
 import DropdownSearch from './dropdownSearch'
 import Loader from './loader'
+// import UtilsService from '../utils/UtilsService'
 export default {
   name: 'FormRecipientInfo',
   components: { Loader, DropdownSearch },
@@ -188,7 +169,8 @@ export default {
       form: {
         bank: { required },
         accountNumber: { required, numeric, minLength: minLength(10) },
-        email: { required, email }
+        email: { required, email },
+        phone: { required, numeric }
       }
     }
 
@@ -196,16 +178,10 @@ export default {
       form: {
         bank: '',
         accountNumber: '',
-        email: ''
-      },
-
-      selectedBankCode: ''
-
-      // banks: [
-      //   { id: 'st', name: 'Sterling bank' },
-      //   { id: 'gtb', name: 'GTBank' },
-      //   { id: 'acs', name: 'Access Bank' }
-      // ]
+        email: '',
+        phone: '',
+        bankCode: ''
+      }
     })
 
     //mounted
@@ -237,7 +213,7 @@ export default {
       data.form.email = ''
       let payload = {
         account_number: data.form.accountNumber,
-        bank_code: data.selectedBankCode
+        bank_code: data.form.bankCode
       }
       store.dispatch('sendMoney/nameEnquiry', payload)
     }

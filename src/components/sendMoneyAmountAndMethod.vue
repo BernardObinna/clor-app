@@ -143,8 +143,14 @@ export default {
 
     onMounted(() => {
       // if (props.details.paymentMethod) {
-      data.form = props.details
-      // }
+      if (props.details) {
+        data.form = {
+          ...props.details,
+          amount: isNaN(props.details.amount)
+            ? props.details.amount
+            : props.details.amount * 10
+        }
+      }
     })
 
     const dollarRate = computed(() => {

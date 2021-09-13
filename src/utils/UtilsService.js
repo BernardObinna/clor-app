@@ -108,7 +108,12 @@ export default class UtilsService {
     // }
     // evt.preventDefault()
 
-    if (event.keyCode == 17 || event.keyCode == 86 || event.keyCode == 91) {
+    if (
+      event.keyCode == 17 ||
+      event.keyCode == 86 ||
+      event.keyCode == 91 ||
+      event.keyCode == 187
+    ) {
       return event
     } else if (
       (event.keyCode >= 48 && event.keyCode <= 57) ||

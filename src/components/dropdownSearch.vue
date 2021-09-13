@@ -2,7 +2,7 @@
   <div>
     <v-select
       class="style-chooser"
-      :value="selected.label"
+      :value="selected.label ? selected.label : selected"
       :options="options"
       @input="onInput"
       @search="onSearch"
@@ -26,7 +26,10 @@ export default {
 
   props: {
     options: Array,
-    selected: [Object, String],
+    selected: {
+      type: [Object, String],
+      default: ''
+    },
     placeholder: String,
     disabled: {
       type: Boolean,
