@@ -1,6 +1,6 @@
 <template>
   <form class="form-block" @submit.prevent="submit()">
-    <div id="payment-method-block">
+    <div id="payment-method-block" v-if="!loading">
       <h5 class="title">Amount and Method</h5>
 
       <label class="form-label">How do you want to pay?</label>
@@ -135,23 +135,29 @@ export default {
         thousands: ',',
         prefix: '$ ',
         suffix: '',
-        precision: 2,
+        precision: 0,
         masked: false /* doesn't work with directive */
-      }
+      },
+
+      loading: true
     })
 
     onMounted(() => {
       // if (props.details.paymentMethod) {
       if (props.details) {
-        console.log('the details', isNaN(props.details.amount))
+        console.log('the details', props.details.amount)
+        console.log('the details', typeof props.details.amount === 'string')
         data.form = {
           ...props.details,
-          amount: isNaN(props.details.amount)
-            ? props.details.amount
-            : props.details.amount * 10,
+          // amount:
+          //   typeof props.details.amount === 'string'
+          //     ? props.details.amount
+          //     : props.details.amount,
           paymentMethod: 'card'
         }
       }
+
+      data.loading = false
     })
 
     const dollarRate = computed(() => {

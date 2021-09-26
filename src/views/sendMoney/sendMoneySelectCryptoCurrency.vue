@@ -171,7 +171,8 @@ export default {
     })
 
     function submit() {
-      this.$emit('submit', data.form)
+      location.href = '/'
+      // this.$emit('submit', data.form)
     }
 
     function copyAddress(newClip) {

@@ -1,24 +1,20 @@
 <template>
   <div class="header">
-    <router-link
-      :to="{ name: 'home' }"
+    <a
+      href="/"
       aria-label="Go back to the home page"
       class="brand-logo mx-lg-0"
     >
       <img src="@/assets/images/icons/clorza-logo.svg" alt="Click to go back" />
-    </router-link>
+    </a>
     <h3 class="heading d-none d-lg-block">Send money</h3>
 
-    <router-link
-      :to="{ name: 'home' }"
-      aria-label="Go back to the home page"
-      class="close-img-tag"
-    >
+    <a href="/" aria-label="Go back to the home page" class="close-img-tag">
       <img
         src="@/assets/images/icons/close-icon-black.svg"
         alt="Click to go back"
       />
-    </router-link>
+    </a>
   </div>
 </template>
 

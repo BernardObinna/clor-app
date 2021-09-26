@@ -155,7 +155,7 @@ export default {
       thousands: ',',
       prefix: 'R$ ',
       suffix: '',
-      precision: 2,
+      precision: 0,
       masked: false /* doesn't work with directive */
     }
 
