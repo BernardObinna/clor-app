@@ -39,6 +39,18 @@ export const actions = {
     if (res) commit('setRates', res.rates)
   },
 
+  async initTransaction() {
+    const [res] = await handleRequest($axios.post(endpoints.initTransaction))
+    return [res]
+  },
+
+  async getCryptoAddress(context, payload) {
+    const [res] = await handleRequest(
+      $axios.post(endpoints.getCryptoAddress, payload)
+    )
+    return [res]
+  },
+
   async sendDollarToNaira(context, payload) {
     const [res, error] = await handleRequest(
       $axios.post(endpoints.sendDollarToNaira, payload)

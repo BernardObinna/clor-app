@@ -44,6 +44,7 @@
         <template v-if="displayCardOrCryptoForm">
           <div class="dropdown-divider d-lg-none my-4"></div>
           <send-money-select-crypto-currency
+            :details="form"
             v-if="form.paymentMethod == 'crypto'"
           />
 
@@ -59,15 +60,15 @@
 </template>
 
 <script>
-import AppHeader from '../components/appHeader'
-import FormRecipientInfo from '../components/formRecipientInfo'
+import AppHeader from './sendMoneyHeader'
+import FormRecipientInfo from './formRecipientInfo'
 import { reactive, computed, toRefs, onMounted } from '@vue/composition-api'
-import SendMoneyBankInfo from '../components/sendMoneyBankInfo'
-import SendMoneyAmountAndMethod from '../components/sendMoneyAmountAndMethod'
-import SendMoneySelectCryptoCurrency from '../components/sendMoneySelectCryptoCurrency'
-import SendMoneyPaymentInfo from '../components/sendMoneyPaymentInfo'
-import FormCardInfo from '../components/formCardInfo'
-import Loader from '../components/loader'
+import SendMoneyBankInfo from './sendMoneyBankInfo'
+import SendMoneyAmountAndMethod from './sendMoneyAmountAndMethod'
+import SendMoneySelectCryptoCurrency from './sendMoneySelectCryptoCurrency'
+import SendMoneyPaymentInfo from './sendMoneyPaymentInfo'
+import FormCardInfo from './formCardInfo'
+import Loader from '../../components/loader'
 export default {
   setup(props, { root }) {
     const store = root.$store
@@ -92,8 +93,10 @@ export default {
 
     //mounted
     onMounted(async () => {
-      // await store.dispatch('sendMoney/getRates')
-      // await store.dispatch('general/getBanks')
+      const [res] = await store.dispatch('sendMoney/initTransaction')
+      if (res) {
+        data.form = { ...data.form, trackingId: res.trackingId }
+      }
       await Promise.all([
         store.dispatch('sendMoney/getRates'),
         store.dispatch('general/getBanks')
@@ -231,8 +234,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .page {
   background: $color-faded-cyan;

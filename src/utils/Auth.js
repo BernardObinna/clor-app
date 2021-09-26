@@ -1,7 +1,8 @@
 export const Auth = {
   get: {
     accessToken() {
-      return localStorage.getItem('authToken')
+      // return localStorage.getItem('authToken')
+      return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGUzMzM2MzFlODMxMjNlMzhjYmNmMjciLCJpYXQiOjE2MzI2Njk1NjUsImV4cCI6MTYzMjY3MTM2NSwidHlwZSI6ImFjY2VzcyJ9.21nXvxcr2I4I4fd6MXsqzVH325ncWMLBhAYrHnA9N2U'
     },
     refreshToken() {
       return localStorage.getItem('refreshToken')
@@ -49,7 +50,7 @@ export const Auth = {
     validateEmail(email) {
       // eslint-disable-next-line no-useless-escape
       const re =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        '/^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/'
       return re.test(String(email).toLowerCase())
     },
     testAllPasswordStrength(password) {

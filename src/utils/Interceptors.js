@@ -1,17 +1,19 @@
-import axios from 'axios'
-import { store } from '@/store/store'
+import axios from './axios.js'
+import store from '@/store'
 
 import { Auth } from './Auth'
 import UtilsService, { MessageType } from '@/utils/UtilsService'
 
-export const Interceptor = () => {
+const interceptor = () => {
+  //Make sure the interceptor is declared before ur vue instance is created.
+  // Make sure you're creating your interceptors before you're creating the Vue instance in main.js.
   let isRefreshing = false
 
   // Request
   axios.interceptors['request'].use(function (config) {
-    if (Auth.check.isAuthenticated()) {
-      config.headers['Authorization'] = 'Bearer ' + Auth.get.accessToken()
-    }
+    // if (Auth.check.isAuthenticated()) {
+    config.headers['Authorization'] = 'Bearer ' + Auth.get.accessToken()
+    // }
 
     return config
   })
@@ -49,7 +51,6 @@ export const Interceptor = () => {
           MessageType.Error,
           'Session expired'
         )
-
         Auth.action.logout()
       }
 
@@ -57,3 +58,5 @@ export const Interceptor = () => {
     }
   )
 }
+
+export default interceptor

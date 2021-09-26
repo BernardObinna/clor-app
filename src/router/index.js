@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import SendMoney from '../views/SendMoney'
+import SendMoney from '../views/sendMoney/index.vue'
 
 Vue.use(VueRouter)
 

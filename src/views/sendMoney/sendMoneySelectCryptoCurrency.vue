@@ -19,9 +19,10 @@
         </button>
 
         <button
-          class="btn btn-grey-outline px-2"
+          class="btn btn-grey-outline px-2 opacity-3"
           :class="{ selected: usdcSelected }"
           @click="selectPaymentMethod('usdc')"
+          disabled
           type="button"
         >
           <img
@@ -33,9 +34,10 @@
         </button>
 
         <button
-          class="btn btn-grey-outline px-2"
+          class="btn btn-grey-outline px-2 opacity-3"
           :class="{ selected: usdtSelected }"
           @click="selectPaymentMethod('usdt')"
+          disabled
           type="button"
         >
           <img
@@ -48,8 +50,8 @@
       </div>
 
       <div class="limit-text">
-        Send $1,000.00 in BTC with either the QR Code below or to the Bitcoin
-        address.
+        Send ${{ formatAmount }} in BTC with either the QR Code below or the
+        Bitcoin address.
       </div>
 
       <div class="qr-code-block">
@@ -61,7 +63,7 @@
       </div>
 
       <div class="copy-code">
-        <p>1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t</p>
+        <p>{{ btcAddress }}</p>
 
         <img
           class="pointer"
@@ -70,47 +72,77 @@
           @click="copyAddress(btcAddress)"
         />
       </div>
-
-      <div class="mt-32 text-lg-end">
-        <button class="btn btn-primary-blue w-m-100" type="submit">
-          I’ve sent it
-        </button>
-      </div>
+    </div>
+    <div class="mt-32 text-lg-end">
+      <button class="btn btn-primary-blue w-m-100" type="submit">
+        I’ve sent it
+      </button>
     </div>
   </form>
 </template>
 
 <script>
-import { computed, reactive, toRefs } from '@vue/composition-api'
+import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
+import UtilsService from '../../utils/UtilsService'
 
 export default {
   name: 'SendMoneySelectCurrency',
+  props: {
+    details: Object
+  },
   setup(props, { root }) {
+    const store = root.$store
+
     const data = reactive({
       form: {
-        paymentMethod: ''
+        cryptoType: 'btc'
       },
 
-      btcAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t',
-      usdcAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t',
-      usdtAddress: '1JzzKLHyL1EeR9T8DwmFkVupF7HHTx5t'
+      btcAddress: '',
+      usdcAddress: '',
+      usdtAddress: ''
     })
 
+    //mounted
+    onMounted(async () => {
+      // if (props.details.paymentMethod) {
+      data.form = { ...data.form, ...props.details }
+      data.form.cryptoType = 'btc'
+
+      let payload = {
+        accountNo: props.details.accountNumber,
+        bankName: props.details.bank,
+        email: props.details.email,
+        trackingId: props.details.trackingId
+      }
+
+      const [res] = await store.dispatch('sendMoney/getCryptoAddress', payload)
+      if (!res) location.reload()
+      else data.btcAddress = res.address
+
+      // }
+    })
+
+    //methods
     const btcSelected = computed(() => {
-      return data.form.paymentMethod === 'btc'
+      return data.form.cryptoType === 'btc'
     })
 
     const usdcSelected = computed(() => {
-      return data.form.paymentMethod === 'usdc'
+      return data.form.cryptoType === 'usdc'
     })
 
     const usdtSelected = computed(() => {
-      return data.form.paymentMethod === 'usdt'
+      return data.form.cryptoType === 'usdt'
     })
 
     function selectPaymentMethod(method) {
-      data.form.paymentMethod = method
+      data.form.cryptoType = method
     }
+
+    const formatAmount = computed(() => {
+      return UtilsService.formatAmount(props.details.amount)
+    })
 
     function submit() {
       this.$emit('submit', data.form)
@@ -134,6 +166,7 @@ export default {
       usdcSelected,
       usdtSelected,
       selectPaymentMethod,
+      formatAmount,
       copyAddress,
       submit
     }
@@ -142,8 +175,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .title {
   margin-bottom: toRem(24px);
@@ -179,8 +212,7 @@ export default {
   }
 
   .btn {
-    padding: toRem(12px) toRem(6px) toRem(12px) toRem(6px) !important;
-    //padding: toRem(12px) toRem(26px) toRem(12px) toRem(27px);
+    padding: toRem(12px) toRem(26px) toRem(12px) toRem(27px);
   }
 
   .form-label {
@@ -239,6 +271,10 @@ export default {
         background: rgba(85, 100, 245, 0.08) !important;
         border: 1px solid #5564f5 !important;
         color: $color-dark-blue !important;
+      }
+
+      .btn {
+        padding: toRem(12px) toRem(6px) toRem(12px) toRem(6px) !important;
       }
     }
   }

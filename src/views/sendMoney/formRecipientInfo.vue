@@ -153,8 +153,8 @@ import {
 } from '@vue/composition-api'
 import useVuelidate from '@vuelidate/core'
 import { required, email, numeric, minLength } from '@vuelidate/validators'
-import DropdownSearch from './dropdownSearch'
-import Loader from './loader'
+import DropdownSearch from '../../components/dropdownSearch'
+import Loader from '../../components/loader'
 // import UtilsService from '../utils/UtilsService'
 export default {
   name: 'FormRecipientInfo',
@@ -238,8 +238,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .form-block {
   padding: toRem(20px) toRem(32px) toRem(20px);

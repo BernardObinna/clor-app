@@ -5,7 +5,7 @@ import { handleRequest } from '../../utils/Connection'
 
 export const state = {
   banks: {
-    loading: false,
+    loading: true,
     banks: []
   }
 }

@@ -40,7 +40,7 @@
 </template>
 <script>
 import { reactive, toRefs, computed } from '@vue/composition-api'
-import UtilsService from '../utils/UtilsService'
+import UtilsService from '../../utils/UtilsService'
 
 export default {
   name: 'SendMoneyPaymentInfo',
@@ -79,8 +79,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .payment-info-block {
   padding: toRem(20px) toRem(32px) toRem(20px);

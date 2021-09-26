@@ -1,55 +1,54 @@
 <template>
   <form class="form-block" @submit.prevent="submit()">
     <div id="payment-method-block">
-      <!--<h5 class="title">Amount and Method</h5>-->
-      <h5 class="title">Amount</h5>
+      <h5 class="title">Amount and Method</h5>
 
-      <!--<label class="form-label">How do you want to pay?</label>-->
-      <!--<div class="payment-method">-->
-      <!--  <button-->
-      <!--    class="btn btn-grey-outline"-->
-      <!--    :class="{ selected: cryptoSelected }"-->
-      <!--    @click="selectPaymentMethod('crypto')"-->
-      <!--    type="button"-->
-      <!--  >-->
-      <!--    <img-->
-      <!--      class="me-1"-->
-      <!--      src="@/assets/images/icons/crypto-icon.svg"-->
-      <!--      alt="Fancy image"-->
-      <!--      v-if="!cryptoSelected"-->
-      <!--    />-->
+      <label class="form-label">How do you want to pay?</label>
+      <div class="payment-method">
+        <button
+          class="btn btn-grey-outline"
+          :class="{ selected: cryptoSelected }"
+          @click="selectPaymentMethod('crypto')"
+          type="button"
+        >
+          <img
+            class="me-1"
+            src="@/assets/images/icons/crypto-icon.svg"
+            alt="Fancy image"
+            v-if="!cryptoSelected"
+          />
 
-      <!--    <img-->
-      <!--      class="me-1"-->
-      <!--      src="@/assets/images/icons/crypto-icon-black.svg"-->
-      <!--      alt="Fancy image"-->
-      <!--      v-else-->
-      <!--    />-->
-      <!--    Crypto-->
-      <!--  </button>-->
+          <img
+            class="me-1"
+            src="@/assets/images/icons/crypto-icon-black.svg"
+            alt="Fancy image"
+            v-else
+          />
+          Crypto
+        </button>
 
-      <!--  <button-->
-      <!--    class="btn btn-grey-outline"-->
-      <!--    :class="{ selected: cardSelected }"-->
-      <!--    @click="selectPaymentMethod('card')"-->
-      <!--    type="button"-->
-      <!--  >-->
-      <!--    <img-->
-      <!--      class="me-1"-->
-      <!--      src="@/assets/images/icons/credit-card-icon.svg"-->
-      <!--      alt="Fancy image"-->
-      <!--      v-if="!cardSelected"-->
-      <!--    />-->
+        <button
+          class="btn btn-grey-outline"
+          :class="{ selected: cardSelected }"
+          @click="selectPaymentMethod('card')"
+          type="button"
+        >
+          <img
+            class="me-1"
+            src="@/assets/images/icons/credit-card-icon.svg"
+            alt="Fancy image"
+            v-if="!cardSelected"
+          />
 
-      <!--    <img-->
-      <!--      class="me-1"-->
-      <!--      src="@/assets/images/icons/credit-card-icon-black.svg"-->
-      <!--      alt="Fancy image"-->
-      <!--      v-else-->
-      <!--    />-->
-      <!--    Card-->
-      <!--  </button>-->
-      <!--</div>-->
+          <img
+            class="me-1"
+            src="@/assets/images/icons/credit-card-icon-black.svg"
+            alt="Fancy image"
+            v-else
+          />
+          Card
+        </button>
+      </div>
 
       <div class="limit-text">
         You can send between $10 and $2,500 at any given time. If you want to
@@ -105,7 +104,7 @@
 
 <script>
 import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
-import UtilsService from '../utils/UtilsService'
+import UtilsService from '../../utils/UtilsService'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
@@ -144,11 +143,13 @@ export default {
     onMounted(() => {
       // if (props.details.paymentMethod) {
       if (props.details) {
+        console.log('the details', isNaN(props.details.amount))
         data.form = {
           ...props.details,
           amount: isNaN(props.details.amount)
             ? props.details.amount
-            : props.details.amount * 10
+            : props.details.amount * 10,
+          paymentMethod: 'card'
         }
       }
     })
@@ -186,7 +187,7 @@ export default {
     }
 
     function submit() {
-      data.form.paymentMethod = 'card'
+      // data.form.paymentMethod = 'card'
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
         const payload = {
@@ -215,8 +216,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .title {
   margin-bottom: toRem(24px);

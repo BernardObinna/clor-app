@@ -311,9 +311,9 @@ import {
 import { TheMask } from 'vue-the-mask'
 import useVuelidate from '@vuelidate/core'
 import { required, numeric, minLength } from '@vuelidate/validators'
-import UtilsService from '../utils/UtilsService'
-import countries from '../utils/countries'
-import DropdownSearch from './dropdownSearch'
+import UtilsService from '../../utils/UtilsService'
+import countries from '../../utils/countries'
+import DropdownSearch from '../../components/dropdownSearch'
 
 export default {
   name: 'FormCardInfo',
@@ -434,8 +434,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .form-block {
   padding: toRem(20px) toRem(32px) toRem(20px);
