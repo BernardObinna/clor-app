@@ -49,34 +49,40 @@
         </button>
       </div>
 
-      <div class="limit-text">
-        Send ${{ formatAmount }} in BTC with either the QR Code below or the
-        Bitcoin address.
-      </div>
+      <loader v-if="loading" classes="my-50" />
 
-      <div class="qr-code-block">
-        <img
-          class=""
-          src="@/assets/images/icons/qr-code-icon.svg"
-          alt="Fancy image"
-        />
-      </div>
+      <template v-else>
+        <div class="limit-text">
+          Send ${{ formatAmount }} in BTC with either the QR Code below or the
+          Bitcoin address.
+        </div>
 
-      <div class="copy-code">
-        <p>{{ btcAddress }}</p>
+        <div class="qr-code-block">
+          <qrcode-vue
+            :value="qrSpecs.value"
+            level="H"
+            :size="qrSpecs.size"
+            renderAs="svg"
+          ></qrcode-vue>
+        </div>
 
-        <img
-          class="pointer"
-          src="@/assets/images/icons/copy-icon.svg"
-          alt="Copy Icon"
-          @click="copyAddress(btcAddress)"
-        />
-      </div>
-    </div>
-    <div class="mt-32 text-lg-end">
-      <button class="btn btn-primary-blue w-m-100" type="submit">
-        I’ve sent it
-      </button>
+        <div class="copy-code">
+          <p>{{ btcAddress }}</p>
+
+          <img
+            class="pointer"
+            src="@/assets/images/icons/copy-icon.svg"
+            alt="Copy Icon"
+            @click="copyAddress(btcAddress)"
+          />
+        </div>
+
+        <div class="mt-32 text-lg-end">
+          <button class="btn btn-primary-blue w-m-100" type="submit">
+            I’ve sent it
+          </button>
+        </div>
+      </template>
     </div>
   </form>
 </template>
@@ -84,12 +90,20 @@
 <script>
 import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
 import UtilsService from '../../utils/UtilsService'
+import QrcodeVue from 'qrcode.vue'
+import Loader from '../../components/loader'
 
 export default {
   name: 'SendMoneySelectCurrency',
   props: {
     details: Object
   },
+
+  components: {
+    Loader,
+    QrcodeVue
+  },
+
   setup(props, { root }) {
     const store = root.$store
 
@@ -100,12 +114,20 @@ export default {
 
       btcAddress: '',
       usdcAddress: '',
-      usdtAddress: ''
+      usdtAddress: '',
+
+      loading: true,
+
+      qrSpecs: {
+        value: 'https://example.com',
+        size: 160
+      }
     })
 
     //mounted
     onMounted(async () => {
       // if (props.details.paymentMethod) {
+      data.loading = true
       data.form = { ...data.form, ...props.details }
       data.form.cryptoType = 'btc'
 
@@ -118,7 +140,11 @@ export default {
 
       const [res] = await store.dispatch('sendMoney/getCryptoAddress', payload)
       if (!res) location.reload()
-      else data.btcAddress = res.address
+      else {
+        data.qrSpecs.value = res.address
+        data.btcAddress = res.address
+        data.loading = false
+      }
 
       // }
     })
@@ -290,7 +316,7 @@ export default {
   }
 
   .qr-code-block {
-    img {
+    div > svg {
       width: toRem(160px);
       height: toRem(160px);
     }
