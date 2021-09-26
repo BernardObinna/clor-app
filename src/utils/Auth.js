@@ -1,8 +1,7 @@
 export const Auth = {
   get: {
     accessToken() {
-      // return localStorage.getItem('authToken')
-      return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGUzMzM2MzFlODMxMjNlMzhjYmNmMjciLCJpYXQiOjE2MzI2NzQzMTQsImV4cCI6MTYzMjY3NjExNCwidHlwZSI6ImFjY2VzcyJ9.a8L-HIxTs1R72ndIosNnyqSThoEl-UzFIzbXsFw8hp4'
+      return localStorage.getItem('authToken')
     },
     refreshToken() {
       return localStorage.getItem('refreshToken')
