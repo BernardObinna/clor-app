@@ -124,10 +124,14 @@
             <!--</div>-->
 
             <div class="button-container">
-              <button class="btn btn-primary-white w-m-100">
+              <button class="btn btn-primary-white w-m-100" disabled>
                 Request Money
               </button>
-              <button class="btn btn-primary-blue w-m-100" type="submit">
+              <button
+                class="btn btn-primary-blue w-m-100"
+                :disabled="gettingRates"
+                type="submit"
+              >
                 Send Money
               </button>
             </div>
