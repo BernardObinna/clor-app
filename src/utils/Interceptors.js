@@ -11,9 +11,9 @@ const interceptor = () => {
 
   // Request
   axios.interceptors['request'].use(function (config) {
-    // if (Auth.check.isAuthenticated()) {
-    config.headers['Authorization'] = 'Bearer ' + Auth.get.accessToken()
-    // }
+    if (Auth.check.isAuthenticated()) {
+      config.headers['Authorization'] = 'Bearer ' + Auth.get.accessToken()
+    }
 
     return config
   })
