@@ -40,12 +40,12 @@
         <router-link class="nav-link" to="#landing-vendor-section"
           >Vendor payment</router-link
         >
-        <router-link
+        <button
           class="nav-link btn btn-dark-blue-outline"
-          tag="button"
-          to="#"
-          >Login</router-link
+          @click="openLoginModal"
         >
+          Login
+        </button>
         <router-link class="nav-link btn btn-dark-blue" tag="button" to="#"
           >Sign up</router-link
         >
@@ -55,13 +55,18 @@
 </template>
 <script>
 export default {
-  name: 'LandingHeader'
+  name: 'LandingHeader',
+  methods: {
+    openLoginModal() {
+      this.$store.dispatch('general/openModal', { id: 'loginModal' })
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 #nav-toggle {
   max-width: toRem(32px);

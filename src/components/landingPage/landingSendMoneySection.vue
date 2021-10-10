@@ -148,7 +148,7 @@
 </template>
 <script>
 import { onMounted, reactive, toRefs, computed } from '@vue/composition-api'
-import UtilsService from '../utils/UtilsService'
+import UtilsService from '../../utils/UtilsService'
 
 export default {
   name: 'LandingSendMoneySection',
@@ -208,8 +208,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/core/mixins';
-@import 'src/assets/scss/core/variables';
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
 
 .content {
   padding-bottom: toRem(203px);
