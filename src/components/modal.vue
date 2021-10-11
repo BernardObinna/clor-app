@@ -88,6 +88,7 @@ export default {
 .modal-dialog {
   &.md {
     max-width: toRem(378px);
+    margin: 0 auto;
     .modal-header,
     .modal-body,
     .modal-footer {

@@ -28,8 +28,12 @@
           <router-link class="nav-link" to="#landing-vendor-section"
             >vendor payment</router-link
           >
-          <router-link class="nav-link" to="#">Login</router-link>
-          <router-link class="nav-link" to="#">Sign up</router-link>
+          <a class="nav-link" href="javascript:" @click="openLoginModal"
+            >Login</a
+          >
+          <a class="nav-link" href="javascript:" @click="openSignUpModal"
+            >Sign up</a
+          >
         </div>
       </div>
 
@@ -46,9 +50,9 @@
         >
           Login
         </button>
-        <router-link class="nav-link btn btn-dark-blue" tag="button" to="#"
-          >Sign up</router-link
-        >
+        <button class="nav-link btn btn-dark-blue" @click="openSignUpModal">
+          Sign up
+        </button>
       </div>
     </div>
   </nav>
@@ -59,6 +63,10 @@ export default {
   methods: {
     openLoginModal() {
       this.$store.dispatch('general/openModal', { id: 'loginModal' })
+    },
+
+    openSignUpModal() {
+      this.$store.dispatch('general/openModal', { id: 'signUpModal' })
     }
   }
 }
