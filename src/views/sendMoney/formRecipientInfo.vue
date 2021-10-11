@@ -220,7 +220,11 @@ export default {
 
     function submit() {
       v$.value.form.$touch()
-      if (!v$.value.form.$invalid) this.$emit('submit', data.form)
+      if (!v$.value.form.$invalid)
+        this.$emit('submit', {
+          ...data.form,
+          accountName: nameEnquiry.value.name
+        })
     }
 
     const v$ = useVuelidate(rules, data)

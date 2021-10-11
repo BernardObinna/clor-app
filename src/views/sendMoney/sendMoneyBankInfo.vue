@@ -4,7 +4,7 @@
       <div class="muted-block">
         <p>Bank Name:</p>
         <p>Account Number:</p>
-        <p>Account Email:</p>
+        <p>Account Name:</p>
       </div>
       <div class="strong-block">
         <p>
@@ -15,7 +15,7 @@
         </p>
         <div class="d-flex justify-content-between">
           <p class="mt-0">
-            {{ details.email }}
+            {{ details.accountName }}
           </p>
           <p class="mt-0 ml-2 edit" @click="edit()">Edit</p>
         </div>

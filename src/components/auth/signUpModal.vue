@@ -184,7 +184,7 @@ export default {
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
         data.loading = true
-        await store.dispatch('auth/login', data.form)
+        await store.dispatch('auth/signUp', data.form)
         data.loading = false
       }
     }
