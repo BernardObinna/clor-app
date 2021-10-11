@@ -10,6 +10,7 @@
     <landing-footer />
 
     <login-modal />
+    <sign-up-modal />
   </div>
 </template>
 
@@ -23,10 +24,12 @@ import LandingHeader from '../components/landingPage/landingHeader'
 import LandingFooter from '../components/landingPage/landingFooter'
 import LandingReasonToUseSectionMobile from '../components/landingPage/ReasonToUseMobile'
 import LoginModal from '../components/auth/loginModal'
+import SignUpModal from '../components/auth/signUpModal'
 
 export default {
   name: 'Home',
   components: {
+    SignUpModal,
     LoginModal,
     LandingReasonToUseSectionMobile,
     LandingFooter,

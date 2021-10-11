@@ -82,7 +82,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 // import UtilsService from '../../utils/UtilsService'
 export default {
-  name: 'Login',
+  name: 'LoginModal',
   components: { Modal },
   setup(props, { root }) {
     const store = root.$store
