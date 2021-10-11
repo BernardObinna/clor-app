@@ -38,7 +38,7 @@
               Forgot Password ?
             </p>
             <input
-              type="text"
+              type="password"
               class="form-control"
               id="password"
               placeholder="Password"
@@ -65,8 +65,13 @@
       </template>
       <template v-slot:modalFooter>
         <div class="text-center">
-          <button type="button" class="btn btn-primary mx-auto" @click="submit">
-            Continue
+          <button
+            type="button"
+            class="btn btn-primary mx-auto"
+            :disabled="loading"
+            @click="submit"
+          >
+            {{ loading ? 'Processing' : 'Continue' }}
           </button>
         </div>
       </template>
@@ -98,7 +103,9 @@ export default {
       form: {
         email: '',
         password: ''
-      }
+      },
+
+      loading: false
     })
 
     const v$ = useVuelidate(rules, data)
@@ -115,9 +122,13 @@ export default {
       })
     }
 
-    function submit() {
+    const submit = async () => {
       v$.value.form.$touch()
-      if (!v$.value.form.$invalid) this.$emit('submit', data.form)
+      if (!v$.value.form.$invalid) {
+        data.loading = true
+        await store.dispatch('auth/login', data.form)
+        data.loading = false
+      }
     }
 
     return {

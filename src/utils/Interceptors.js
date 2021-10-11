@@ -46,11 +46,11 @@ const interceptor = () => {
 
         // TODO Handle case where refreshToken has expired
       } else if (errResponse.status === 401) {
-        UtilsService.showMessage(
-          'You will be required to log in again.',
-          MessageType.Error,
-          'Session expired'
-        )
+        // UtilsService.showMessage(
+        //   'You will be required to log in again.',
+        //   MessageType.Error,
+        //   'Session expired'
+        // )
         Auth.action.logout()
       }
 

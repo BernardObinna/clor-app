@@ -47,6 +47,6 @@ export async function handleRequest(promise) {
     const data = await promise
     return [data.data, null]
   } catch (e) {
-    return [null, e.response]
+    return [null, e.response ? e.response : e]
   }
 }

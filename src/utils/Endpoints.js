@@ -14,6 +14,8 @@ export default class Endpoints {
    *
    */
   static refreshToken = EnvironmentService.api + '/auth/refresh'
+  static login = EnvironmentService.api + '/auth/login'
+  static signUp = EnvironmentService.api + '/auth/register'
   static currentUser = EnvironmentService.api + '/users/active-user'
 
   /**
