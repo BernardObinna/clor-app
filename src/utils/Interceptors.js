@@ -2,7 +2,7 @@ import axios from './axios.js'
 import store from '@/store'
 
 import { Auth } from './Auth'
-import UtilsService, { MessageType } from '@/utils/UtilsService'
+// import UtilsService, { MessageType } from '@/utils/UtilsService'
 
 const interceptor = () => {
   //Make sure the interceptor is declared before ur vue instance is created.

@@ -13,6 +13,14 @@
   margin-bottom: 7rem;
 }
 
+.mb-16{
+    margin-bottom: toRem(16px);
+}
+
+.mb-40{
+    margin-bottom: toRem(40px);
+}
+
 .mt-2-8 {
   margin-top: 2.8rem;
 }
@@ -50,6 +58,10 @@
 }
 
 
+.mt-31 {
+  margin-top: toRem(31px);
+}
+
 .mt-32 {
   margin-top: toRem(32px);
 }
@@ -82,6 +94,11 @@
 .my-28{
   margin-top: toRem(28px);
   margin-bottom: toRem(28px);
+}
+
+.my-32{
+  margin-top: toRem(32px) !important;
+  margin-bottom: toRem(32px) !important;
 }
 
 .my-40{

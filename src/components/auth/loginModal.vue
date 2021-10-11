@@ -7,7 +7,7 @@
     >
       <template v-slot:modalBody>
         <form class="form-block">
-          <div class="my-28">
+          <div class="mt-31 mb-40">
             <input
               type="text"
               class="form-control"
@@ -30,13 +30,10 @@
             >
           </div>
 
-          <div class="my-28">
-            <p
-              class="text-primary text-end pointer"
-              @click="openForgotPassword"
-            >
+          <div class="mb-16 text-end">
+            <span class="forgot-password-text" @click="openForgotPassword">
               Forgot Password ?
-            </p>
+            </span>
             <input
               type="password"
               class="form-control"
@@ -55,7 +52,7 @@
             >
           </div>
 
-          <p class="text-center">
+          <p class="no-account-text">
             Don't have an account?
             <span class="text-primary pointer" @click="openSignUp"
               >Sign up</span
@@ -64,7 +61,7 @@
         </form>
       </template>
       <template v-slot:modalFooter>
-        <div class="text-center">
+        <div class="text-center my-32">
           <button
             type="button"
             class="btn btn-primary mx-auto"
@@ -141,3 +138,30 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../assets/scss/core/mixins';
+@import '../../assets/scss/core/variables';
+
+.forgot-password-text {
+  font-family: 'Circular', sans-serif !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: toRem(14px);
+  line-height: toRem(20px);
+  margin-bottom: toRem(8px);
+  display: inline-block;
+  color: $color-primary;
+}
+
+.no-account-text {
+  font-family: 'Circular', sans-serif !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: toRem(14px);
+  line-height: toRem(20px);
+  text-align: center;
+  color: $color-dark-blue;
+  margin-bottom: 0;
+}
+</style>

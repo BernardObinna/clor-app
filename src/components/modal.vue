@@ -6,17 +6,25 @@
     :aria-labelledby="modalTitleId"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+    <div
+      class="modal-dialog modal-dialog-centered"
+      :class="{ md: modalSize === 'md' }"
+    >
+      <div class="modal-content" :class="{ rounded }">
         <div class="modal-header">
           <template v-if="!useCustomHeader">
             <h5 class="modal-title" :id="modalTitleId">{{ modalTitle }}</h5>
-            <button
-              type="button"
-              class="btn-close"
+            <a
+              href="javascript:"
+              aria-label="Close modal"
               data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+              class="close-img-tag"
+            >
+              <img
+                src="@/assets/images/icons/close-icon-black.svg"
+                alt="Click to close modal"
+              />
+            </a>
           </template>
           <template v-else>
             <slot name="modalHeader"></slot>
@@ -50,6 +58,16 @@ export default {
       default: 'Title'
     },
 
+    modalSize: {
+      type: String,
+      default: 'md'
+    },
+
+    rounded: {
+      type: Boolean,
+      default: true
+    },
+
     useModalClose: {
       type: Boolean,
       default: true
@@ -64,8 +82,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/core/mixins';
+@import '../assets/scss/core/variables';
+
+.modal-dialog {
+  &.md {
+    max-width: toRem(378px);
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+      padding: 0 toRem(20px);
+    }
+
+    &.rounded {
+      border-radius: toRem(16px) !important;
+    }
+
+    .modal-header {
+      padding-top: toRem(20px);
+    }
+  }
+}
+
 .modal-header {
   border-bottom: none;
+
+  .modal-title {
+    font-family: 'Circular', sans-serif !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: toRem(24px);
+    line-height: toRem(32px);
+    color: $color-dark-blue;
+  }
+
+  .close-img-tag {
+    img {
+      width: toRem(28px);
+      height: toRem(28px);
+    }
+  }
 }
 .modal-footer {
   display: block;
