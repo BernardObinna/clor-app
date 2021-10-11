@@ -56,6 +56,9 @@
         </template>
       </div>
     </div>
+
+    <sign-up-modal />
+    <login-modal />
   </div>
 </template>
 
@@ -69,6 +72,8 @@ import SendMoneySelectCryptoCurrency from './sendMoneySelectCryptoCurrency'
 import SendMoneyPaymentInfo from './sendMoneyPaymentInfo'
 import FormCardInfo from './formCardInfo'
 import Loader from '../../components/loader'
+import SignUpModal from '../../components/auth/signUpModal'
+import LoginModal from '../../components/auth/loginModal'
 export default {
   setup(props, { root }) {
     const store = root.$store
@@ -222,6 +227,8 @@ export default {
   },
   name: 'SendMoney',
   components: {
+    LoginModal,
+    SignUpModal,
     Loader,
     FormCardInfo,
     SendMoneyPaymentInfo,

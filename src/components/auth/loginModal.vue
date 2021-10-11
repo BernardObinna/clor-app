@@ -31,7 +31,7 @@
           </div>
 
           <div class="mb-16 text-end">
-            <span class="forgot-password-text" @click="openForgotPassword">
+            <span class="forgot-password-text" @click="openForgotPasswordModal">
               Forgot Password ?
             </span>
             <input
@@ -54,7 +54,7 @@
 
           <p class="no-account-text">
             Don't have an account?
-            <span class="text-primary pointer" @click="openSignUp"
+            <span class="text-primary pointer" @click="openSignUpModal"
               >Sign up</span
             >
           </p>
@@ -107,13 +107,13 @@ export default {
 
     const v$ = useVuelidate(rules, data)
 
-    function openForgotPassword() {
+    const openForgotPasswordModal = () => {
       store.dispatch('general/openModal', {
         id: 'forgotPasswordModal'
       })
     }
 
-    function openSignUp() {
+    const openSignUpModal = () => {
       store.dispatch('general/openModal', {
         id: 'signUpModal'
       })
@@ -131,8 +131,8 @@ export default {
     return {
       ...toRefs(data),
       v$,
-      openForgotPassword,
-      openSignUp,
+      openForgotPasswordModal,
+      openSignUpModal,
       submit
     }
   }

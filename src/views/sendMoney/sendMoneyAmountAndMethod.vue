@@ -53,9 +53,9 @@
       <div class="limit-text">
         You can send between $10 and $2,500 at any given time. If you want to
         send more than this amount,
-        <router-link to="#"> Log in </router-link>
+        <a href="javascript:" @click="openLoginModal"> Log in </a>
         or
-        <router-link to="#"> Create an account </router-link>.
+        <a href="javascript:" @click="openSignUpModal"> Create an account </a>.
       </div>
 
       <div class="mt-28">
@@ -188,6 +188,18 @@ export default {
       return data.form.paymentMethod === 'crypto'
     })
 
+    const openLoginModal = () => {
+      store.dispatch('general/openModal', {
+        id: 'loginModal'
+      })
+    }
+
+    const openSignUpModal = () => {
+      store.dispatch('general/openModal', {
+        id: 'signUpModal'
+      })
+    }
+
     function selectPaymentMethod(method) {
       data.form.paymentMethod = method
     }
@@ -215,6 +227,8 @@ export default {
       cardSelected,
       cryptoSelected,
       selectPaymentMethod,
+      openLoginModal,
+      openSignUpModal,
       submit
     }
   }
