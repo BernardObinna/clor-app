@@ -48,5 +48,18 @@ export const actions = {
     } else {
       UtilsService.showMessage(error.data.message, 'error')
     }
+  },
+
+  async forgotPassword(context, payload) {
+    const [res, error] = await handleRequest(
+      $axios.post(endpoints.forgotPassword, payload)
+    )
+
+    if (res) {
+      return res
+    } else {
+      UtilsService.showMessage(error.data.message, 'error')
+      return null
+    }
   }
 }

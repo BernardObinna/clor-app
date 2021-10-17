@@ -1,69 +1,60 @@
 <template>
   <div>
     <modal
-      modal-id="loginModal"
-      modal-title-id="loginModalTitle"
-      modal-title="Login"
+      modal-id="forgotPasswordModal"
+      modal-title-id="forgotPasswordModalTitle"
+      modal-title="Reset Password"
       @closeModal="clearData"
     >
       <template v-slot:modalBody>
-        <form class="form-block">
-          <div class="mt-31 mb-40">
-            <input
-              type="text"
-              class="form-control"
-              id="email"
-              placeholder="Email address"
-              aria-label="Email address"
-              v-model="form.email"
-            />
-
-            <span
-              class="attention"
-              v-if="v$.form.email.$error && v$.form.email.required.$invalid"
-              >Email is required</span
-            >
-
-            <span
-              class="attention"
-              v-if="v$.form.email.$error && v$.form.email.email.$invalid"
-              >Please provide a valid email</span
-            >
-          </div>
-
-          <div class="mb-16 text-end">
-            <span class="forgot-password-text" @click="openForgotPasswordModal">
-              Forgot Password ?
-            </span>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Password"
-              aria-label="password"
-              v-model="form.password"
-            />
-
-            <span
-              class="attention"
-              v-if="
-                v$.form.password.$error && v$.form.password.required.$invalid
-              "
-              >Password is required</span
-            >
-          </div>
-
-          <p class="no-account-text">
-            Don't have an account?
-            <span class="text-primary pointer" @click="openSignUpModal"
-              >Sign up</span
-            >
+        <template v-if="!successView">
+          <p class="mt-8">
+            Enter your email address. A password reset link will be sent to your
+            email
           </p>
-        </form>
+          <form class="form-block">
+            <div class="mt-31 mb-16">
+              <input
+                type="text"
+                class="form-control"
+                id="forgot-password-email"
+                placeholder="Email address"
+                aria-label="Email address"
+                v-model="form.email"
+              />
+
+              <span
+                class="attention"
+                v-if="v$.form.email.$error && v$.form.email.required.$invalid"
+                >Email is required</span
+              >
+
+              <span
+                class="attention"
+                v-if="v$.form.email.$error && v$.form.email.email.$invalid"
+                >Please provide a valid email</span
+              >
+            </div>
+
+            <p class="no-account-text">
+              Don't have an account?
+              <span class="text-primary pointer" @click="openSignUpModal"
+                >Sign up</span
+              >
+            </p>
+          </form>
+        </template>
+
+        <template v-else>
+          <P class="my-32 text-center"
+            >Please check your email for a reset link</P
+          >
+        </template>
       </template>
       <template v-slot:modalFooter>
         <div class="text-center my-32">
           <button
+            v-if="!successView"
             type="button"
             class="btn btn-primary mx-auto"
             :disabled="loading"
@@ -83,7 +74,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 // import UtilsService from '../../utils/UtilsService'
 export default {
-  name: 'LoginModal',
+  name: 'ForgotPasswordModal',
   components: { Modal },
   setup(props, { root }) {
     const store = root.$store
@@ -92,26 +83,25 @@ export default {
     //vuelidate rules
     const rules = {
       form: {
-        email: { required, email },
-        password: { required }
+        email: { required, email }
       }
     }
 
     const data = reactive({
       form: {
-        email: '',
-        password: ''
+        email: ''
       },
 
+      successView: false,
       loading: false
     })
 
     const v$ = useVuelidate(rules, data)
 
-    const openForgotPasswordModal = () => {
+    const openChangePasswordModal = () => {
       clearData()
       store.dispatch('general/openModal', {
-        id: 'forgotPasswordModal'
+        id: 'changePasswordModal'
       })
     }
 
@@ -124,8 +114,7 @@ export default {
 
     const clearData = () => {
       data.form = {
-        email: '',
-        password: ''
+        email: ''
       }
       !v$.value.form.$reset()
     }
@@ -134,7 +123,8 @@ export default {
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
         data.loading = true
-        await store.dispatch('auth/login', data.form)
+        const res = await store.dispatch('auth/forgotPassword', data.form)
+        if (res) data.successView = true
         data.loading = false
       }
     }
@@ -143,7 +133,7 @@ export default {
       ...toRefs(data),
       v$,
       clearData,
-      openForgotPasswordModal,
+      openChangePasswordModal,
       openSignUpModal,
       submit
     }
@@ -164,7 +154,6 @@ export default {
   margin-bottom: toRem(8px);
   display: inline-block;
   color: $color-primary;
-  cursor: pointer;
 }
 
 .no-account-text {

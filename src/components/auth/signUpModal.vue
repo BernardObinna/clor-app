@@ -4,6 +4,7 @@
       modal-id="signUpModal"
       modal-title-id="signUpModalTitle"
       modal-title="Sign Up"
+      @closeModal="clearData"
     >
       <template v-slot:modalBody>
         <form class="form-block">
@@ -175,9 +176,21 @@ export default {
     const v$ = useVuelidate(rules, data)
 
     function openLoginModal() {
+      clearData()
       store.dispatch('general/openModal', {
         id: 'loginModal'
       })
+    }
+
+    const clearData = () => {
+      data.form = {
+        firstName: '',
+        email: '',
+        lastName: '',
+        password: '',
+        phone: ''
+      }
+      !v$.value.form.$reset()
     }
 
     const submit = async () => {
@@ -198,6 +211,7 @@ export default {
     return {
       ...toRefs(data),
       v$,
+      clearData,
       openLoginModal,
       submit
     }

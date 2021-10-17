@@ -19,6 +19,7 @@
               aria-label="Close modal"
               data-bs-dismiss="modal"
               class="close-img-tag"
+              @click="$emit('closeModal')"
             >
               <img
                 src="@/assets/images/icons/close-icon-black.svg"

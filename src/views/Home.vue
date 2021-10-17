@@ -11,6 +11,7 @@
 
     <login-modal />
     <sign-up-modal />
+    <forgot-password-modal />
   </div>
 </template>
 
@@ -25,10 +26,12 @@ import LandingFooter from '../components/landingPage/landingFooter'
 import LandingReasonToUseSectionMobile from '../components/landingPage/ReasonToUseMobile'
 import LoginModal from '../components/auth/loginModal'
 import SignUpModal from '../components/auth/signUpModal'
+import ForgotPasswordModal from '../components/auth/forgotPasswordModal'
 
 export default {
   name: 'Home',
   components: {
+    ForgotPasswordModal,
     SignUpModal,
     LoginModal,
     LandingReasonToUseSectionMobile,
