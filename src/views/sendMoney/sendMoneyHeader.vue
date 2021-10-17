@@ -9,18 +9,63 @@
     </a>
     <h3 class="heading d-none d-lg-block">Send money</h3>
 
-    <a href="/" aria-label="Go back to the home page" class="close-img-tag">
-      <img
-        src="@/assets/images/icons/close-icon-black.svg"
-        alt="Click to go back"
-      />
-    </a>
+    <div class="dropdown">
+      <div
+        class="dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <div class="avatar-initials">
+          <h4 class="mb-0">DA</h4>
+        </div>
+        <div class="avatar-details">
+          <p class="mb-0">Adegoke Damola</p>
+          <span>adegokedamola@gmail.com</span>
+        </div>
+      </div>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="javascript:">Profile</a></li>
+        <li>
+          <a class="dropdown-item" href="javascript:" @click="logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+
+    <!--<a href="/" aria-label="Go back to the home page" class="close-img-tag">-->
+    <!--  <img-->
+    <!--    src="@/assets/images/icons/close-icon-black.svg"-->
+    <!--    alt="Click to go back"-->
+    <!--  />-->
+    <!--</a>-->
   </div>
 </template>
 
 <script>
+import { reactive, toRefs } from '@vue/composition-api'
+
 export default {
-  name: 'SendMoneyHeader'
+  name: 'SendMoneyHeader',
+
+  setup(props, { root }) {
+    const store = root.$store
+    const data = reactive({
+      loading: false
+    })
+
+    const logout = async () => {
+      if (data.loading) return
+      data.loading = true
+      await store.dispatch('auth/logout')
+      data.loading = false
+    }
+
+    return {
+      ...toRefs(data),
+      logout
+    }
+  }
 }
 </script>
 
@@ -61,5 +106,51 @@ export default {
   font-family: 'Recoleta' !important;
   color: $color-dark-blue;
   margin: 0;
+}
+
+.dropdown {
+  font-family: 'Circular', sans-serif !important;
+
+  .dropdown-toggle {
+    display: flex;
+    &:after {
+      align-self: center;
+      margin-left: toRem(9px);
+      border-top-color: $color-grey;
+    }
+    .avatar-initials {
+      display: flex;
+      align-items: center;
+      border: 1px solid $color-primary;
+      border-radius: 50%;
+      background: #dbdbfb;
+      padding: toRem(14px) toRem(10px);
+      margin-right: toRem(8px);
+      font-family: inherit !important;
+
+      h4 {
+        font-size: toRem(20px);
+        line-height: toRem(20px);
+        color: $color-primary;
+        font-family: inherit !important;
+      }
+    }
+
+    .avatar-details {
+      p {
+        font-size: toRem(16px);
+        line-height: toRem(24px);
+        color: $color-dark-blue;
+      }
+      span {
+        font-size: toRem(14px);
+        line-height: toRem(20px);
+        color: $color-dark-blue;
+      }
+    }
+  }
+  .dropdown-menu {
+    margin-top: 0.4rem !important;
+  }
 }
 </style>

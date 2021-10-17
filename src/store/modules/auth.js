@@ -76,5 +76,17 @@ export const actions = {
       UtilsService.showMessage(error.data.message, 'error')
       return null
     }
+  },
+
+  async logout() {
+    const [res, error] = await handleRequest($axios.post(endpoints.logout))
+
+    if (res) {
+      Auth.clear.allTokens()
+      location.href = '/'
+    } else {
+      UtilsService.showMessage(error.data.message, 'error')
+      return null
+    }
   }
 }
