@@ -12,6 +12,7 @@
     <login-modal />
     <sign-up-modal />
     <forgot-password-modal />
+    <reset-password-modal />
   </div>
 </template>
 
@@ -28,9 +29,13 @@ import LoginModal from '../components/auth/loginModal'
 import SignUpModal from '../components/auth/signUpModal'
 import ForgotPasswordModal from '../components/auth/forgotPasswordModal'
 
+import { onMounted } from '@vue/composition-api'
+import ResetPasswordModal from '../components/auth/resetPasswordModal'
+
 export default {
   name: 'Home',
   components: {
+    ResetPasswordModal,
     ForgotPasswordModal,
     SignUpModal,
     LoginModal,
@@ -42,6 +47,20 @@ export default {
     LandingReasonToUseSection,
     LandingHowItWorksSection,
     landingSendMoneySection
+  },
+
+  setup(props, { root }) {
+    const store = root.$store
+
+    //mounted
+    onMounted(async () => {
+      if (!root.$route.query.token) openResetPasswordModal()
+    })
+    const openResetPasswordModal = () => {
+      store.dispatch('general/openModal', {
+        id: 'resetPasswordModal'
+      })
+    }
   }
 }
 </script>

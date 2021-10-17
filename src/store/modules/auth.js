@@ -61,5 +61,20 @@ export const actions = {
       UtilsService.showMessage(error.data.message, 'error')
       return null
     }
+  },
+
+  async resetPassword(context, payload) {
+    const [res, error] = await handleRequest(
+      $axios.post(`${endpoints.resetPassword}?${payload.token}`, {
+        password: payload.password
+      })
+    )
+
+    if (res) {
+      return res
+    } else {
+      UtilsService.showMessage(error.data.message, 'error')
+      return null
+    }
   }
 }
