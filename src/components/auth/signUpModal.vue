@@ -184,7 +184,13 @@ export default {
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
         data.loading = true
-        await store.dispatch('auth/signUp', data.form)
+        let payload = {
+          name: `${data.form.firstName} ${data.form.lastName}`,
+          email: data.form.email,
+          password: data.form.password,
+          phone: data.form.phone
+        }
+        await store.dispatch('auth/signUp', payload)
         data.loading = false
       }
     }
