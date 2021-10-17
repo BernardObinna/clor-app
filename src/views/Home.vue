@@ -54,7 +54,7 @@ export default {
 
     //mounted
     onMounted(async () => {
-      if (!root.$route.query.token) openResetPasswordModal()
+      if (root.$route.query.token) openResetPasswordModal()
     })
     const openResetPasswordModal = () => {
       store.dispatch('general/openModal', {
