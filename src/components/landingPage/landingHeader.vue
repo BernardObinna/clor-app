@@ -44,29 +44,103 @@
         <router-link class="nav-link" to="#landing-vendor-section"
           >Vendor payment</router-link
         >
-        <button
-          class="nav-link btn btn-dark-blue-outline"
-          @click="openLoginModal"
-        >
-          Login
-        </button>
-        <button class="nav-link btn btn-dark-blue" @click="openSignUpModal">
-          Sign up
-        </button>
+
+        <template v-if="user">
+          <div class="dropdown">
+            <div
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <div class="avatar-initials">
+                <h4 class="mb-0">{{ getInitials(user.name) }}</h4>
+              </div>
+              <div class="avatar-details">
+                <p class="mb-0">{{ user.name }}</p>
+                <span>{{ user.email }}</span>
+              </div>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="javascript:">Profile</a></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  :class="{ disabled: loading }"
+                  href="javascript:"
+                  @click="logout"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </template>
+
+        <template v-else>
+          <button
+            class="nav-link btn btn-dark-blue-outline"
+            @click="openLoginModal"
+          >
+            Login
+          </button>
+          <button class="nav-link btn btn-dark-blue" @click="openSignUpModal">
+            Sign up
+          </button>
+        </template>
       </div>
     </div>
   </nav>
 </template>
 <script>
+import { computed, reactive, toRefs } from '@vue/composition-api'
+import UtilsService from '../../utils/UtilsService'
+
 export default {
   name: 'LandingHeader',
-  methods: {
-    openLoginModal() {
-      this.$store.dispatch('general/openModal', { id: 'loginModal' })
-    },
+  setup(props, { root }) {
+    const store = root.$store
 
-    openSignUpModal() {
-      this.$store.dispatch('general/openModal', { id: 'signUpModal' })
+    const data = reactive({
+      loading: false
+    })
+
+    //computed
+    const user = computed(() => {
+      return store.getters['auth/getUserX']
+    })
+
+    //methods
+    function openLoginModal() {
+      store.dispatch('general/openModal', {
+        id: 'loginModal'
+      })
+    }
+
+    function openSignUpModal() {
+      store.dispatch('general/openModal', {
+        id: 'signUpModal'
+      })
+    }
+
+    function getInitials(name) {
+      return UtilsService.getInitialsFromName(name)
+    }
+
+    const logout = async () => {
+      if (data.loading) return
+      data.loading = true
+      await store.dispatch('auth/logout')
+      data.loading = false
+    }
+
+    return {
+      ...toRefs(data),
+      user,
+      openLoginModal,
+      openSignUpModal,
+      getInitials,
+      logout
     }
   }
 }
@@ -114,6 +188,52 @@ export default {
     line-height: toRem(20px);
     color: $color-dark-blue;
     margin-right: toRem(40px);
+  }
+
+  .dropdown {
+    font-family: 'Circular', sans-serif !important;
+
+    .dropdown-toggle {
+      display: flex;
+      &:after {
+        align-self: center;
+        margin-left: toRem(9px);
+        border-top-color: $color-grey;
+      }
+      .avatar-initials {
+        display: flex;
+        align-items: center;
+        border: 1px solid $color-primary;
+        border-radius: 50%;
+        background: #dbdbfb;
+        padding: toRem(14px) toRem(10px);
+        margin-right: toRem(8px);
+        font-family: inherit !important;
+
+        h4 {
+          font-size: toRem(20px);
+          line-height: toRem(20px);
+          color: $color-primary;
+          font-family: inherit !important;
+        }
+      }
+
+      .avatar-details {
+        p {
+          font-size: toRem(16px);
+          line-height: toRem(24px);
+          color: $color-dark-blue;
+        }
+        span {
+          font-size: toRem(14px);
+          line-height: toRem(20px);
+          color: $color-dark-blue;
+        }
+      }
+    }
+    .dropdown-menu {
+      margin-top: 0.4rem !important;
+    }
   }
 }
 

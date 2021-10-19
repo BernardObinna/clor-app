@@ -17,6 +17,12 @@ export default class UtilsService {
     return email.substring(0, email.indexOf('@'))
   }
 
+  static getInitialsFromName(name = '') {
+    const arr = name.split(' ')
+    let initials = arr[0][0] + (arr.length > 1 ? arr[arr.length - 1][0] : '')
+    return initials.toUpperCase()
+  }
+
   static pascalize(word) {
     return `${word[0].toUpperCase()}${word.substr(1).toLowerCase()}`
   }

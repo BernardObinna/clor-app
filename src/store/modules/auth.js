@@ -12,9 +12,9 @@ export const state = {
 }
 
 export const getters = {
-  // getBanks(state) {
-  //   return state.banks
-  // },
+  getUserX() {
+    return Auth.get.userX()
+  }
 }
 
 export const mutations = {
@@ -44,6 +44,8 @@ export const actions = {
 
     if (res && res.tokens && res.tokens.access && res.tokens.access.token) {
       Auth.set.accessToken(res.tokens.access.token)
+      Auth.set.refreshToken(res.tokens.refresh.token)
+      Auth.set.userX(res.user)
       location.reload()
     } else {
       UtilsService.showMessage(error.data.message, 'error')
@@ -79,14 +81,16 @@ export const actions = {
   },
 
   async logout() {
-    const [res, error] = await handleRequest($axios.post(endpoints.logout))
+    const [res, error] = await handleRequest(
+      $axios.post(endpoints.logout, Auth.get.refreshToken())
+    )
 
-    if (res) {
-      Auth.clear.allTokens()
-      location.href = '/'
-    } else {
-      UtilsService.showMessage(error.data.message, 'error')
-      return null
-    }
+    // if (res) {
+    Auth.clear.allTokens()
+    location.href = '/'
+    // } else {
+    //   UtilsService.showMessage(error.data.message, 'error')
+    //   return null
+    // }
   }
 }

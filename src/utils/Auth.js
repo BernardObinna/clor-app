@@ -1,11 +1,13 @@
 export const Auth = {
   get: {
     accessToken() {
-      // return localStorage.getItem('authToken')
-      return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGUzMzM2MzFlODMxMjNlMzhjYmNmMjciLCJpYXQiOjE2MzI2NzY4NjYsImV4cCI6MTYzMjY3ODY2NiwidHlwZSI6ImFjY2VzcyJ9.9laQc92sVFbfnj8QwvYQARPXgMk3QSsyvIxQzhPzbJg'
+      return localStorage.getItem('tokun')
     },
     refreshToken() {
       return localStorage.getItem('refreshToken')
+    },
+    userX() {
+      return JSON.parse(localStorage.getItem('yuza'))
     },
     URLIntended() {
       return localStorage.getItem('comingFrom')
@@ -13,7 +15,10 @@ export const Auth = {
   },
   set: {
     accessToken(token) {
-      return localStorage.setItem('authToken', token)
+      return localStorage.setItem('tokun', token)
+    },
+    userX(details) {
+      return localStorage.setItem('yuza', JSON.stringify(details))
     },
     refreshToken(token) {
       return localStorage.setItem('refreshToken', token)
@@ -24,13 +29,14 @@ export const Auth = {
   },
   clear: {
     accessToken() {
-      return localStorage.removeItem('authToken')
+      return localStorage.removeItem('tokun')
     },
     refreshToken() {
       return localStorage.removeItem('refreshToken')
     },
     allTokens() {
-      localStorage.removeItem('authToken')
+      localStorage.removeItem('tokun')
+      localStorage.removeItem('yuza')
       localStorage.removeItem('refreshToken')
     },
     URLIntended() {
@@ -39,10 +45,9 @@ export const Auth = {
   },
   check: {
     isAuthenticated() {
-      return (
-        localStorage.getItem('authToken') &&
-        localStorage.getItem('refreshToken')
-      )
+      return localStorage.getItem('tokun')
+      // localStorage.getItem('tokun') &&
+      // localStorage.getItem('refreshToken')
     },
     isPasswordValid(password) {
       if (password !== '' && password.length >= 8) return true
