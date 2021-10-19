@@ -86,7 +86,9 @@ export const actions = {
 
   async logout() {
     // const [res, error] =
-    await handleRequest($axios.post(endpoints.logout, Auth.get.refreshToken()))
+    await handleRequest(
+      $axios.post(endpoints.logout, { refreshToken: Auth.get.refreshToken() })
+    )
 
     // if (res) {
     Auth.clear.allTokens()
