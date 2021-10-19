@@ -45,9 +45,11 @@ export const Auth = {
   },
   check: {
     isAuthenticated() {
-      return localStorage.getItem('tokun')
-      // localStorage.getItem('tokun') &&
-      // localStorage.getItem('refreshToken')
+      return (
+        localStorage.getItem('tokun') &&
+        localStorage.getItem('yuza') &&
+        localStorage.getItem('refreshToken')
+      )
     },
     isPasswordValid(password) {
       if (password !== '' && password.length >= 8) return true

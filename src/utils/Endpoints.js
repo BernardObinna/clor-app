@@ -29,6 +29,7 @@ export default class Endpoints {
   static sendDollarToNaira = EnvironmentService.api + '/transaction/pay_anon'
   static nameEnquiry = EnvironmentService.api + '/transaction/verifyBank'
   static initTransaction = EnvironmentService.api + '/transactions/initiate'
+  static initTransactionForAnonymousUser = this.initTransaction + '/anon'
   static getCryptoAddress = EnvironmentService.api + '/transactions/recipient'
 
   /**

@@ -1,7 +1,6 @@
 import $axios from '../../utils/axios'
 import endpoints from '../../utils/Endpoints'
 import { handleRequest } from '../../utils/Connection'
-// import util from '../../utils/UtilsService'
 import UtilsService from '../../utils/UtilsService'
 
 export const state = {
@@ -39,8 +38,13 @@ export const actions = {
     if (res) commit('setRates', res.rates)
   },
 
-  async initTransaction() {
-    const [res] = await handleRequest($axios.post(endpoints.initTransaction))
+  async initTransaction(context, payload = null) {
+    //use the anonymous transaction initiation endpoint if a payload is passed
+    let url = payload ? 'initTransactionForAnonymousUser' : 'initTransaction'
+
+    const [res] = await handleRequest(
+      $axios.post(endpoints[url], payload ? payload : '')
+    )
     return [res]
   },
 

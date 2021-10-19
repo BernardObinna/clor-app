@@ -98,10 +98,13 @@ export default {
 
     //mounted
     onMounted(async () => {
-      const [res] = await store.dispatch('sendMoney/initTransaction')
+      //generate the tracking ID for crypto transactions if logged in at this point.
+      if (store.getters['auth/getUserX']) {
+        const [res] = await store.dispatch('sendMoney/initTransaction')
 
-      if (res) {
-        data.form = { ...data.form, trackingId: res.trackingId }
+        if (res) {
+          data.form = { ...data.form, trackingId: res.trackingId }
+        }
       }
       await Promise.all([
         store.dispatch('sendMoney/getRates'),
