@@ -193,13 +193,19 @@ export default {
       return data.form.paymentMethod === 'crypto'
     })
 
+    const saveCurrentDetailsInLocalStorage = () => {
+      localStorage.setItem('temp_details', JSON.stringify(data.form))
+    }
+
     const openLoginModal = () => {
+      saveCurrentDetailsInLocalStorage()
       store.dispatch('general/openModal', {
         id: 'loginModal'
       })
     }
 
     const openSignUpModal = () => {
+      saveCurrentDetailsInLocalStorage()
       store.dispatch('general/openModal', {
         id: 'signUpModal'
       })

@@ -99,6 +99,7 @@ export default {
     //mounted
     onMounted(async () => {
       const [res] = await store.dispatch('sendMoney/initTransaction')
+
       if (res) {
         data.form = { ...data.form, trackingId: res.trackingId }
       }
@@ -108,6 +109,12 @@ export default {
       ])
       if (root.$route.params.amount) {
         data.form.amount = root.$route.params.amount
+      }
+
+      const tempDetails = JSON.parse(localStorage.getItem('temp_details'))
+      if (tempDetails) {
+        data.form = tempDetails
+        localStorage.removeItem('temp_details')
       }
 
       // const [rates] = await store.dispatch('sendMoney/getRates')
