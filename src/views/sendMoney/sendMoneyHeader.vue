@@ -9,41 +9,51 @@
     </a>
     <h3 class="heading d-none d-lg-block">Send money</h3>
 
-    <div class="dropdown">
-      <div
-        class="dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <div class="avatar-initials">
-          <h4 class="mb-0">DA</h4>
+    <template v-if="user">
+      <div class="dropdown">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <div class="avatar-initials">
+            <h4 class="mb-0">{{ getInitials(user.name) }}</h4>
+          </div>
+          <div class="avatar-details">
+            <p class="mb-0">{{ user.name }}</p>
+            <span>{{ user.email }}</span>
+          </div>
         </div>
-        <div class="avatar-details">
-          <p class="mb-0">Adegoke Damola</p>
-          <span>adegokedamola@gmail.com</span>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="javascript:">Profile</a></li>
+          <li>
+            <a
+              class="dropdown-item"
+              :class="{ disabled: loading }"
+              href="javascript:"
+              @click="logout"
+              >Logout</a
+            >
+          </li>
+        </ul>
       </div>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="javascript:">Profile</a></li>
-        <li>
-          <a class="dropdown-item" href="javascript:" @click="logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-
-    <!--<a href="/" aria-label="Go back to the home page" class="close-img-tag">-->
-    <!--  <img-->
-    <!--    src="@/assets/images/icons/close-icon-black.svg"-->
-    <!--    alt="Click to go back"-->
-    <!--  />-->
-    <!--</a>-->
+    </template>
+    <template v-else>
+      <a href="/" aria-label="Go back to the home page" class="close-img-tag">
+        <img
+          src="@/assets/images/icons/close-icon-black.svg"
+          alt="Click to go back"
+        />
+      </a>
+    </template>
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from '@vue/composition-api'
+import { computed, reactive, toRefs } from '@vue/composition-api'
+import UtilsService from '../../utils/UtilsService'
 
 export default {
   name: 'SendMoneyHeader',
@@ -54,6 +64,16 @@ export default {
       loading: false
     })
 
+    //computed
+    const user = computed(() => {
+      return store.getters['auth/getUserX']
+    })
+
+    //methods
+    function getInitials(name) {
+      return UtilsService.getInitialsFromName(name)
+    }
+
     const logout = async () => {
       if (data.loading) return
       data.loading = true
@@ -63,6 +83,8 @@ export default {
 
     return {
       ...toRefs(data),
+      user,
+      getInitials,
       logout
     }
   }

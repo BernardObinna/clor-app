@@ -203,7 +203,8 @@ export default {
           password: data.form.password,
           phone: data.form.phone
         }
-        await store.dispatch('auth/signUp', payload)
+        const res = await store.dispatch('auth/signUp', payload)
+        if (res) openLoginModal()
         data.loading = false
       }
     }

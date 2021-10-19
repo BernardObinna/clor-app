@@ -29,11 +29,15 @@ export const actions = {
       $axios.post(endpoints.signUp, payload)
     )
 
-    if (res && res.tokens && res.tokens.access && res.tokens.access.token) {
-      Auth.set.accessToken(res.tokens.access.token)
-      location.reload()
+    if (res) {
+      UtilsService.showMessage(
+        'Registration successful. Please login',
+        'success'
+      )
+      return true
     } else {
       UtilsService.showMessage(error.data.message, 'error')
+      return null
     }
   },
 
