@@ -99,6 +99,7 @@
         </button>
       </div>
     </div>
+    <sender-details-modal @emitTrackingID="updateTrackingId($event)" />
   </form>
 </template>
 
@@ -107,13 +108,15 @@ import { computed, onMounted, reactive, toRefs } from '@vue/composition-api'
 import UtilsService from '../../utils/UtilsService'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
+import SenderDetailsModal from '../../components/sendMoney/senderDetailsModal'
 
 export default {
   name: 'SendMoneyAmountAndMethod',
+  components: { SenderDetailsModal },
   props: {
     details: Object
   },
-  setup(props, { root }) {
+  setup(props, { root, emit }) {
     const store = root.$store
 
     //vuelidate rules
@@ -211,6 +214,11 @@ export default {
       })
     }
 
+    const updateTrackingId = (trackingId) => {
+      data.form.trackingId = trackingId
+      submit()
+    }
+
     function selectPaymentMethod(method) {
       data.form.paymentMethod = method
     }
@@ -219,11 +227,19 @@ export default {
       // data.form.paymentMethod = 'card'
       v$.value.form.$touch()
       if (!v$.value.form.$invalid) {
+        // show the sender details modal if logged out to get the tracking id
+        if (!user.value && !data.form.trackingId) {
+          store.dispatch('general/openModal', {
+            id: 'senderDetailsModal'
+          })
+          return
+        }
         const payload = {
           amount: Number(UtilsService.formatMoneyMask(data.form.amount)),
-          paymentMethod: data.form.paymentMethod
+          paymentMethod: data.form.paymentMethod,
+          trackingId: data.form.trackingId
         }
-        this.$emit('submit', payload)
+        emit('submit', payload)
       }
     }
 
@@ -238,6 +254,7 @@ export default {
       dollarRate,
       cardSelected,
       cryptoSelected,
+      updateTrackingId,
       selectPaymentMethod,
       openLoginModal,
       openSignUpModal,
