@@ -45,7 +45,7 @@ export class ConnectionTracker {
 export async function handleRequest(promise) {
   try {
     const data = await promise
-    return [data.data, null]
+    return [data.data || true, null]
   } catch (e) {
     return [null, e.response ? e.response : e]
   }

@@ -62,7 +62,7 @@ export const actions = {
     )
 
     if (res) {
-      return res
+      return true
     } else {
       UtilsService.showMessage(error.data.message, 'error')
       return null
