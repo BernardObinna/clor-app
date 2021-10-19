@@ -81,9 +81,8 @@ export const actions = {
   },
 
   async logout() {
-    const [res, error] = await handleRequest(
-      $axios.post(endpoints.logout, Auth.get.refreshToken())
-    )
+    // const [res, error] =
+    await handleRequest($axios.post(endpoints.logout, Auth.get.refreshToken()))
 
     // if (res) {
     Auth.clear.allTokens()
