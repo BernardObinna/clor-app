@@ -50,7 +50,7 @@
         </button>
       </div>
 
-      <div class="limit-text" v-if="user">
+      <div class="limit-text" v-if="!user">
         You can send between $10 and $2,500 at any given time. If you want to
         send more than this amount,
         <a href="javascript:" @click="openLoginModal"> Log in </a>
