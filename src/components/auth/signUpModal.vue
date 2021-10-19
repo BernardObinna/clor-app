@@ -200,8 +200,8 @@ export default {
         let payload = {
           name: `${data.form.firstName} ${data.form.lastName}`,
           email: data.form.email,
-          password: data.form.password,
-          phone: data.form.phone
+          password: data.form.password
+          // phone: data.form.phone
         }
         const res = await store.dispatch('auth/signUp', payload)
         if (res) openLoginModal()
