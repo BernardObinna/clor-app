@@ -50,7 +50,7 @@
         </button>
       </div>
 
-      <div class="limit-text">
+      <div class="limit-text" v-if="user">
         You can send between $10 and $2,500 at any given time. If you want to
         send more than this amount,
         <a href="javascript:" @click="openLoginModal"> Log in </a>
@@ -145,8 +145,8 @@ export default {
     onMounted(() => {
       // if (props.details.paymentMethod) {
       if (props.details) {
-        console.log('the details', props.details.amount)
-        console.log('the details', typeof props.details.amount === 'string')
+        // console.log('the details', props.details.amount)
+        // console.log('the details', typeof props.details.amount === 'string')
         data.form = {
           ...props.details,
           // amount:
@@ -158,6 +158,11 @@ export default {
       }
 
       data.loading = false
+    })
+
+    //computed
+    const user = computed(() => {
+      return store.getters['auth/getUserX']
     })
 
     const dollarRate = computed(() => {
@@ -221,6 +226,7 @@ export default {
     return {
       ...toRefs(data),
       v$,
+      user,
       amountToBeReceived,
       showBankInfoBlock,
       dollarRate,
