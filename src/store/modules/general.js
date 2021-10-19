@@ -59,6 +59,6 @@ export const actions = {
   closeModal(context, { id }) {
     const modalId = `${id}`
     const modalInstance = Modal.getInstance(document.getElementById(modalId))
-    modalInstance.hide()
+    if (modalInstance) modalInstance.hide()
   }
 }

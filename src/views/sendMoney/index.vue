@@ -3,7 +3,7 @@
     <app-header />
 
     <div class="app-body">
-      <loader v-if="loading" />
+      <loader v-if="showLoader" />
       <!--form body-->
       <div v-else>
         <!--bank details card view-->
@@ -93,11 +93,13 @@ export default {
       showRecipientInfoForm: false,
       showAmountAndMethodForm: false,
       showCardOrCryptoForm: false,
+      loading: false,
       submitting: false
     })
 
     //mounted
     onMounted(async () => {
+      data.loading = true
       //generate the tracking ID for crypto transactions if logged in at this point.
       if (store.getters['auth/getUserX']) {
         const [res] = await store.dispatch('sendMoney/initTransaction')
@@ -122,6 +124,8 @@ export default {
 
       // const [rates] = await store.dispatch('sendMoney/getRates')
       // if (rates)
+
+      data.loading = false
     })
 
     const displayRecipientInfoForm = computed(() => {
@@ -178,8 +182,8 @@ export default {
       data.step = nextStep
     }
 
-    const loading = computed(() => {
-      return data.submitting
+    const showLoader = computed(() => {
+      return data.submitting || data.loading
     })
 
     const submit = async (info) => {
@@ -229,7 +233,7 @@ export default {
       displayAmountAndMethodForm,
       displayCardOrCryptoForm,
       paymentMethodSelected,
-      loading,
+      showLoader,
       goBackToStep,
       submit,
       proceed
