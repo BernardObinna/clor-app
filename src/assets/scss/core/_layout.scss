@@ -167,6 +167,13 @@ html {
   width: 90% !important;
 }
 
+
+.w-lg-100 {
+  @include screen('x-large') {
+    width: 100% !important;
+  }
+}
+
 .w-3-r {
   width: 3rem !important;
 }

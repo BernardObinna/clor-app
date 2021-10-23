@@ -1,29 +1,68 @@
 <template>
   <nav class="navbar navbar-light content">
-    <div class="container-fluid flex-nowrap px-0">
-      <router-link to="#landing-how-it-works-section" class="navbar-brand">
-        <img
-          type="button"
-          src="@/assets/images/icons/clorza-logo.svg"
-          alt="Brand logo"
-        />
-      </router-link>
-      <div class="nav-links">
-        <router-link
-          class="nav-link fs-14-mob"
-          to="#landing-how-it-works-section"
-          >support@clorza.com</router-link
-        >
-        <router-link
-          class="nav-link d-none d-lg-inline"
-          to="#landing-vendor-section"
-          >Tw</router-link
-        >
-        <router-link class="nav-link d-none d-lg-inline" to="#">Ig</router-link>
-        <router-link class="nav-link d-none d-lg-inline me-0 pe-0" to="#"
-          >Fb</router-link
-        >
+    <div class="dropdown-divider w-100 mb-5"></div>
+    <div
+      class="
+        container-fluid
+        flex-nowrap
+        px-0
+        d-block d-lg-flex
+        align-items-start
+      "
+    >
+      <div class="d-flex justify-content-between d-lg-block">
+        <router-link to="#landing-how-it-works-section" class="navbar-brand">
+          <img
+            type="button"
+            src="@/assets/images/icons/clorza-logo.svg"
+            class="w-lg-60"
+            alt="Brand logo"
+          />
+        </router-link>
+        <div class="nav-links d-block">
+          <router-link
+            class="nav-link fs-14-mob ps-0"
+            to="#landing-how-it-works-section"
+            >support@clorza.com</router-link
+          >
+          <div>
+            <router-link
+              class="nav-link d-none d-lg-inline ps-0"
+              to="#landing-vendor-section"
+              >Tw</router-link
+            >
+            <router-link class="nav-link d-none d-lg-inline" to="#"
+              >Ig</router-link
+            >
+            <router-link class="nav-link d-none d-lg-inline me-0 pe-0" to="#"
+              >Fb</router-link
+            >
+          </div>
+        </div>
       </div>
+
+      <!--<div class="d-flex justify-content-between">-->
+      <div class="my-4 my-lg-0">
+        <h5>MARSHALL ISLANDS</h5>
+        <p>
+          Trust Company Complex, <br />
+          Ajeltake Road, Ajeltake Island, <br />
+          Majuro, Marshall Islands MH96960.
+        </p>
+        <p>
+          Registration No: 108835
+          <span class="d-block">Certification Number: Z-108917- 04/21</span>
+        </p>
+      </div>
+      <div>
+        <h5>COTONOU</h5>
+        <p>
+          Lot1075, <br />
+          Quartier : Gbèdjromédé, <br />03-BP3527 Cotonou Benin
+        </p>
+        <p>Registration No: RCCM RB / COT / 21 B 30072</p>
+      </div>
+      <!--</div>-->
     </div>
   </nav>
 </template>
@@ -67,7 +106,7 @@ export default {
     font-size: toRem(16px);
     line-height: toRem(20px);
     color: $color-dark-blue;
-    margin-right: toRem(40px);
+    margin-right: toRem(20px);
     @include screen('med') {
       margin: 0;
       padding-right: 0;
