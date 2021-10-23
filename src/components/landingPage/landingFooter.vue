@@ -41,7 +41,6 @@
         </div>
       </div>
 
-      <!--<div class="d-flex justify-content-between">-->
       <div class="my-4 my-lg-0">
         <h5>MARSHALL ISLANDS</h5>
         <p>
@@ -62,7 +61,6 @@
         </p>
         <p>Registration No: RCCM RB / COT / 21 B 30072</p>
       </div>
-      <!--</div>-->
     </div>
   </nav>
 </template>
