@@ -10,12 +10,15 @@
         align-items-start
       "
     >
-      <div class="d-flex justify-content-between d-lg-block">
-        <router-link to="#landing-how-it-works-section" class="navbar-brand">
+      <div class="ps-0">
+        <router-link
+          to="#landing-how-it-works-section"
+          class="navbar-brand ps-0"
+        >
           <img
             type="button"
             src="@/assets/images/icons/clorza-logo.svg"
-            class="w-lg-60"
+            class="w-30 w-lg-60 ps-0"
             alt="Brand logo"
           />
         </router-link>
