@@ -28,12 +28,12 @@ const interceptor = () => {
     function (error) {
       const errResponse = error.response
 
-      if (errResponse.status === 419 && Auth.get.refreshToken()) {
+      if (errResponse.status === 401 && Auth.get.refreshToken()) {
         if (!isRefreshing) {
           isRefreshing = true
 
           store
-            .dispatch('refreshToken')
+            .dispatch('auth/refreshToken')
             .then(() => {
               error.response.config.headers['Authorization'] =
                 'Bearer ' + Auth.get.accessToken()

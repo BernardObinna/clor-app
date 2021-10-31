@@ -84,6 +84,24 @@ export const actions = {
     }
   },
 
+  async refreshToken({ dispatch }) {
+    const [res] = await handleRequest(
+      $axios.post(endpoints.refreshToken, {
+        refreshToken: Auth.get.refreshToken()
+      })
+    )
+
+    if (res && res.tokens && res.tokens.access && res.tokens.access.token) {
+      Auth.set.accessToken(res.tokens.access.token)
+      Auth.set.refreshToken(res.tokens.refresh.token)
+      Auth.set.userX(res.user)
+      location.reload()
+    } else {
+      await dispatch('logout')
+      UtilsService.showMessage('Session expired. Please login again', 'error')
+    }
+  },
+
   async logout() {
     // const [res, error] =
     await handleRequest(

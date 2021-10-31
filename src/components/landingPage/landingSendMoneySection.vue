@@ -50,9 +50,13 @@
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
                     v-money="moneySend"
-                    :disabled="gettingRates"
+                    @keyup="updateReceiveAmount"
                     v-model="sendAmount"
+                    :disabled="gettingRates"
                   />
+                  <!--@input="updateReceiveAmount"-->
+                  <!--:value="calculateSendAmount"-->
+                  <!--:value="sendAmount"-->
                   <label for="floatingInput-send-amount">You send</label>
                   <span class="input-group-text" id="send-currency">
                     <img
@@ -82,7 +86,7 @@
                   alt="conversion-icon"
                   class="conversion-img"
                 />
-                {{ dollarRates }} NGN
+                {{ receiveRate }} NGN
               </p>
             </div>
 
@@ -96,10 +100,14 @@
                     placeholder="name@example.com"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
+                    @keyup="updateSendAmount"
                     v-money="moneyReceive"
-                    :value="calculateNaira"
-                    disabled
+                    v-model="receiveAmount"
+                    :disabled="gettingRates"
                   />
+                  <!--@input="updateSendAmount"-->
+                  <!--:value="calculateReceiveAmount"-->
+                  <!--:value="calculateReceiveAmount"-->
                   <label for="floatingInput">Recipient gets</label>
                   <span class="input-group-text" id="receive-currency">
                     <img
@@ -129,7 +137,7 @@
               </button>
               <button
                 class="btn btn-primary-blue w-m-100"
-                :disabled="gettingRates"
+                :disabled="gettingRates || lowAmount"
                 type="submit"
               >
                 Send Money
@@ -166,15 +174,18 @@ export default {
     const data = reactive({
       moneyReceive: {
         ...baseMask,
-        prefix: '₦ '
+        prefix: '₦ ',
+        precision: 2
       },
 
       moneySend: {
         ...baseMask,
-        prefix: '$ '
+        prefix: '$ ',
+        precision: 2
       },
       sendAmount: '',
-      dollarRates: '',
+      receiveAmount: '',
+      receiveRate: '',
       gettingRates: false
     })
 
@@ -182,27 +193,76 @@ export default {
     onMounted(async () => {
       data.gettingRates = true
       await store.dispatch('sendMoney/getRates')
-      data.dollarRates = store.getters['sendMoney/getDollarRates']
+      data.receiveRate = store.getters['sendMoney/getDollarRates']
       data.gettingRates = false
     })
 
     //computed
-    const calculateNaira = computed(() => {
+    const calculateReceiveAmount = computed(() => {
       return (
-        data.dollarRates *
+        data.receiveAmount *
         Number(UtilsService.formatMoneyMask(data.sendAmount, true))
       )
     })
 
+    const calculateSendAmount = computed(() => {
+      return (
+        data.receiveAmount /
+        Number(UtilsService.formatMoneyMask(data.sendAmount, true))
+      )
+    })
+
+    const lowAmount = computed(() => {
+      return (
+        Number(UtilsService.formatMoneyMask(data.sendAmount, false)).toFixed(
+          2
+        ) < 1000
+      )
+    })
+
     //methods
-    function submit() {
-      this.$router.push({
-        name: 'send-money',
-        params: { amount: UtilsService.formatMoneyMask(data.sendAmount) }
-      })
+    const updateReceiveAmount = () => {
+      data.receiveAmount = (
+        Number(UtilsService.formatMoneyMask(data.sendAmount, false)) *
+        data.receiveRate
+      ).toFixed(2)
     }
 
-    return { ...toRefs(data), submit, calculateNaira }
+    const updateSendAmount = () => {
+      data.sendAmount = (
+        Number(UtilsService.formatMoneyMask(data.receiveAmount, false)) /
+        data.receiveRate
+      ).toFixed(2)
+    }
+
+    function submit() {
+      console.log(
+        'the route',
+        data.sendAmount
+        // UtilsService.formatMoneyMask(data.sendAmount, true)
+      )
+
+      let amount = Number(
+        UtilsService.formatMoneyMask(data.sendAmount, false)
+      ).toFixed(2)
+
+      this.$router.push({
+        name: 'send-money',
+        // params: { amount: (data.sendAmount / 100).toFixed(2) }
+        params: { amount }
+      })
+      // params: { amount: UtilsService.formatMoneyMask(data.sendAmount) }
+    }
+
+    return {
+      ...toRefs(data),
+      submit,
+      calculateReceiveAmount,
+      calculateSendAmount,
+      lowAmount,
+      updateReceiveAmount,
+      updateSendAmount
+    }
   }
 }
 </script>

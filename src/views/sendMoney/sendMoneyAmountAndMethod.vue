@@ -138,7 +138,7 @@ export default {
         thousands: ',',
         prefix: '$ ',
         suffix: '',
-        precision: 0,
+        precision: 2,
         masked: false /* doesn't work with directive */
       },
 
@@ -235,7 +235,9 @@ export default {
           return
         }
         const payload = {
-          amount: Number(UtilsService.formatMoneyMask(data.form.amount)),
+          amount: Number.parseFloat(
+            UtilsService.formatMoneyMask(data.form.amount)
+          ).toFixed(2),
           paymentMethod: data.form.paymentMethod,
           trackingId: data.form.trackingId
         }

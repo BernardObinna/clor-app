@@ -4,7 +4,7 @@ export const Auth = {
       return localStorage.getItem('tokun')
     },
     refreshToken() {
-      return localStorage.getItem('refreshToken')
+      return localStorage.getItem('refreshTokun')
     },
     userX() {
       return JSON.parse(localStorage.getItem('yuza'))
@@ -21,7 +21,7 @@ export const Auth = {
       return localStorage.setItem('yuza', JSON.stringify(details))
     },
     refreshToken(token) {
-      return localStorage.setItem('refreshToken', token)
+      return localStorage.setItem('refreshTokun', token)
     },
     URLIntended(url) {
       return localStorage.setItem('comingFrom', url)
@@ -32,12 +32,12 @@ export const Auth = {
       return localStorage.removeItem('tokun')
     },
     refreshToken() {
-      return localStorage.removeItem('refreshToken')
+      return localStorage.removeItem('refreshTokun')
     },
     allTokens() {
       localStorage.removeItem('tokun')
       localStorage.removeItem('yuza')
-      localStorage.removeItem('refreshToken')
+      localStorage.removeItem('refreshTokun')
     },
     URLIntended() {
       return localStorage.removeItem('comingFrom')
@@ -48,7 +48,7 @@ export const Auth = {
       return (
         localStorage.getItem('tokun') &&
         localStorage.getItem('yuza') &&
-        localStorage.getItem('refreshToken')
+        localStorage.getItem('refreshTokun')
       )
     },
     isPasswordValid(password) {
