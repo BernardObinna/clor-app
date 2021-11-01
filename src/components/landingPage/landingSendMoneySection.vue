@@ -54,9 +54,6 @@
                     v-model="sendAmount"
                     :disabled="gettingRates"
                   />
-                  <!--@input="updateReceiveAmount"-->
-                  <!--:value="calculateSendAmount"-->
-                  <!--:value="sendAmount"-->
                   <label for="floatingInput-send-amount">You send</label>
                   <span class="input-group-text" id="send-currency">
                     <img
@@ -105,9 +102,6 @@
                     v-model="receiveAmount"
                     :disabled="gettingRates"
                   />
-                  <!--@input="updateSendAmount"-->
-                  <!--:value="calculateReceiveAmount"-->
-                  <!--:value="calculateReceiveAmount"-->
                   <label for="floatingInput">Recipient gets</label>
                   <span class="input-group-text" id="receive-currency">
                     <img
@@ -198,20 +192,6 @@ export default {
     })
 
     //computed
-    const calculateReceiveAmount = computed(() => {
-      return (
-        data.receiveAmount *
-        Number(UtilsService.formatMoneyMask(data.sendAmount, true))
-      )
-    })
-
-    const calculateSendAmount = computed(() => {
-      return (
-        data.receiveAmount /
-        Number(UtilsService.formatMoneyMask(data.sendAmount, true))
-      )
-    })
-
     const lowAmount = computed(() => {
       return (
         Number(UtilsService.formatMoneyMask(data.sendAmount, false)).toFixed(
@@ -236,29 +216,19 @@ export default {
     }
 
     function submit() {
-      console.log(
-        'the route',
-        data.sendAmount
-        // UtilsService.formatMoneyMask(data.sendAmount, true)
-      )
-
       let amount = Number(
         UtilsService.formatMoneyMask(data.sendAmount, false)
       ).toFixed(2)
 
       this.$router.push({
         name: 'send-money',
-        // params: { amount: (data.sendAmount / 100).toFixed(2) }
         params: { amount }
       })
-      // params: { amount: UtilsService.formatMoneyMask(data.sendAmount) }
     }
 
     return {
       ...toRefs(data),
       submit,
-      calculateReceiveAmount,
-      calculateSendAmount,
       lowAmount,
       updateReceiveAmount,
       updateSendAmount

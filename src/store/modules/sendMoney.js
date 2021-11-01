@@ -4,7 +4,11 @@ import { handleRequest } from '../../utils/Connection'
 import UtilsService from '../../utils/UtilsService'
 
 export const state = {
-  usdRates: '',
+  rates: {
+    loading: false,
+    rates: '',
+    cryptoRates: []
+  },
   nameEnquiry: {
     loading: false,
     name: null
@@ -13,7 +17,15 @@ export const state = {
 
 export const getters = {
   getDollarRates(state) {
-    return state.usdRates
+    return Number(state.rates.rates?.wireinNaira)
+  },
+
+  getBTCToUSDRates(state) {
+    return state.rates.cryptoRates.find((crypto) => crypto.code === 'USD')?.rate
+  },
+
+  gettingRates(state) {
+    return state.rates.loading
   },
 
   getNameEnquiry(state) {
@@ -23,7 +35,7 @@ export const getters = {
 
 export const mutations = {
   setRates(state, rates) {
-    state.usdRates = Number(rates.wireinNaira)
+    state.rates = rates
   },
 
   setNameEnquiry(state, value) {
@@ -34,8 +46,12 @@ export const mutations = {
 export const actions = {
   async getRates({ commit }) {
     // util.showMessage('test', 'error')
+    commit('setRates', { loading: true, rates: '', cryptoRates: [] })
+
     const [res] = await handleRequest($axios.get(endpoints.rates))
-    if (res) commit('setRates', res.rates)
+    if (res) {
+      commit('setRates', { ...res, loading: false })
+    }
   },
 
   async initTransaction(context, payload = null) {

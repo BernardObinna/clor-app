@@ -53,8 +53,11 @@
 
       <template v-else>
         <div class="limit-text">
-          Send ${{ formatAmount }} in BTC with either the QR Code below or the
-          Bitcoin address.
+          Send ${{ formatAmount }} in BTC
+          <span class="text-primary" v-if="!gettingRates">
+            ( {{ formatBTCAmount }} )
+          </span>
+          with either the QR Code below or the Bitcoin address.
         </div>
 
         <div class="qr-code-block">
@@ -78,7 +81,11 @@
         </div>
 
         <div class="mt-32 text-lg-end">
-          <button class="btn btn-primary-blue w-m-100" type="submit">
+          <button
+            class="btn btn-primary-blue w-m-100"
+            type="submit"
+            :disabled="gettingRates"
+          >
             I’ve sent it
           </button>
         </div>
@@ -127,6 +134,7 @@ export default {
     //mounted
     onMounted(async () => {
       // if (props.details.paymentMethod) {
+      clearInterval(window.rateTimer)
       data.loading = true
       data.form = { ...data.form, ...props.details }
       data.form.cryptoType = 'btc'
@@ -143,10 +151,19 @@ export default {
       else {
         data.qrSpecs.value = res.address
         data.btcAddress = res.address
+
+        window.rateTimer = setInterval(async function () {
+          await store.dispatch('sendMoney/getRates', payload)
+        }, 60000)
         data.loading = false
       }
 
       // }
+    })
+
+    //computed
+    const gettingRates = computed(() => {
+      return store.getters['sendMoney/gettingRates']
     })
 
     //methods
@@ -168,6 +185,14 @@ export default {
 
     const formatAmount = computed(() => {
       return UtilsService.formatAmount(props.details.amount)
+    })
+
+    const formatBTCAmount = computed(() => {
+      return UtilsService.formatAmount(
+        Number(props.details.amount) /
+          store.getters['sendMoney/getBTCToUSDRates'],
+        8
+      )
     })
 
     function submit() {
@@ -192,8 +217,10 @@ export default {
       btcSelected,
       usdcSelected,
       usdtSelected,
-      selectPaymentMethod,
       formatAmount,
+      formatBTCAmount,
+      gettingRates,
+      selectPaymentMethod,
       copyAddress,
       submit
     }

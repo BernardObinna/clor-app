@@ -356,6 +356,7 @@ export default {
 
     onMounted(() => {
       // if (props.details.paymentMethod) {
+      clearInterval(window.rateTimer)
       data.form = { ...data.form, ...props.details }
       // }
     })

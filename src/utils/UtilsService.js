@@ -204,9 +204,9 @@ export default class UtilsService {
     return formData
   }
 
-  static formatAmount(amount) {
+  static formatAmount(amount, precision = 2) {
     const [nairaPart, koboPart] = Number(amount || 0)
-      .toFixed(2)
+      .toFixed(precision)
       .split('.')
     const nairaPaddedWithCommas = nairaPart.replace(
       /\B(?=(\d{3})+(?!\d))/g,
