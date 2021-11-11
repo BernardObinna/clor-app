@@ -45,22 +45,34 @@
       </div>
 
       <div class="my-4 my-lg-0">
-        <h5>MARSHALL ISLANDS</h5>
-        <p>
-          Trust Company Complex, <br />
-          Ajeltake Road, Ajeltake Island, <br />
-          Majuro, Marshall Islands MH96960.
-        </p>
-        <p>
-          Registration No: 108835
-          <span class="d-block">Certification Number: Z-108917- 04/21</span>
-        </p>
+        <div>
+          <h5>MARSHALL ISLANDS</h5>
+          <p>
+            Trust Company Complex, <br />
+            Ajeltake Road, Ajeltake Island, <br />
+            Majuro, Marshall Islands MH96960.
+          </p>
+          <p>
+            Registration No: 108835
+            <span class="d-block">Certification Number: Z-108917- 04/21</span>
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <h5>U.S.A</h5>
+          <p>
+            16192 Coastal Hwy, <br />
+            Lewes, DE 19958, <br />
+            U.S.A
+          </p>
+        </div>
       </div>
+
       <div>
         <h5>COTONOU</h5>
         <p>
           Lot1075, <br />
-          Quartier : Gbèdjromédé, <br />03-BP3527 Cotonou Benin
+          Quartier : Gbèdjromédé, <br />03-BP3527 Republic of Benin
         </p>
         <p>Registration No: RCCM RB / COT / 21 B 30072</p>
       </div>
