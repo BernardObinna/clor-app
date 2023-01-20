@@ -17,7 +17,7 @@ export const state = {
 
 export const getters = {
   getDollarRates(state) {
-    return Number(state.rates.rates?.wireinNaira)
+    return Number(state.rates.rates?.wireinNaira || 750)
   },
 
   getBTCToUSDRates(state) {
